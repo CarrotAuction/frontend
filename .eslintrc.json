@@ -6,8 +6,9 @@
   "rules": {
     "react/jsx-props-no-spreading": "off",
     "linebreak-style": 0,
+    "react/react-in-jsx-scope": "off",
     "import/no-extraneous-dependencies": [
-      "error",
+      "off",
       {
         "devDependencies": true,
         "optionalDependencies": true,

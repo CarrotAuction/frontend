@@ -1,12 +1,18 @@
 import React from 'react';
 
 import type { Metadata } from 'next';
-import { Noto_Sans_KR } from 'next/font/google';
+import { Roboto } from 'next/font/google';
 import '../styles/globalStyle.scss';
+import ReactQueryProvider from '../ReactQueryProvider';
 
-const notosanskr = Noto_Sans_KR({
+const NotoR = Roboto({
   weight: '400',
   subsets: ['latin'],
+});
+const NotoB = Roboto({
+  weight: '700',
+  subsets: ['latin'],
+  variable: '--Noto-B',
 });
 
 export const metadata: Metadata = {
@@ -21,7 +27,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="kr">
-      <body className={notosanskr.className}>{children}</body>
+      <body className={`${NotoR.className} ${NotoB.variable}`}>
+        <ReactQueryProvider>{children}</ReactQueryProvider>
+      </body>
     </html>
   );
 }
