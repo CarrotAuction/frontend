@@ -15,6 +15,15 @@
         "peerDependencies": false
       }
     ],
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/no-static-element-interactions": "off",
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "off",
+    "arrow-body-style": "off",
+    "react/function-component-definition": [
+      2,
+      { "namedComponents": ["arrow-function", "function-declaration"] }
+    ],
     "import/prefer-default-export": ["off", { "target": "single" }],
     "operator-linebreak": [0]
   }

@@ -1,9 +1,10 @@
 import React from 'react';
+import NavBar from '../common/Nav';
 
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      안녕하세요sddssd
+      <NavBar />
     </main>
   );
 }
