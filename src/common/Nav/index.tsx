@@ -3,10 +3,12 @@
 import React, { useEffect, useState } from 'react';
 import useWindowSize from '@/src/hooks/useWindow';
 import NavBarSlide from '@/src/components/NavBarSlide';
+import { useRouter } from 'next/navigation';
 import ToggleNavIcon from '../ui/ToggleNavIcon';
 import styles from './index.module.scss';
 
 const NavBar = () => {
+  const router = useRouter();
   const [window, windowEventListener] = useWindowSize();
   const [toggle, setToggle] = useState(false);
 
@@ -17,12 +19,15 @@ const NavBar = () => {
   useEffect(() => {
     windowEventListener();
   }, []);
+
   return (
     <nav className={styles.nav}>
       <section className={styles.innerNav}>
-        <div className={styles.logo}>Carrot Auction</div>
+        <div onClick={() => router.push('/')} className={styles.logo}>
+          Carrot Auction
+        </div>
         {window.width <= 500 ? (
-          <div onClick={changeToggle} className={styles.toggleIcon} role="none">
+          <div onClick={changeToggle} className={styles.toggleIcon}>
             {!toggle && <ToggleNavIcon />}
           </div>
         ) : (

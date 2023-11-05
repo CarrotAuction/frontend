@@ -35,14 +35,9 @@ const NavBarSlide = ({ toggle, changeToggle }: Props) => {
           exit={navExit}
           onClick={handleOutSide}
           className={styles.slide}
-          role="none"
         >
           <aside>
-            <div
-              onClick={changeToggle}
-              className={styles.closeIcon}
-              role="none"
-            >
+            <div onClick={changeToggle} className={styles.closeIcon}>
               <IoMdClose size={32} />
             </div>
             <ul className={styles.navList}>
