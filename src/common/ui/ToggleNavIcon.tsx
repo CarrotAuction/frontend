@@ -5,7 +5,7 @@ import { GiHamburgerMenu } from 'react-icons/gi';
 const ToggleNavIcon = () => {
   return (
     <div>
-      <GiHamburgerMenu size={32} />
+      <GiHamburgerMenu size={20} />
     </div>
   );
 };

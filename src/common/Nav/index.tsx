@@ -1,19 +1,39 @@
-import React from 'react';
-import styles from './index.module.scss';
+'use client';
+
+import React, { useEffect, useState } from 'react';
+import useWindowSize from '@/src/hooks/useWindow';
+import NavBarSlide from '@/src/components/NavBarSlide';
 import ToggleNavIcon from '../ui/ToggleNavIcon';
+import styles from './index.module.scss';
 
 const NavBar = () => {
+  const [window, windowEventListener] = useWindowSize();
+  const [toggle, setToggle] = useState(false);
+
+  const changeToggle = () => {
+    setToggle((pre) => !pre);
+  };
+
+  useEffect(() => {
+    windowEventListener();
+  }, []);
   return (
     <nav className={styles.nav}>
       <section className={styles.innerNav}>
         <div className={styles.logo}>Carrot Auction</div>
-        <ul className={styles.list}>
-          <li>물건 보러가기</li>
-          <li>글 쓰기</li>
-          <li>로그인</li>
-        </ul>
+        {window.width <= 500 ? (
+          <div onClick={changeToggle} className={styles.toggleIcon} role="none">
+            {!toggle && <ToggleNavIcon />}
+          </div>
+        ) : (
+          <ul className={styles.list}>
+            <li>물건 보러가기</li>
+            <li>글 쓰기</li>
+            <li>로그인</li>
+          </ul>
+        )}
       </section>
-      <ToggleNavIcon />
+      <NavBarSlide toggle={toggle} changeToggle={changeToggle} />
     </nav>
   );
 };
