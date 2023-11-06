@@ -1,33 +1,21 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import Image from 'next/image';
 import introduceP1 from '../../assets/main/introduce1.png';
 import introduceP2 from '../../assets/main/introduce2.png';
 import introduceP3 from '../../assets/main/introduce3.png';
+import blueIntroduce2 from '../../assets/main/blurIntroduce2.png';
+import blueIntroduce3 from '../../assets/main/blueIntroduce3.png';
 import styles from './index.module.scss';
+import UseLazyLoading from './useLazyLoading';
 
 const MainIntroduce = () => {
-  // const ref = useRef(null);
-  // const ref2 = useRef(null);
-  // useEffect(() => {
-  //   if (ref.current && ref2.current) {
-  //     const observer = new IntersectionObserver(
-  //       (entries: IntersectionObserverEntry[]) => {
-  //         entries.forEach((entry: IntersectionObserverEntry) => {
-  //           if (entry.isIntersecting) {
-  //             console.log(entry);
-  //           }
-  //         });
-  //       },
-  //       {},
-  //     );
-  //     observer.observe(ref.current);
-  //     observer.observe(ref2.current);
-  //     return () => observer.disconnect();
-  //   }
-  //   return () => undefined;
-  // }, [ref]);
+  const imageRef = useRef<HTMLImageElement | null>(null);
+  const imageRef2 = useRef<HTMLImageElement | null>(null);
+
+  const [view] = UseLazyLoading(imageRef);
+  const [view2] = UseLazyLoading(imageRef2);
 
   return (
     <main className={styles.introduce}>
@@ -50,7 +38,12 @@ const MainIntroduce = () => {
       <section className={`${styles.introBox} ${styles.mobileFlexReverse}`}>
         <article className={styles.introImg}>
           <div className={styles.picture}>
-            <Image src={introduceP2} fill alt="introduce" />
+            <Image
+              ref={imageRef}
+              src={view ? introduceP2 : blueIntroduce2}
+              fill
+              alt="introduce"
+            />
           </div>
         </article>
         <article className={styles.introText}>
@@ -75,7 +68,12 @@ const MainIntroduce = () => {
         </article>
         <article className={styles.introImg}>
           <div className={styles.picture}>
-            <Image src={introduceP3} fill alt="introduce" />
+            <Image
+              ref={imageRef2}
+              src={view2 ? introduceP3 : blueIntroduce3}
+              fill
+              alt="introduce"
+            />
           </div>
         </article>
       </section>
