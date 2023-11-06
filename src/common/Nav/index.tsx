@@ -9,16 +9,12 @@ import styles from './index.module.scss';
 
 const NavBar = () => {
   const router = useRouter();
-  const [window, windowEventListener] = useWindowSize();
+  const [window] = useWindowSize();
   const [toggle, setToggle] = useState(false);
 
   const changeToggle = () => {
     setToggle((pre) => !pre);
   };
-
-  useEffect(() => {
-    windowEventListener();
-  }, []);
 
   return (
     <nav className={styles.nav}>
