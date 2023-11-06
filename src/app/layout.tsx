@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
 import '../styles/globalStyle.scss';
 import ReactQueryProvider from '../ReactQueryProvider';
+import NavBar from '../common/Nav';
 
 const NotoR = Roboto({
   weight: '400',
@@ -28,6 +29,7 @@ export default function RootLayout({
   return (
     <html lang="kr">
       <body className={`${NotoR.className} ${NotoB.variable}`}>
+        <NavBar />
         <ReactQueryProvider>{children}</ReactQueryProvider>
       </body>
     </html>
