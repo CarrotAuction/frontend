@@ -13,14 +13,19 @@ import UseLazyLoading from './useLazyLoading';
 const MainIntroduce = () => {
   const imageRef = useRef<HTMLImageElement | null>(null);
   const imageRef2 = useRef<HTMLImageElement | null>(null);
+  const textRef = useRef<HTMLElement | null>(null);
+  const textRef2 = useRef<HTMLElement | null>(null);
+  const textRef3 = useRef<HTMLElement | null>(null);
 
   const [view] = UseLazyLoading(imageRef);
   const [view2] = UseLazyLoading(imageRef2);
+  const [show2] = UseLazyLoading(textRef2);
+  const [show3] = UseLazyLoading(textRef3);
 
   return (
     <main className={styles.introduce}>
       <section className={styles.introBox}>
-        <article className={styles.introText}>
+        <article ref={textRef} className={`${styles.introText} ${styles.init}`}>
           <p>Carrot Auction이 무엇인가요?</p>
           <p>도움이 필요한 당신, 지금 나에게 필요한 것은?</p>
           <span>
@@ -46,7 +51,10 @@ const MainIntroduce = () => {
             />
           </div>
         </article>
-        <article className={styles.introText}>
+        <article
+          ref={textRef2}
+          className={`${styles.introText} ${show2 && styles.show}`}
+        >
           <p>무엇을 할 수 있나요?</p>
           <p>우리 동네 사람과 소통해요</p>
           <span>
@@ -57,7 +65,10 @@ const MainIntroduce = () => {
         </article>
       </section>
       <section className={styles.introBox}>
-        <article className={styles.introText}>
+        <article
+          ref={textRef3}
+          className={`${styles.introText} ${show3 && styles.show}`}
+        >
           <p>어떤 점이 좋나요?</p>
           <p>매물을 늦게 발견해도 기회가 있어요!</p>
           <span>

@@ -22,7 +22,7 @@ const NavBar = () => {
         <div onClick={() => router.push('/')} className={styles.logo}>
           Carrot Auction
         </div>
-        {window.width <= 500 ? (
+        {window.width <= 500 && window.width !== 0 ? (
           <div onClick={changeToggle} className={styles.toggleIcon}>
             {!toggle && <ToggleNavIcon />}
           </div>

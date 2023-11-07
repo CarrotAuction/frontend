@@ -3,7 +3,6 @@
 .banner {
   background-color: #fff4ea;
   height: 35rem;
-  padding-bottom: 3rem;
 
   @media (max-width: 550px) {
     height: 40rem;
@@ -17,7 +16,6 @@
   padding: 0 1rem;
 
   @include tablet {
-    padding: 0 5rem;
     text-align: center;
   }
 }

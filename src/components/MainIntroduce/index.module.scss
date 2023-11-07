@@ -8,16 +8,6 @@
   margin-bottom: 20rem;
 }
 
-.ff {
-  height: 200vh;
-  background-color: red;
-}
-
-.dd {
-  height: 200vh;
-  background-color: blue;
-}
-
 .introBox {
   display: flex;
   align-items: center;
@@ -41,6 +31,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  opacity: 0;
+  transform: translateY(15px);
+  transition: 1s all;
   & > p:nth-child(1) {
     color: var(--main-color);
     font-size: 3.2rem;
@@ -83,4 +76,14 @@
   position: relative;
   width: 45rem;
   height: 35rem;
+}
+
+.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.init {
+  opacity: 1;
+  transform: translateY(0);
 }
