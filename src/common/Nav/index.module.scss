@@ -29,10 +29,19 @@
 }
 
 .logo {
+  display: flex;
+  align-items: center;
   color: var(--main-color);
   font-family: var(--Noto-B);
   padding-left: 5rem;
   cursor: pointer;
+
+  & > div {
+    width: 6.5rem;
+    height: 6.5rem;
+    position: relative;
+    transform: rotate(10deg); /* 우측으로 2도 회전 */
+  }
 }
 
 .list {
@@ -46,6 +55,9 @@
     &:hover {
       color: var(--main-color);
     }
+  }
+  @include mobile {
+    display: none;
   }
 }
 
@@ -61,5 +73,9 @@
   &:active {
     background-color: rgb(171, 171, 171);
     opacity: 0.8;
+  }
+
+  @include tablet {
+    display: none;
   }
 }

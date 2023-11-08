@@ -64,6 +64,7 @@ const MainIntroduce = () => {
           </span>
         </article>
       </section>
+
       <section className={styles.introBox}>
         <article
           ref={textRef3}
