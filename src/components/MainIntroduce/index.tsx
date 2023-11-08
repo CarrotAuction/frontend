@@ -27,11 +27,11 @@ const MainIntroduce = () => {
       <section className={styles.introBox}>
         <article ref={textRef} className={`${styles.introText} ${styles.init}`}>
           <p>Carrot Auction이 무엇인가요?</p>
-          <p>도움이 필요한 당신, 지금 나에게 필요한 것은?</p>
+          <p>중고 물품을 경매할 수 있어요</p>
           <span>
-            이어드림에서 당신에게 필요한 모든것을 해결해보세요 간편하게
+            당신에게 필요한 물품을 저렴하게 구매해보세요
             <br />
-            상담예약하고 채팅과 전화로 무엇이든 물어볼수있어요
+            어느 지역에서나 거래를 할 수 있어요
           </span>
         </article>
         <article className={styles.introImg}>

@@ -101,6 +101,7 @@ video {
   font: inherit;
   vertical-align: baseline;
 }
+
 /* HTML5 display-role reset for older browsers */
 article,
 aside,
@@ -153,10 +154,19 @@ table {
 }
 html {
   font-size: 37.5%; // 1rem = 8.5px;
+
   @include tablet {
     font-size: 50%; // 1rem = 10px;
   }
   @include desktop {
     font-size: 62.5%;
+  }
+
+  @media (max-width: 600px) {
+    html,
+    body {
+      overflow-x: hidden !important;
+      -ms-overflow-style: none;
+    }
   }
 }

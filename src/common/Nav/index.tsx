@@ -1,7 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import useWindowSize from '@/src/hooks/useWindow';
+import React, { useState } from 'react';
 import NavBarSlide from '@/src/components/NavBarSlide';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
