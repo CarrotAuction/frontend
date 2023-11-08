@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import wallet from '../../assets/main/wallet.gif';
+import wallet from '../../../assets/main/wallet.gif';
 import styles from './index.module.scss';
 
 const Baneer = () => {
