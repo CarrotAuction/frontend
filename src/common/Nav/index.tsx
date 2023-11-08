@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import NavBarSlide from '@/src/components/NavBarSlide';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import Link from 'next/link';
 import ToggleNavIcon from '../ui/ToggleNavIcon';
 import carrot from '../../assets/main/carrot.png';
 import styles from './index.module.scss';
@@ -29,7 +30,9 @@ const NavBar = () => {
           {!toggle && <ToggleNavIcon />}
         </div>
         <ul className={styles.list}>
-          <li>물건 보러가기</li>
+          <li>
+            <Link href="/auction">물건 보러가기</Link>
+          </li>
           <li>글 쓰기</li>
           <li>로그인</li>
         </ul>
