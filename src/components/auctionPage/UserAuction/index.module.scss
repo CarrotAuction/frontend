@@ -1,0 +1,13 @@
+@import '../../../styles/media.scss';
+
+.auction {
+  flex-grow: 1;
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 5rem;
+
+  @media (max-width: 1000px) {
+    padding: 0 5rem;
+  }
+}

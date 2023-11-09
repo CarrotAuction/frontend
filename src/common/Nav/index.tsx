@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import NavBarSlide from '@/src/components/NavBarSlide';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import ToggleNavIcon from '../ui/ToggleNavIcon';
@@ -11,6 +11,7 @@ import styles from './index.module.scss';
 
 const NavBar = () => {
   const router = useRouter();
+  const path = usePathname();
   const [toggle, setToggle] = useState(false);
 
   const changeToggle = () => {
@@ -31,7 +32,12 @@ const NavBar = () => {
         </div>
         <ul className={styles.list}>
           <li>
-            <Link href="/auction">물건 보러가기</Link>
+            <Link
+              href="/auction"
+              className={path === '/auction' ? styles.point : styles.nonPoint}
+            >
+              물건 보러가기
+            </Link>
           </li>
           <li>글 쓰기</li>
           <li>로그인</li>
