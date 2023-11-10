@@ -40,7 +40,14 @@ const NavBar = () => {
             </Link>
           </li>
           <li>글 쓰기</li>
-          <li>로그인</li>
+          <li>
+            <Link
+              href="/login"
+              className={path === '/login' ? styles.point : styles.nonPoint}
+            >
+              로그인
+            </Link>
+          </li>
         </ul>
       </section>
       <NavBarSlide toggle={toggle} changeToggle={changeToggle} />

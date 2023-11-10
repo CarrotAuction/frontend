@@ -120,6 +120,9 @@ body {
   line-height: 1;
   font-family: 'NanumSquareAcR';
   font-size: 1.6rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   // font-family: 'Pretendard';
 }
 a,
