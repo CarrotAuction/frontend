@@ -3,7 +3,7 @@ import Image from 'next/image';
 import wallet from '../../../assets/main/wallet.gif';
 import styles from './index.module.scss';
 
-const Baneer = () => {
+const Banner = () => {
   return (
     <main className={styles.banner}>
       <section className={styles.bannerBox}>
@@ -24,4 +24,4 @@ const Baneer = () => {
   );
 };
 
-export default Baneer;
+export default Banner;
