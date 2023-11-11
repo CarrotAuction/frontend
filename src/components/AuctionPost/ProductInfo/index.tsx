@@ -4,12 +4,25 @@ import ProductInfoImageAndName from '../ProductInfoImageAndName';
 import ProductInfoDetail from '../ProductInfoDetail';
 import Product from '../../../assets/AuctionPost/product.png';
 
+type ProductInfoType = {
+  userImage: any;
+  productImage: any;
+  productName: string;
+  postOwner: string;
+  postOwnerProvince: string;
+  postOwnerCity: string;
+  productCategory: string;
+  productFeature: string;
+  desiredPrice: number;
+  isAuctionOver: boolean;
+};
+
 type Props = {
-  productInfo: object;
+  productInfo: ProductInfoType;
   loginedNickname: string;
 };
 
-const ProductInfo = ({ productInfo }: Props) => {
+const ProductInfo = ({ productInfo, loginedNickname }: Props) => {
   return (
     <section className={styles.productInfo}>
       <ProductInfoImageAndName
@@ -24,7 +37,8 @@ const ProductInfo = ({ productInfo }: Props) => {
         productCategory={productInfo.productCategory}
         productFeature={productInfo.productFeature}
         desiredPrice={productInfo.desiredPrice}
-        loginedNickname={productInfo.loginedNickname}
+        isAuctionOver={productInfo.isAuctionOver}
+        loginedNickname={loginedNickname}
       />
     </section>
   );

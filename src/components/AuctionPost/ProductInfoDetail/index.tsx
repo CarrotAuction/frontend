@@ -3,13 +3,14 @@ import Image from 'next/image';
 import styles from './index.module.scss';
 
 type Props = {
-  userImageSrc: string;
-  postOwner: string;
+  userImageSrc: any;
+  postOwner: any;
   postOwnerProvince: string;
   postOwnerCity: string;
   productCategory: string;
   productFeature: string;
   desiredPrice: number;
+  isAuctionOver: boolean;
   loginedNickname: string;
 };
 
@@ -21,6 +22,7 @@ const ProductInfoDetail = ({
   productCategory,
   productFeature,
   desiredPrice,
+  isAuctionOver,
   loginedNickname,
 }: Props) => {
   return (
@@ -35,7 +37,11 @@ const ProductInfoDetail = ({
       <p>{productCategory}</p>
       <p>{productFeature}</p>
       <p>{`희망 가격: ${desiredPrice.toLocaleString('ko-KR')}원`}</p>
-      <button type="button" className={styles.auctionParticipateButton}>
+      <button
+        type="button"
+        className={styles.auctionParticipateButton}
+        disabled={isAuctionOver}
+      >
         {loginedNickname === postOwner ? '판매 종료' : '경매 참여하기'}
       </button>
     </article>
