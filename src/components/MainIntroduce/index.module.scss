@@ -1,0 +1,90 @@
+@import '../../styles/media.scss';
+
+.introduce {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding-left: 5rem;
+  padding-right: 2.5rem;
+  margin-bottom: 20rem;
+}
+
+.introBox {
+  display: flex;
+  align-items: center;
+  padding-top: 15rem;
+  @media (max-width: 550px) {
+    flex-direction: column;
+    padding: 0 5rem;
+    margin-top: 15rem;
+  }
+}
+.mobileFlexReverse {
+  @media (max-width: 550px) {
+    flex-direction: column-reverse;
+  }
+}
+
+.introText {
+  width: 70rem;
+  min-width: 30rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(15px);
+  transition: 1s all;
+  & > p:nth-child(1) {
+    color: var(--main-color);
+    font-size: 3.2rem;
+    font-weight: 700;
+    margin-bottom: 3.5rem;
+  }
+
+  & > p:nth-child(2) {
+    font-size: 2rem;
+    margin-bottom: 3rem;
+  }
+  & > span {
+    color: #818181;
+    text-align: center;
+    line-height: 150%;
+  }
+}
+.introImg {
+  width: 70rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1.5rem;
+  transition: all 0.5s ease;
+  aspect-ratio: 1/1;
+  margin: 0 auto;
+  cursor: pointer;
+  height: 40rem;
+  &:hover {
+    transform: translateY(-15px);
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  @media (max-width: 550px) {
+    width: 100%;
+    margin-top: 10rem;
+  }
+}
+
+.picture {
+  position: relative;
+  width: 45rem;
+  height: 35rem;
+}
+
+.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.init {
+  opacity: 1;
+  transform: translateY(0);
+}

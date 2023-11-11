@@ -1,0 +1,53 @@
+.filterBox {
+  display: flex;
+  justify-content: space-between;
+
+  @media (max-width: 800px) {
+    flex-direction: column;
+    zoom: 1.2;
+  }
+}
+
+.selects {
+  display: flex;
+  & > div {
+    display: flex;
+    justify-content: flex-end;
+
+    & > div {
+      @media (max-width: 800px) {
+        width: 100%;
+        flex-grow: 1;
+        min-width: 100px;
+      }
+    }
+    @media (max-width: 400px) {
+      flex-direction: column;
+      width: 100%;
+      flex-grow: 1;
+      min-width: 100px;
+      & > div {
+        margin-bottom: 1rem;
+      }
+    }
+  }
+
+  @media (max-width: 800px) {
+    flex-direction: column;
+  }
+}
+
+.submit {
+  background-color: var(--main-color);
+  color: #ffffff;
+  width: 8rem;
+  height: 4rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+
+  @media (max-width: 800px) {
+    min-width: 100%;
+    margin-top: 2rem;
+  }
+}
