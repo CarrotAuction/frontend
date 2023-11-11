@@ -1,7 +1,89 @@
+@import '../../styles/media.scss';
+
 .loginPage {
-  margin: 0 auto;
-  background-color: red;
   flex-grow: 1;
   max-width: 500px;
   min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  margin-top: 10rem;
+
+  @include mobile {
+    padding: 0 5rem;
+  }
+}
+
+.title {
+  text-align: center;
+  color: var(--main-color);
+  font-weight: 700;
+  font-size: 32px;
+  margin-bottom: 35px;
+
+  @include mobile {
+    font-size: 28px;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+.inputBox {
+  width: 350px;
+  position: relative;
+  & > input {
+    width: 350px;
+    height: 55px;
+    border-radius: 5px;
+    background-color: #ffffff;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    outline: none;
+    padding-left: 10px;
+    padding-right: 45px;
+    &:focus {
+      border-color: #808080;
+      box-shadow: 0 0 5px rgba(128, 128, 128, 0.5);
+    }
+    ::placeholder {
+      color: transparent;
+    }
+    @include mobile {
+      width: 300px;
+    }
+  }
+  @include mobile {
+    width: 300px;
+  }
+}
+.icon {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  top: calc(50% - 7.5px);
+  right: 15px;
+  color: gray;
+}
+.submit {
+  background-color: var(--main-color);
+  color: #ffffff;
+  height: 40px;
+  font-size: 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.signUp {
+  margin-top: 10px;
+  text-align: right;
+  cursor: pointer;
+  font-size: 12px;
+  & > a {
+    color: var(--main-color);
+    border-bottom: 1px solid var(--main-color);
+  }
 }

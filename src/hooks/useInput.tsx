@@ -2,7 +2,11 @@
 
 import React, { useState } from 'react';
 
-type ReturnType = [string, (e: React.ChangeEvent<HTMLInputElement>) => void];
+type ReturnType = [
+  string,
+  (e: React.ChangeEvent<HTMLInputElement>) => void,
+  () => void,
+];
 
 const useInput = (): ReturnType => {
   const [value, setValue] = useState('');
@@ -11,8 +15,11 @@ const useInput = (): ReturnType => {
     setValue(e.target.value);
     console.log(e.target.value);
   };
+  const reset = () => {
+    setValue('');
+  };
 
-  return [value, onChange];
+  return [value, onChange, reset];
 };
 
 export default useInput;

@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import styles from './index.module.scss';
 import Board from '../Board';
-import Pagination from '../Paination';
+import Pagination from '../Pagination';
 
 const UserAuctionData = () => {
   const [page, setPage] = useState(1);
