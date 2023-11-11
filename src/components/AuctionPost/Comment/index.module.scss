@@ -1,0 +1,40 @@
+@import '../../../styles/media.scss';
+
+.comment {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--comment-background);
+  margin-bottom: 2rem;
+  padding: 3rem;
+  width: 100%;
+  border-radius: 10px;
+
+}
+
+.commentDetail{
+  font-size: 1.6rem;
+
+  div {
+    span {
+      padding-right: 1rem;
+
+      &:first-child {
+        font-weight: bold;
+      }
+      &:last-child {
+        color: var(--darkgray-color);
+        font-size: 1.2rem;
+      }
+    }
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+}
+.commentOfPrice{
+  display: flex;
+  align-items: center;
+  font-size: 2rem;
+  font-weight: bold;
+}
