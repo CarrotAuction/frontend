@@ -1,17 +1,137 @@
 @import '../../styles/media.scss';
 
 .auctionProduct {
-
+  display: flex;
+  align-items: center;
+  height: 100%;
+  max-width: 1200px;
+  width: 60%;
+  margin: 4rem auto;
 }
 
-.productDetail1 {
+.productInfo {
+  font-size: 1.6rem;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
+  p {
+    font-size: 2rem;
+    margin-top: 1rem;
+  }
 }
 
-.productDetail2 {
+.productInfoDetail {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 2rem;
+  width: 50%;
 
-}
+  p {
+    width: 18rem;
+    text-align: left;
+    margin: 0.5rem;
 
-.postComment {
+    &:nth-child(2) {
+      font-size: 1.6rem;
+      color: var(--darkgray-color);
+    }
+    &:nth-child(3) {
+      font-size: 1.6rem;
+      color: var(--darkgray-color);
+    }
+  }
   
+  div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 1rem;
+
+    span {
+      font-size: 2rem;
+      margin-left: 1rem;
+    }
+  }
+}
+
+.auctionParticipateButton{
+  background-color: var(--main-color);
+  color: white;
+  width: 18rem;
+  height: 3rem;
+  border-radius: 5px;
+  border: none;
+  font-size: 1.6rem;
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+.postComments {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 3.2rem;
+  height: 100%;
+  max-width: 1200px;
+  width: 60%;
+  margin: 0 auto;
+
+  hr {
+    display: block;
+    border: 1px solid #FEDDBF;
+    width: 100%;
+  }
+
+  p {
+    font-size: 1.6rem;
+    color: var(--darkgray-color);
+    text-align: right;
+    width: 100%;
+
+  }
+}
+
+.comment {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background-color: var(--comment-background);
+  margin-bottom: 2rem;
+  padding: 3rem;
+  width: 100%;
+  border-radius: 10px;
+
+}
+
+.commentDetail{
+  font-size: 1.6rem;
+
+  div {
+    span {
+      padding-right: 1rem;
+
+      &:first-child {
+        font-weight: bold;
+      }
+      &:last-child {
+        color: var(--darkgray-color);
+        font-size: 1.2rem;
+      }
+    }
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+}
+.commentOfPrice{
+  display: flex;
+  align-items: center;
+  font-size: 2rem;
+  font-weight: bold;
 }
