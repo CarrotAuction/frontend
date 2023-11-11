@@ -48,4 +48,7 @@
   font-size: 1.6rem;
   margin-top: 1rem;
   font-weight: bold;
+  &:hover {
+    cursor: pointer;
+  }
 }
