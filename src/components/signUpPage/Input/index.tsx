@@ -38,7 +38,7 @@ const Input = ({
       <label htmlFor={label}>{title}</label>
       <div>
         <input
-          type={isVisible ? 'text' : 'password'}
+          type={isVisible ? 'text' : password ? 'password' : 'text'}
           id={label}
           {...register(label, validate)}
         />

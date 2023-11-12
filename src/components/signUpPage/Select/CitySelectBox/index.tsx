@@ -1,6 +1,7 @@
 import { Location, SignShowTpye } from '@/src/types/signup';
 import React from 'react';
 import { SelectOption } from '@/src/types/search';
+import { AnimatePresence, motion } from 'framer-motion';
 import Options from '../Options';
 import styles from './index.module.scss';
 
@@ -30,6 +31,7 @@ const CitySelectBox = ({
     });
   };
 
+  const data = Area.find((i) => i.value === selectValue.area);
   return (
     <div className={styles.select}>
       <div className={styles.empty} />
@@ -37,9 +39,18 @@ const CitySelectBox = ({
         <div>{selectValue.city || '시/구/군'}</div>
         <div className={styles.line} />
         <div className={styles.caret} />
-        {selectValue.area && show.city && (
-          <Options title="시/구/군" setLocation={setLocation} Area={Area} />
-        )}
+
+        <AnimatePresence>
+          {selectValue.area && show.city && (
+            <motion.div>
+              <Options
+                title="시/구/군"
+                setLocation={setLocation}
+                Area={data?.city}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </div>
   );

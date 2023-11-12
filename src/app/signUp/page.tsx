@@ -13,14 +13,12 @@ import {
 import { useForm } from 'react-hook-form';
 import { IForm, Location, SignShowTpye } from '@/src/types/signup';
 import AreaSelectBox from '@/src/components/signUpPage/Select/AreaSelectBox';
-import CitySelectBox from '@/src/components/signUpPage/Select/CitySelectBox';
 import Input from '@/src/components/signUpPage/Input';
 import { Area } from '@/src/constants/search';
-import Image from 'next/image';
+import CitySelectBox from '@/src/components/signUpPage/Select/CitySelectBox';
 import styles from './index.module.scss';
 
 const SignUp = () => {
-  const imgRef = useRef<any>(null);
   const [click, setClick] = useState(false);
   const [location, setLocation] = useState<Location>({
     area: '',
@@ -30,7 +28,6 @@ const SignUp = () => {
     area: false,
     city: false,
   });
-  const [imagePreview, setImagePreview] = useState('');
 
   const {
     register,
@@ -48,15 +45,6 @@ const SignUp = () => {
       password_check: '',
     },
   });
-
-  const profile: File[] | any = watch('profile');
-
-  useEffect(() => {
-    if (profile && profile.length > 0) {
-      const file = profile[0];
-      setImagePreview(URL.createObjectURL(file));
-    }
-  }, [profile]);
 
   const onSubmit = (data: IForm) => {
     if (location.area === '' || location.city === '') {

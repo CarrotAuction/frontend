@@ -1,6 +1,7 @@
 import { Location, SignShowTpye } from '@/src/types/signup';
 import React from 'react';
 import { SelectOption } from '@/src/types/search';
+import { AnimatePresence, motion } from 'framer-motion';
 import SignOptions from '../Options';
 import styles from './index.module.scss';
 
@@ -21,7 +22,7 @@ const AreaSelectBox = ({
   setShow,
   label,
 }: Props) => {
-  const clickOption = () => {
+  const clickOption = (e: React.MouseEvent<HTMLDivElement>) => {
     setShow((pre) => {
       return {
         area: !pre.area,
@@ -37,13 +38,24 @@ const AreaSelectBox = ({
         <div>{selectValue.area || '대표 지역선택'}</div>
         <div className={styles.line} />
         <div className={styles.caret} />
-        {show.area && (
-          <SignOptions
-            title="대표 지역선택"
-            Area={Area}
-            setLocation={setLocation}
-          />
-        )}
+        <AnimatePresence>
+          {show.area && (
+            <motion.div
+              initial={{ top: 45, opacity: 0 }}
+              animate={{ top: 52, opacity: 1 }}
+              exit={{ top: 45, opacity: 0 }}
+              transition={{
+                duration: 0.2,
+              }}
+            >
+              <SignOptions
+                title="대표 지역선택"
+                Area={Area}
+                setLocation={setLocation}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </div>
   );
