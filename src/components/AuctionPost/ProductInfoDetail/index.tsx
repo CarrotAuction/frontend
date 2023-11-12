@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import styles from './index.module.scss';
+import Modal from '../Modal';
 
 type Props = {
   userImageSrc: any;
@@ -25,10 +26,16 @@ const ProductInfoDetail = ({
   isAuctionOver,
   loginedNickname,
 }: Props) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleModal = () => {
+    setIsOpen((pre) => !pre);
+  };
+
   return (
     <article className={styles.productInfoDetail}>
       <div>
-        <Image src={userImageSrc} width={40} alt="product image" />
+        <Image src={userImageSrc} width={40} alt="user image" />
         <p>
           <span>{postOwner}</span>
         </p>
@@ -41,9 +48,11 @@ const ProductInfoDetail = ({
         type="button"
         className={styles.auctionParticipateButton}
         disabled={isAuctionOver}
+        onClick={handleModal}
       >
         {loginedNickname === postOwner ? '판매 종료' : '경매 참여하기'}
       </button>
+      {isOpen && <Modal handleModal={handleModal} />}
     </article>
   );
 };

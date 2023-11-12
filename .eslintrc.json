@@ -32,6 +32,12 @@
       { "namedComponents": ["arrow-function", "function-declaration"] }
     ],
     "import/prefer-default-export": ["off", { "target": "single" }],
-    "operator-linebreak": [0]
+    "operator-linebreak": [0],
+    "jsx-a11y/label-has-associated-control": [
+      2,
+      {
+        "labelAttributes": ["htmlFor"]
+      }
+    ]
   }
 }

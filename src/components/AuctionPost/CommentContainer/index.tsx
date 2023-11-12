@@ -13,6 +13,7 @@ const CommentContainer = ({ comments }: Props) => {
       <hr />
       {comments.map((comment) => (
         <Comment
+          // 백엔드에서 key 값 주면 key 추가하기. 현재 렌더링은 문제 없지만 key 값 넣으라고 오류 발생.
           nickname={comment.nickname}
           auctionPrice={comment.auctionPrice}
           openChattingLink={comment.openChattingLink}
