@@ -8,9 +8,7 @@ type Props = {
   date: string; // 나중에 백엔드에서 넘어오는 타입 보고 바꿔야 함
 };
 
-const Comment = ({
-  nickname, auctionPrice, openChattingLink, date,
-}: Props) => {
+const Comment = ({ nickname, auctionPrice, openChattingLink, date }: Props) => {
   return (
     <article className={styles.comment}>
       <div className={styles.commentDetail}>
