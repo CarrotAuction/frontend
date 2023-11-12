@@ -2,15 +2,17 @@
 
 .error_check {
   height: 20px;
-  font-size: 10px;
+  font-size: 12px;
   padding-left: 0.5rem;
+  margin-bottom: 10px;
   color: red;
 }
 
 .correct_check {
   height: 20px;
-  font-size: 10px;
+  font-size: 12px;
   padding-left: 0.5rem;
+  margin-bottom: 10px;
   color: green;
 }
 
@@ -20,7 +22,11 @@
   & > label {
     font-weight: 700;
   }
-  & > input {
+
+  & > div:nth-child(2) {
+    position: relative;
+  }
+  & > div > input {
     width: 100%;
     height: 55px;
     border-radius: 5px;

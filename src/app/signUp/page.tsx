@@ -1,8 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { IForm } from '@/src/types/signup';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   IdValidate,
   NickNameValidate,
@@ -12,16 +10,33 @@ import {
   correctPassword,
   correctPasswordCheck,
 } from '@/src/constants/signup';
+import { useForm } from 'react-hook-form';
+import { IForm, Location, SignShowTpye } from '@/src/types/signup';
+import AreaSelectBox from '@/src/components/signUpPage/Select/AreaSelectBox';
+import CitySelectBox from '@/src/components/signUpPage/Select/CitySelectBox';
 import Input from '@/src/components/signUpPage/Input';
-import Select from '@/src/components/signUpPage/Select';
+import { Area } from '@/src/constants/search';
+import Image from 'next/image';
 import styles from './index.module.scss';
 
 const SignUp = () => {
+  const imgRef = useRef<any>(null);
   const [click, setClick] = useState(false);
+  const [location, setLocation] = useState<Location>({
+    area: '',
+    city: '',
+  });
+  const [show, setShow] = useState<SignShowTpye>({
+    area: false,
+    city: false,
+  });
+  const [imagePreview, setImagePreview] = useState('');
+
   const {
     register,
     handleSubmit,
     watch,
+    control,
     formState: { errors },
   } = useForm<IForm>({
     mode: 'onSubmit',
@@ -31,87 +46,106 @@ const SignUp = () => {
       nick_name: '',
       password: '',
       password_check: '',
-      area: '',
-      city: '',
     },
   });
 
+  const profile: File[] | any = watch('profile');
+
+  useEffect(() => {
+    if (profile && profile.length > 0) {
+      const file = profile[0];
+      setImagePreview(URL.createObjectURL(file));
+    }
+  }, [profile]);
+
   const onSubmit = (data: IForm) => {
-    console.log(data);
+    if (location.area === '' || location.city === '') {
+      alert('거주지를 선택해주세요');
+      return;
+    }
+
+    console.log({ ...data, area: location.area, city: location.city });
   };
 
   return (
-    <main className={styles.signUpPage}>
-      <h1 className={styles.title}>회원가입</h1>
-      <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-        <Input
-          label="id"
-          title="아이디"
-          register={register}
-          required
-          validate={IdValidate}
-          errors={errors}
-          correct={correctId}
-          click={click}
-        />
-        <Input
-          label="nick_name"
-          title="닉네임"
-          register={register}
-          required
-          validate={NickNameValidate}
-          errors={errors}
-          correct={correctNick}
-          click={click}
-        />
-        <Input
-          label="password"
-          title="비밀번호"
-          register={register}
-          required
-          validate={PasswordValidate}
-          errors={errors}
-          correct={correctPassword}
-          click={click}
-        />
-        <Input
-          label="password_check"
-          title="비밀번호 확인"
-          register={register}
-          required
-          validate={{
-            required: '비밀번호 확인을 입력해주세요',
-            validate: (value: string) =>
-              value === watch('password') || '비밀번호가 일치하지 않습니다',
-          }}
-          errors={errors}
-          correct={correctPasswordCheck}
-          click={click}
-        />
-        <div className={styles.select}>
-          <Select
-            label="area"
+    <main className={styles.background}>
+      <div className={styles.signUpPage}>
+        <h1 className={styles.title}>회원가입</h1>
+        <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+          <Input
+            label="id"
+            title="아이디"
             register={register}
-            options={[{ value: '서울', label: '서울' }]}
-            title="거주지"
             required
+            validate={IdValidate}
+            errors={errors}
+            correct={correctId}
+            click={click}
           />
-          <Select
-            label="city"
+          <Input
+            label="nick_name"
+            title="닉네임"
             register={register}
-            options={[{ value: '서울', label: '서울' }]}
             required
+            validate={NickNameValidate}
+            errors={errors}
+            correct={correctNick}
+            click={click}
           />
-        </div>
+          <Input
+            label="password"
+            title="비밀번호"
+            register={register}
+            required
+            validate={PasswordValidate}
+            errors={errors}
+            correct={correctPassword}
+            click={click}
+            password={watch('password')}
+          />
+          <Input
+            label="password_check"
+            title="비밀번호 확인"
+            register={register}
+            required
+            validate={{
+              required: '비밀번호 확인을 입력해주세요',
+              validate: (value: string) =>
+                value === watch('password') || '비밀번호가 일치하지 않습니다',
+            }}
+            errors={errors}
+            correct={correctPasswordCheck}
+            click={click}
+            password={watch('password_check')}
+          />
+          <div className={styles.select}>
+            <AreaSelectBox
+              Area={Area}
+              setLocation={setLocation}
+              selectValue={location}
+              setShow={setShow}
+              show={show}
+              label="area"
+            />
+            <CitySelectBox
+              Area={Area}
+              setLocation={setLocation}
+              selectValue={location}
+              setShow={setShow}
+              show={show}
+              label="city"
+            />
+          </div>
 
-        <button
-          className={styles.submit}
-          type="submit"
-          onClick={() => setClick(true)}
-        >
-          회원가입
-        </button>
-      </form>
+          <button
+            className={styles.submit}
+            type="submit"
+            onClick={() => setClick(true)}
+          >
+            회원가입
+          </button>
+        </form>
+      </div>
     </main>
   );
 };

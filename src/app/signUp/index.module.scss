@@ -1,8 +1,11 @@
 @import '../../styles/media.scss';
 
+.background {
+  background-color: #f8fafb;
+}
+
 .signUpPage {
-  flex-grow: 1;
-  max-width: 500px;
+  max-width: 350px;
   min-width: 300px;
   display: flex;
   flex-direction: column;
@@ -31,6 +34,11 @@
   display: flex;
   flex-direction: column;
   cursor: pointer;
+}
+.img {
+  width: 100px;
+  height: 100px;
+  position: relative;
 }
 
 .select {

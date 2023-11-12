@@ -7,3 +7,13 @@ export type IForm = {
   area: string;
   city: string;
 };
+
+export type Location = {
+  area: string;
+  city: string;
+};
+
+export type SignShowTpye = {
+  area: boolean;
+  city: boolean;
+};
