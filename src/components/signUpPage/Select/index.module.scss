@@ -1,0 +1,31 @@
+.check {
+  height: 20px;
+  font-size: 10px;
+  padding-left: 0.5rem;
+}
+
+.select {
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+  & > label {
+    font-weight: 700;
+  }
+  & > select {
+    height: 55px;
+    border-radius: 5px;
+    background-color: #ffffff;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    padding: 1rem;
+    outline: none;
+    &:focus {
+      border-color: #808080;
+      box-shadow: 0 0 5px rgba(128, 128, 128, 0.5);
+    }
+  }
+}
+
+.title {
+  height: 20px;
+}

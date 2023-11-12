@@ -1,0 +1,52 @@
+@import '../../../styles/media.scss';
+
+.error_check {
+  height: 20px;
+  font-size: 10px;
+  padding-left: 0.5rem;
+  color: red;
+}
+
+.correct_check {
+  height: 20px;
+  font-size: 10px;
+  padding-left: 0.5rem;
+  color: green;
+}
+
+.inputBox {
+  width: 350px;
+  position: relative;
+  & > label {
+    font-weight: 700;
+  }
+  & > input {
+    width: 100%;
+    height: 55px;
+    border-radius: 5px;
+    background-color: #ffffff;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    outline: none;
+    padding-left: 10px;
+    padding-right: 45px;
+    &:focus {
+      border-color: #808080;
+      box-shadow: 0 0 5px rgba(128, 128, 128, 0.5);
+    }
+    ::placeholder {
+      color: transparent;
+    }
+  }
+  @include mobile {
+    width: 300px;
+  }
+}
+.icon {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  top: calc(50% - 7.5px);
+  right: 15px;
+  color: gray;
+}
