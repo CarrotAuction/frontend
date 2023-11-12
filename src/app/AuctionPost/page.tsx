@@ -1,9 +1,9 @@
 'use client';
 
 import React, { useState } from 'react';
-import ProductInfo from '@/src/components/AuctionPost/ProductInfo';
+import ProductInfo from '@/src/components/auctionPostPage/ProductInfo';
 import NavBar from '../../common/Nav';
-import CommentContainer from '../../components/AuctionPost/CommentContainer';
+import CommentContainer from '../../components/auctionPostPage/CommentContainer';
 import styles from './page.module.scss';
 import product from '../../assets/AuctionPost/product.png';
 import userProfile from '../../assets/AuctionPost/userProfile.png';
@@ -45,8 +45,7 @@ export default function AuctionPost() {
   const loginedNickname = '가나다';
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <NavBar />
+    <main className={styles.auctionPost}>
       <ProductInfo productInfo={DUMMY} loginedNickname={loginedNickname} />
       <CommentContainer comments={DUMMY.comments} />
     </main>

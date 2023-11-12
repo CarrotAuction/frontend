@@ -1,1 +1,10 @@
 @import '../../styles/media.scss';
+
+.auctionPost {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  // min-h-screen  p-24
+}
