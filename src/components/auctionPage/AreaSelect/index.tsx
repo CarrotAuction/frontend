@@ -22,7 +22,7 @@ const AreaSelect = ({
 }: Props) => {
   const [option, setOptions] = useState<any>([]);
 
-  const clickOption = (e: React.MouseEvent<HTMLDivElement>) => {
+  const clickOption = () => {
     setShow((pre) => {
       return {
         areaShow: !pre.areaShow,
