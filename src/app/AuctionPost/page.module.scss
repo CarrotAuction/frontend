@@ -1,0 +1,10 @@
+@import '../../styles/media.scss';
+
+.auctionPost {
+  display: flex;
+  flex-direction: column;
+  max-width: 800px;
+  width: 100%;
+  margin: 4rem auto;
+  padding: 0 5rem;
+}

@@ -22,6 +22,7 @@
     "react/require-default-props": "off",
     "@typescript-eslint/no-unused-vars": "off",
     "arrow-body-style": "off",
+    "react/no-array-index-key": "off",
     "implicit-arrow-linebreak": "off",
     "no-nested-ternary": "off",
     "jsx-a11y/label-has-associated-control": [
@@ -35,6 +36,12 @@
       { "namedComponents": ["arrow-function", "function-declaration"] }
     ],
     "import/prefer-default-export": ["off", { "target": "single" }],
-    "operator-linebreak": [0]
+    "operator-linebreak": [0],
+    "jsx-a11y/label-has-associated-control": [
+      2,
+      {
+        "labelAttributes": ["htmlFor"]
+      }
+    ]
   }
 }

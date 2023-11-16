@@ -1,0 +1,42 @@
+@import '../../../styles/media.scss';
+
+.postComments {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 3.2rem;
+  height: 100%;
+  width: 100%;
+  color: var(--basic-text-color);
+  margin-top: 5rem;
+
+  hr {
+    display: block;
+    border: 1px solid #feddbf;
+    width: 100%;
+  }
+
+  p {
+    font-size: 1.6rem;
+    color: var(--darkgray-color);
+    text-align: right;
+    width: 100%;
+  }
+}
+
+.comment {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--comment-background);
+  margin-bottom: 2rem;
+  padding: 3rem;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.highlight {
+  background-color: var(--main-color);
+  color: var(--color);
+}

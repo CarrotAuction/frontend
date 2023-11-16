@@ -1,0 +1,33 @@
+@import '../../../styles/media.scss';
+
+.commentDetail {
+  font-size: 1.6rem;
+
+  & > div {
+    & > span {
+      padding-right: 1rem;
+
+      &:first-child {
+        font-weight: bold;
+      }
+      &:last-child {
+        color: var(--darkgray-color);
+        font-size: 1.2rem;
+      }
+    }
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+}
+.commentOfPrice {
+  display: flex;
+  align-items: center;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.highlight {
+  color: var(--color) !important;
+  font-size: 300rem;
+}
