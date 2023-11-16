@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { SelectOption, SelectValueType, ShowType } from '@/src/types/search';
+import { CategoryType, SelectValueType, ShowType } from '@/src/types/search';
 import styles from './index.module.scss';
 import Options from '../Options';
 
 type Props = {
-  Area: SelectOption[];
+  Category: CategoryType[];
   setSelectValue: React.Dispatch<React.SetStateAction<SelectValueType>>;
   selectValue: SelectValueType;
   setShow: React.Dispatch<React.SetStateAction<ShowType>>;
@@ -12,7 +12,7 @@ type Props = {
 };
 
 const CategorySelect = ({
-  Area,
+  Category,
   setSelectValue,
   selectValue,
   setShow,
@@ -38,9 +38,8 @@ const CategorySelect = ({
       {show.categoryShow && (
         <Options
           title="카테고리"
-          option={Area}
+          option={Category}
           setSelectValue={setSelectValue}
-          selectValue={selectValue}
         />
       )}
     </div>

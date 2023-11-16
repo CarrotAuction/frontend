@@ -18,8 +18,6 @@ const CitySelect = ({
   setShow,
   show,
 }: Props) => {
-  const [option, setOptions] = useState<any>([]);
-
   const clickOption = () => {
     if (selectValue.area) {
       setShow((pre) => {
@@ -32,17 +30,17 @@ const CitySelect = ({
     }
   };
 
+  const data = Area.find((i) => i.value === selectValue.area);
   return (
     <div onClick={clickOption} className={styles.selectBox}>
       <div>{selectValue.city || '시/구/군'}</div>
       <div className={styles.line} />
       <div className={styles.caret} />
-      {show.cityShow && (
+      {selectValue.area && show.cityShow && (
         <Options
           title="시/구/군"
-          option={Area}
+          option={data?.city}
           setSelectValue={setSelectValue}
-          selectValue={selectValue}
         />
       )}
     </div>

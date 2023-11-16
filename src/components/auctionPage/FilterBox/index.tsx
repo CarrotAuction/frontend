@@ -2,7 +2,7 @@
 
 import useInput from '@/src/hooks/useInput';
 import React, { useState } from 'react';
-import { Area } from '@/src/constants/search';
+import { Area, Category } from '@/src/constants/search';
 import { SelectValueType, ShowType } from '@/src/types/search';
 import DataSearch from '../DataSearch';
 import AreaSelect from '../AreaSelect';
@@ -47,7 +47,7 @@ const FilterBox = () => {
             show={show}
           />
           <CategorySelect
-            Area={Area}
+            Category={Category}
             setSelectValue={setSelectValue}
             selectValue={selectValue}
             setShow={setShow}
