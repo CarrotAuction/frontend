@@ -4,7 +4,7 @@ import React from 'react';
 import ProductInfo from '@/src/components/auctionPostPage/ProductInfo';
 import CommentContainer from '../../components/auctionPostPage/CommentContainer';
 import styles from './page.module.scss';
-import product from '../../assets/AuctionPost/product.png';
+import product from '../../assets/AuctionPost/profile.jpg';
 import userProfile from '../../assets/AuctionPost/userProfile.png';
 
 const DUMMY = {

@@ -34,16 +34,20 @@ const ProductInfoDetail = ({
 
   return (
     <article className={styles.productInfoDetail}>
-      <div>
-        <Image src={userImageSrc} width={40} alt="user image" />
+      <div className={styles.profileBox}>
+        <div className={styles.profile}>
+          <Image src={userImageSrc} fill alt="user image" />
+        </div>
         <p>
           <span>{postOwner}</span>
         </p>
       </div>
       <p>{`${postOwnerProvince} ${postOwnerCity}`}</p>
       <p>{productCategory}</p>
-      <p>{productFeature}</p>
-      <p>{`희망 가격: ${desiredPrice.toLocaleString('ko-KR')}원`}</p>
+      <p>{`판매자 희망가격: ${desiredPrice.toLocaleString('ko-KR')}원`}</p>
+      <div className={styles.line} />
+      <div className={styles.introduce}>{productFeature}</div>
+      <div className={styles.line} />
       <button
         type="button"
         className={styles.auctionParticipateButton}

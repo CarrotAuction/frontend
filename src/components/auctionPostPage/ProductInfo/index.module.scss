@@ -1,14 +1,4 @@
 @import '../../../styles/media.scss';
 
 .productInfo {
-  display: flex;
-  align-items: center;
-  height: 100%;
-  max-width: 1200px;
-  width: 60%;
-  margin: 4rem auto;
-
-  @include mobile {
-    flex-direction: column;;
-  }
 }

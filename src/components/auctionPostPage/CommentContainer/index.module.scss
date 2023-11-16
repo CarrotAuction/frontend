@@ -7,14 +7,13 @@
   justify-content: space-between;
   font-size: 3.2rem;
   height: 100%;
-  max-width: 1200px;
-  width: 60%;
-  margin: 0 auto;
+  width: 100%;
   color: var(--basic-text-color);
+  margin-top: 5rem;
 
   hr {
     display: block;
-    border: 1px solid #FEDDBF;
+    border: 1px solid #feddbf;
     width: 100%;
   }
 
@@ -30,10 +29,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   background-color: var(--comment-background);
   margin-bottom: 2rem;
   padding: 3rem;
   width: 100%;
   border-radius: 10px;
+}
+
+.highlight {
+  background-color: var(--main-color);
+  color: var(--color);
 }

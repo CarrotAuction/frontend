@@ -10,8 +10,7 @@ type Props = {
 const ProductInfoImageAndName = ({ productImageSrc, productName }: Props) => {
   return (
     <article className={styles.productInfoImageAndName}>
-      <Image src={productImageSrc} width={200} alt="product image" />
-      <p>{productName}</p>
+      <Image src={productImageSrc} fill alt="product image" />
     </article>
   );
 };

@@ -20,7 +20,9 @@ const Modal = ({ handleModal }: Props) => {
       <div className={styles.modalBackground} onClick={handleModal} />
       <form className={styles.modal}>
         <label htmlFor="price">가격을 입력해주세요.</label>
-        <input onChange={setPrice} value={price} type="text" id="price" />
+        <div className={styles.priceInputContainer}>
+          <input onChange={setPrice} value={price} type="text" id="price" />
+        </div>
         <label htmlFor="openChattingLink">오픈 채팅방 링크을 올려주세요.</label>
         <div className={styles.linkInputContainer}>
           <input

@@ -1,22 +1,10 @@
 @import '../../../styles/media.scss';
 
-.comment {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: var(--comment-background);
-  margin-bottom: 2rem;
-  padding: 3rem;
-  width: 100%;
-  border-radius: 10px;
-
-}
-
-.commentDetail{
+.commentDetail {
   font-size: 1.6rem;
 
-  div {
-    span {
+  & > div {
+    & > span {
       padding-right: 1rem;
 
       &:first-child {
@@ -32,9 +20,14 @@
     margin-bottom: 1rem;
   }
 }
-.commentOfPrice{
+.commentOfPrice {
   display: flex;
   align-items: center;
   font-size: 2rem;
   font-weight: bold;
+}
+
+.highlight {
+  color: var(--color) !important;
+  font-size: 300rem;
 }
