@@ -31,8 +31,20 @@ const Login = () => {
         <form className={styles.form}>
           <label htmlFor="id">아이디</label>
           <div className={styles.inputBox}>
-            <input onChange={changeId} value={id} type="text" id="id" />
-            {id && <GiCancel onClick={resetId} className={styles.icon} />}
+            <input
+              data-testid="id-input"
+              onChange={changeId}
+              value={id}
+              name="id"
+              type="text"
+            />
+            {id && (
+              <GiCancel
+                data-testid="id-icon"
+                onClick={resetId}
+                className={styles.icon}
+              />
+            )}
           </div>
           <label htmlFor="password">비밀번호</label>
           <div className={styles.inputBox}>
@@ -41,12 +53,18 @@ const Login = () => {
               value={password}
               type={isVisible ? 'text' : 'password'}
               id="password"
+              data-testid="password-input"
             />
             {password &&
               (isVisible === true ? (
-                <AiFillEye onClick={togglePassword} className={styles.icon} />
+                <AiFillEye
+                  data-testid="password_visible_icon"
+                  onClick={togglePassword}
+                  className={styles.icon}
+                />
               ) : (
                 <AiFillEyeInvisible
+                  data-testid="password_invisible_icon"
                   onClick={togglePassword}
                   className={styles.icon}
                 />
