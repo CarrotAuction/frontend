@@ -1,0 +1,60 @@
+@import '../../styles/media.scss';
+
+.background {
+  background-color: #f8fafb;
+}
+
+.signUpPage {
+  max-width: 350px;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  margin-top: 10rem;
+
+  @include mobile {
+    padding: 0 5rem;
+    margin-top: 20rem;
+  }
+}
+
+.title {
+  text-align: center;
+  color: var(--main-color);
+  font-weight: 700;
+  font-size: 32px;
+  margin-bottom: 35px;
+
+  @include mobile {
+    font-size: 28px;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+.img {
+  width: 100px;
+  height: 100px;
+  position: relative;
+}
+
+.select {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 5rem;
+}
+
+.submit {
+  background-color: var(--main-color);
+  color: #ffffff;
+  height: 40px;
+  font-size: 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 10rem;
+}

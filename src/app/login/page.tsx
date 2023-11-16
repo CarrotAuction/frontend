@@ -25,39 +25,41 @@ const Login = () => {
   };
 
   return (
-    <main className={styles.loginPage}>
-      <h1 className={styles.title}>로그인</h1>
-      <form className={styles.form}>
-        <label htmlFor="id">아이디</label>
-        <div className={styles.inputBox}>
-          <input onChange={changeId} value={id} type="text" id="id" />
-          {id && <GiCancel onClick={resetId} className={styles.icon} />}
-        </div>
-        <label htmlFor="password">비밀번호</label>
-        <div className={styles.inputBox}>
-          <input
-            onChange={changePassword}
-            value={password}
-            type={isVisible ? 'text' : 'password'}
-            id="password"
-          />
-          {password &&
-            (isVisible === true ? (
-              <AiFillEye onClick={togglePassword} className={styles.icon} />
-            ) : (
-              <AiFillEyeInvisible
-                onClick={togglePassword}
-                className={styles.icon}
-              />
-            ))}
-        </div>
-        <button className={styles.submit} onClick={sendLogin} type="button">
-          로그인
-        </button>
-      </form>
-      <p className={styles.signUp}>
-        <Link href="/signUp">회원가입하러가기</Link>
-      </p>
+    <main className={styles.background}>
+      <div className={styles.loginPage}>
+        <h1 className={styles.title}>로그인</h1>
+        <form className={styles.form}>
+          <label htmlFor="id">아이디</label>
+          <div className={styles.inputBox}>
+            <input onChange={changeId} value={id} type="text" id="id" />
+            {id && <GiCancel onClick={resetId} className={styles.icon} />}
+          </div>
+          <label htmlFor="password">비밀번호</label>
+          <div className={styles.inputBox}>
+            <input
+              onChange={changePassword}
+              value={password}
+              type={isVisible ? 'text' : 'password'}
+              id="password"
+            />
+            {password &&
+              (isVisible === true ? (
+                <AiFillEye onClick={togglePassword} className={styles.icon} />
+              ) : (
+                <AiFillEyeInvisible
+                  onClick={togglePassword}
+                  className={styles.icon}
+                />
+              ))}
+          </div>
+          <button className={styles.submit} onClick={sendLogin} type="button">
+            로그인
+          </button>
+        </form>
+        <p className={styles.signUp}>
+          <Link href="/signUp">회원가입하러가기</Link>
+        </p>
+      </div>
     </main>
   );
 };
