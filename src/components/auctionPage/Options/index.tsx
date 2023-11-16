@@ -1,9 +1,14 @@
 import React from 'react';
-import { SelectOption, SelectValueType } from '@/src/types/search';
+import {
+  CategoryType,
+  CityType,
+  SelectOption,
+  SelectValueType,
+} from '@/src/types/search';
 import styles from './index.module.scss';
 
 type Props = {
-  option: any;
+  option: CategoryType[] | CityType[] | undefined;
   setSelectValue: React.Dispatch<React.SetStateAction<SelectValueType>>;
   title: string;
 };
@@ -19,10 +24,16 @@ const Options = ({ option, setSelectValue, title }: Props) => {
         return { ...pre, area: target.innerText };
       });
     } else if (title === '시/구/군') {
+      if (target.innerText === '시/구/군') {
+        target.innerText = '';
+      }
       setSelectValue((pre) => {
         return { ...pre, city: target.innerText };
       });
     } else {
+      if (target.innerText === '카테고리') {
+        target.innerText = '';
+      }
       setSelectValue((pre) => {
         return { ...pre, category: target.innerText };
       });
@@ -30,7 +41,7 @@ const Options = ({ option, setSelectValue, title }: Props) => {
   };
   return (
     <div className={styles.options}>
-      {option.map((i: SelectOption) => {
+      {option?.map((i: CategoryType | CityType) => {
         return (
           <div onClick={clickChangeData} key={i.value}>
             {i.label}

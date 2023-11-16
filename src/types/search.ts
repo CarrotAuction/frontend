@@ -9,6 +9,11 @@ export type CityType = {
   value: string;
 };
 
+export type CategoryType = {
+  label: string;
+  value: string;
+};
+
 export type SelectValueType = {
   area: string;
   city: string;

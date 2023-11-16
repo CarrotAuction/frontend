@@ -1,4 +1,4 @@
-import { SelectOption } from '../types/search';
+import { CategoryType, SelectOption } from '../types/search';
 
 export const Area: SelectOption[] = [
   {
@@ -10,6 +10,7 @@ export const Area: SelectOption[] = [
     label: '서울특별시',
     value: '서울특별시',
     city: [
+      { label: '시/구/군', value: '시/구/군' },
       { label: '강남구', value: '강남구' },
       { label: '서초구', value: '서초구' },
       { label: '용산구', value: '용산구' },
@@ -346,4 +347,25 @@ export const Area: SelectOption[] = [
       { label: '양양군', value: '양양군' },
     ],
   },
+];
+
+export const Category: CategoryType[] = [
+  { label: '카테고리', value: '카테고리' },
+  { label: '패션의류/잡화', value: '패션의류/잡화' },
+  { label: '뷰티', value: '뷰티' },
+  { label: '출산/유아동', value: '출산/유아동' },
+  { label: '식품', value: '식품' },
+  { label: '주방용품', value: '주방용품' },
+  { label: '생활용품', value: '생활용품' },
+  { label: '홈인테리어', value: '홈인테리어' },
+  { label: '가전디지털', value: '가전디지털' },
+  { label: '스포츠/레저', value: '스포츠/레저' },
+  { label: '자동차용품', value: '자동차용품' },
+  { label: '도서/음반/DVD', value: '도서/음반/DVD' },
+  { label: '완구/취미', value: '완구/취미' },
+  { label: '문구/오피스', value: '문구/오피스' },
+  { label: '반려동물용품', value: '반려동물용품' },
+  { label: '헬스/건강식품', value: '헬스/건강식품' },
+  { label: '여행/티켓', value: '여행/티켓' },
+  { label: '테마관', value: '테마관' },
 ];
