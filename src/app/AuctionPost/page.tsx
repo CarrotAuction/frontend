@@ -1,8 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import ProductInfo from '@/src/components/auctionPostPage/ProductInfo';
-import NavBar from '../../common/Nav';
 import CommentContainer from '../../components/auctionPostPage/CommentContainer';
 import styles from './page.module.scss';
 import product from '../../assets/AuctionPost/product.png';

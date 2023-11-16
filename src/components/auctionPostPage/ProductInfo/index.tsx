@@ -1,12 +1,12 @@
 import React from 'react';
+import { StaticImageData } from 'next/image';
 import styles from './index.module.scss';
 import ProductInfoImageAndName from '../ProductInfoImageAndName';
 import ProductInfoDetail from '../ProductInfoDetail';
-import Product from '../../../assets/AuctionPost/product.png';
 
 type ProductInfoType = {
-  userImage: any;
-  productImage: any;
+  userImage: StaticImageData;
+  productImage: StaticImageData;
   productName: string;
   postOwner: string;
   postOwnerProvince: string;

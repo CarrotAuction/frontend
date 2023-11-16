@@ -1,9 +1,9 @@
 import React from 'react';
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 import styles from './index.module.scss';
 
 type Props = {
-  productImageSrc: string;
+  productImageSrc: StaticImageData;
   productName: string;
 };
 
