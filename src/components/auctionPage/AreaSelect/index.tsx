@@ -20,8 +20,6 @@ const AreaSelect = ({
   setShow,
   show,
 }: Props) => {
-  const [option, setOptions] = useState<any>([]);
-
   const clickOption = () => {
     setShow((pre) => {
       return {
@@ -42,7 +40,6 @@ const AreaSelect = ({
           title="대표 지역선택"
           option={Area}
           setSelectValue={setSelectValue}
-          selectValue={selectValue}
         />
       )}
     </div>
