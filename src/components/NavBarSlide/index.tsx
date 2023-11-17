@@ -2,6 +2,7 @@ import React from 'react';
 import { IoMdClose } from 'react-icons/io';
 import { motion, AnimatePresence } from 'framer-motion';
 import { usePathname } from 'next/navigation';
+import Link from 'next/link';
 import styles from './index.module.scss';
 
 type Props = {
@@ -45,13 +46,24 @@ const NavBarSlide = ({ toggle, changeToggle }: Props) => {
               <IoMdClose size={32} />
             </div>
             <ul className={styles.navList}>
-              <li
+              <Link
+                href="/login"
+                className={path === '/login' ? styles.point : styles.nonPoint}
+              >
+                로그인
+              </Link>
+              <Link
+                href="/auction"
                 className={path === '/auction' ? styles.point : styles.nonPoint}
               >
                 물건 보러가기
-              </li>
-              <li>글 쓰기</li>
-              <li>로그인</li>
+              </Link>
+              <Link
+                href="/write"
+                className={path === '/write' ? styles.point : styles.nonPoint}
+              >
+                글 쓰기
+              </Link>
             </ul>
           </aside>
         </motion.section>

@@ -1,9 +1,14 @@
+'use client';
+
 import React from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import wallet from '../../../assets/main/wallet.gif';
 import styles from './index.module.scss';
 
 const Banner = () => {
+  const router = useRouter();
+
   return (
     <main className={styles.banner}>
       <section className={styles.bannerBox}>
@@ -14,7 +19,9 @@ const Banner = () => {
             <br />
             희귀한 물건 등 모두 경매를 통해 처분하세요!
           </p>
-          <button type="button">매물 보러가기</button>
+          <button type="button" onClick={() => router.push('/auction')}>
+            매물 보러가기
+          </button>
         </article>
         <article className={styles.bannerImg}>
           <Image src={wallet} alt="wallet" fill />

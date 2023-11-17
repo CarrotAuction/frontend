@@ -32,7 +32,8 @@
 .navList {
   font-size: 3rem;
   width: 100%;
-  & > li {
+  & > a {
+    display: block;
     padding: 3rem;
     box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.25);
     &:hover,
@@ -40,7 +41,7 @@
       color: var(--main-color);
     }
   }
-  & > li:hover {
+  & > a:hover {
     color: var(--main-color);
   }
 }
