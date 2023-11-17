@@ -1,5 +1,4 @@
 export type IForm = {
-  profile?: File | undefined;
   id: string;
   nick_name: string;
   password: string;
