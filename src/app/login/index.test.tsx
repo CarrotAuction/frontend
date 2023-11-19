@@ -9,8 +9,6 @@ describe('로그인 컴포넌트', () => {
   });
 
   test('아이디 또는 비밀번호를 입력안했을 시 alert창 띄우기', async () => {
-    window.alert = jest.fn();
-
     const id = screen.getByTestId('id-input');
     const password = screen.getByTestId('password-input');
     const button = screen.getByRole('button');
@@ -24,7 +22,8 @@ describe('로그인 컴포넌트', () => {
     expect(password).toHaveValue('');
 
     await userEvent.click(button);
-    expect(window.alert).toHaveBeenCalledTimes(1);
+    const alert = screen.getByRole('dialog');
+    expect(alert).toBeInTheDocument();
   });
 
   test('아이디가 있다면 유저 아이콘이 나온다', async () => {

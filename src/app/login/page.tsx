@@ -5,6 +5,7 @@ import { AiFillEyeInvisible, AiFillEye } from 'react-icons/ai';
 import { GiCancel } from 'react-icons/gi';
 import Link from 'next/link';
 import useInput from '@/src/hooks/useInput';
+import Swal from 'sweetalert2';
 import styles from './index.module.scss';
 
 const Login = () => {
@@ -20,7 +21,10 @@ const Login = () => {
   const sendLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if (id === '' || password === '') {
-      alert('아이디 또는 비밀번호를 입력해주세요 ');
+      Swal.fire({
+        icon: 'error',
+        title: '아이디 또는 비밀번호를 입력해주세요 !',
+      });
     }
   };
 
