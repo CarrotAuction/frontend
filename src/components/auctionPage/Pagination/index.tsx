@@ -15,7 +15,7 @@ function Pagination({ onChangePage, totalPages }: PaginationProps) {
         className={styles.pagination}
         pageCount={totalPages}
         pageRangeDisplayed={5}
-        marginPagesDisplayed={2}
+        marginPagesDisplayed={1}
         onPageChange={({ selected }) => onChangePage(selected + 1)}
         previousLabel={<FaArrowLeft />}
         nextLabel={<FaArrowRight />}

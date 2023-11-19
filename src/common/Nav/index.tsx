@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import NavBarSlide from '@/src/components/NavBarSlide';
 import { useRouter, usePathname } from 'next/navigation';
 import Image from 'next/image';
@@ -16,20 +16,34 @@ const NavBar = () => {
   const path = usePathname();
   const [toggle, setToggle] = useState(false);
 
+  const [btnWord, setBtnWord] = useState('');
+
   const token = getCookie('token');
 
   const changeToggle = () => {
     setToggle((pre) => !pre);
   };
 
-  const logout = () => {
-    deleteCookie('token');
-    Swal.fire({
-      icon: 'success',
-      title: '로그아웃 성공',
-    });
-    router.refresh();
+  const onClickHandler = () => {
+    if (token) {
+      deleteCookie('token');
+      Swal.fire({
+        icon: 'success',
+        title: '로그아웃 성공',
+      });
+      router.refresh();
+    } else {
+      router.push('/login');
+    }
   };
+
+  useEffect(() => {
+    if (token) {
+      setBtnWord('로그아웃');
+    } else {
+      setBtnWord('로그인');
+    }
+  }, [token]);
 
   return (
     <nav className={styles.nav}>
@@ -53,18 +67,12 @@ const NavBar = () => {
             </Link>
           </li>
           <li>글 쓰기</li>
-          {token ? (
-            <li onClick={logout}>로그아웃</li>
-          ) : (
-            <li>
-              <Link
-                href="/login"
-                className={path === '/login' ? styles.point : styles.nonPoint}
-              >
-                로그인
-              </Link>
-            </li>
-          )}
+          <li
+            onClick={onClickHandler}
+            className={path === '/login' ? styles.point : styles.nonPoint}
+          >
+            {btnWord}
+          </li>
         </ul>
       </section>
       <NavBarSlide toggle={toggle} changeToggle={changeToggle} />
