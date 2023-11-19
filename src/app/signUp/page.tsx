@@ -38,7 +38,6 @@ const SignUp = () => {
   } = useForm<IForm>({
     mode: 'onSubmit',
     defaultValues: {
-      profile: undefined,
       id: '',
       nick_name: '',
       password: '',
@@ -61,6 +60,7 @@ const SignUp = () => {
         <h1 className={styles.title}>회원가입</h1>
         <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
           <Input
+            test="id-input"
             label="id"
             title="아이디"
             register={register}
@@ -71,6 +71,7 @@ const SignUp = () => {
             click={click}
           />
           <Input
+            test="nick-input"
             label="nick_name"
             title="닉네임"
             register={register}
@@ -81,6 +82,7 @@ const SignUp = () => {
             click={click}
           />
           <Input
+            test="pw-input"
             label="password"
             title="비밀번호"
             register={register}
@@ -92,6 +94,7 @@ const SignUp = () => {
             password={watch('password')}
           />
           <Input
+            test="pw-differ"
             label="password_check"
             title="비밀번호 확인"
             register={register}
