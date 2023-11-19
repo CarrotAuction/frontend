@@ -5,17 +5,30 @@ import NavBarSlide from '@/src/components/NavBarSlide';
 import { useRouter, usePathname } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
+import { deleteCookie, getCookie } from 'cookies-next';
+import Swal from 'sweetalert2';
 import ToggleNavIcon from '../ui/ToggleNavIcon';
-import carrot from '../../assets/main/carrot.png';
 import styles from './index.module.scss';
+import carrot from '../../assets/main/carrot.png';
 
 const NavBar = () => {
   const router = useRouter();
   const path = usePathname();
   const [toggle, setToggle] = useState(false);
 
+  const token = getCookie('token');
+
   const changeToggle = () => {
     setToggle((pre) => !pre);
+  };
+
+  const logout = () => {
+    deleteCookie('token');
+    Swal.fire({
+      icon: 'success',
+      title: '로그아웃 성공',
+    });
+    router.refresh();
   };
 
   return (
@@ -40,14 +53,18 @@ const NavBar = () => {
             </Link>
           </li>
           <li>글 쓰기</li>
-          <li>
-            <Link
-              href="/login"
-              className={path === '/login' ? styles.point : styles.nonPoint}
-            >
-              로그인
-            </Link>
-          </li>
+          {token ? (
+            <li onClick={logout}>로그아웃</li>
+          ) : (
+            <li>
+              <Link
+                href="/login"
+                className={path === '/login' ? styles.point : styles.nonPoint}
+              >
+                로그인
+              </Link>
+            </li>
+          )}
         </ul>
       </section>
       <NavBarSlide toggle={toggle} changeToggle={changeToggle} />

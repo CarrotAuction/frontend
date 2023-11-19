@@ -21,6 +21,7 @@
     "no-unused-vars": "off",
     "react/require-default-props": "off",
     "@typescript-eslint/no-unused-vars": "off",
+    "jsx-a11y/no-noninteractive-element-interactions": "off",
     "arrow-body-style": "off",
     "react/no-array-index-key": "off",
     "implicit-arrow-linebreak": "off",

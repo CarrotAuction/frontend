@@ -1,12 +1,5 @@
 // API
 
-export type ResponseUser = {
-  accountID: string;
-  nickname: string;
-  province: string;
-  city: string;
-};
-
 export type RequesteUser = {
   nickname: string;
   password: string;
