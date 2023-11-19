@@ -25,12 +25,8 @@
     "react/no-array-index-key": "off",
     "implicit-arrow-linebreak": "off",
     "no-nested-ternary": "off",
-    "jsx-a11y/label-has-associated-control": [
-      2,
-      {
-        "labelAttributes": ["htmlFor"]
-      }
-    ],
+    "consistent-return": "off",
+    "no-alert": "off",
     "react/function-component-definition": [
       2,
       { "namedComponents": ["arrow-function", "function-declaration"] }
