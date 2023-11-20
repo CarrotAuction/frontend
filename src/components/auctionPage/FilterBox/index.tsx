@@ -1,29 +1,49 @@
 'use client';
 
-import useInput from '@/src/hooks/useInput';
 import React, { useState } from 'react';
 import { Area, Category } from '@/src/constants/search';
-import { SelectValueType, ShowType } from '@/src/types/search';
+import { QueryObserverResult, RefetchOptions } from '@tanstack/react-query';
+import {
+  CustomRefetchOptions,
+  PropsBoards,
+  SelectValueType,
+  ShowType,
+} from '@/src/types/search';
 import DataSearch from '../DataSearch';
 import AreaSelect from '../AreaSelect';
 import styles from './index.module.scss';
 import CitySelect from '../CitySelect';
 import CategorySelect from '../CategorySelect';
 
-const FilterBox = () => {
-  const [searchData, onchange] = useInput();
+type Props = {
+  searchData: string;
+  onchange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  selectValue: SelectValueType;
+  setSelectValue: React.Dispatch<React.SetStateAction<SelectValueType>>;
+  refetch: (
+    options?: RefetchOptions,
+  ) => Promise<QueryObserverResult<PropsBoards>>;
+  onChangePage: (page: number) => void;
+};
 
-  const [selectValue, setSelectValue] = useState<SelectValueType>({
-    area: '',
-    city: '',
-    category: '',
-  });
-
+const FilterBox = ({
+  searchData,
+  onchange,
+  selectValue,
+  setSelectValue,
+  refetch,
+  onChangePage,
+}: Props) => {
   const [show, setShow] = useState<ShowType>({
     areaShow: false,
     cityShow: false,
     categoryShow: false,
   });
+
+  const handleRefresh = () => {
+    onChangePage(1);
+    refetch() as CustomRefetchOptions;
+  };
 
   return (
     <main className={styles.filterBox}>
@@ -54,7 +74,7 @@ const FilterBox = () => {
             show={show}
           />
         </div>
-        <button className={styles.submit} type="button">
+        <button onClick={handleRefresh} className={styles.submit} type="button">
           검색
         </button>
       </section>

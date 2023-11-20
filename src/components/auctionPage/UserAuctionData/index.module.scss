@@ -12,3 +12,17 @@
     }
   }
 }
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 5rem;
+  font-size: 2.5rem;
+}
+
+.emptyBox {
+  position: relative;
+  width: 35rem;
+  height: 35rem;
+}

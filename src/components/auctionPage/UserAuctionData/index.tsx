@@ -1,26 +1,51 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
+import { AllBoardType, BoardType } from '@/src/types/search';
+import Image from 'next/image';
 import styles from './index.module.scss';
 import Board from '../Board';
+import emptyBox from '../../../assets/auction/empty.png';
 import Pagination from '../Pagination';
 
-const UserAuctionData = () => {
-  const [page, setPage] = useState(1);
-  const onChangePage = () => {
-    setPage((pre) => pre + 1);
-  };
+type Props = {
+  Boards: AllBoardType;
+  isLoading: boolean;
+  onChangePage: (page: number) => void;
+  page: number;
+};
+
+const UserAuctionData = ({ Boards, isLoading, onChangePage, page }: Props) => {
+  if (isLoading) {
+    <div>
+      <div>
+        <Image src={emptyBox} alt="empty" fill />
+      </div>
+    </div>;
+  }
+
   return (
     <main>
-      <div className={styles.userBoards}>
-        <Board />
-        <Board />
-        <Board />
-        <Board />
-        <Board />
-        <Board />
-      </div>
-      <Pagination totalPages={10} onChangePage={onChangePage} />
+      {Boards?.boards.length === 0 ? (
+        <div className={styles.empty}>
+          <div className={styles.emptyBox}>
+            <Image src={emptyBox} alt="empty" fill />
+          </div>
+          <span>아직 올라운 매물이 없어요 😞</span>
+        </div>
+      ) : (
+        <div className={styles.userBoards}>
+          {Boards?.boards?.map((data: BoardType) => {
+            return <Board key={data.id} {...data} />;
+          })}
+        </div>
+      )}
+
+      <Pagination
+        page={page}
+        totalPages={Math.floor(Boards?.totalBoards / 6) + 1}
+        onChangePage={onChangePage}
+      />
     </main>
   );
 };
