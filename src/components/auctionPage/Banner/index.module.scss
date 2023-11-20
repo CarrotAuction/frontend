@@ -12,13 +12,18 @@
 
 .bannerBox {
   display: flex;
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 1rem 1rem;
   align-items: center;
 
   @include tablet {
     text-align: center;
+    max-width: 1200px;
+  }
+  @include desktop {
+    text-align: center;
+    max-width: 1400px;
   }
 }
 
