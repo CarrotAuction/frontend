@@ -54,7 +54,6 @@ const UserAuction = () => {
 
   useEffect(() => {
     if (page < Boards?.totalPages) {
-      console.log('hi');
       prefetchNextPosts(page);
     }
   }, [page, prefetchNextPosts, useQueryClient]);
