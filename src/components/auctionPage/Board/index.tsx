@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { CreatorInfo } from '@/src/types/search';
 import { format, register } from 'timeago.js';
 import koLocale from 'timeago.js/lib/lang/ko';
+import { useRouter } from 'next/navigation';
 import profile from '../../../assets/auction/profile.jpg';
 
 import styles from './index.module.scss';
@@ -27,10 +28,14 @@ const Board = ({
   stuffName,
   stuffPrice,
 }: Props) => {
+  const router = useRouter();
   register('ko', koLocale);
   const { city, province } = creator;
+  const gotoDetailBoard = () => {
+    router.push(`/auction/${id}`);
+  };
   return (
-    <div className={styles.board}>
+    <div onClick={gotoDetailBoard} className={styles.board}>
       <div className={styles.userImage}>
         <Image src={profile} alt="picture" fill />
       </div>

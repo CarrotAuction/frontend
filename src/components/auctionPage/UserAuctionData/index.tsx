@@ -6,6 +6,7 @@ import Image from 'next/image';
 import styles from './index.module.scss';
 import Board from '../Board';
 import emptyBox from '../../../assets/auction/empty.png';
+import loading from '../../../assets/auction/loading.gif';
 import Pagination from '../Pagination';
 
 type Props = {
@@ -17,9 +18,9 @@ type Props = {
 
 const UserAuctionData = ({ Boards, isLoading, onChangePage, page }: Props) => {
   if (isLoading) {
-    <div>
-      <div>
-        <Image src={emptyBox} alt="empty" fill />
+    <div className={styles.empty}>
+      <div className={styles.emptyBox}>
+        <Image src={loading} alt="empty" fill />
       </div>
     </div>;
   }
@@ -31,7 +32,7 @@ const UserAuctionData = ({ Boards, isLoading, onChangePage, page }: Props) => {
           <div className={styles.emptyBox}>
             <Image src={emptyBox} alt="empty" fill />
           </div>
-          <span>아직 올라운 매물이 없어요 😞</span>
+          <span>아직 올라온 매물이 없어요 😞</span>
         </div>
       ) : (
         <div className={styles.userBoards}>
