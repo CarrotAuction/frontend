@@ -1,4 +1,4 @@
-import { RequesteUser, ResponseUser } from '@/src/types/signup';
+import { RequesteUser } from '@/src/types/signup';
 import { authInstance } from '../InitAxios';
 
 export const PostSignup = async (data: RequesteUser) => {
