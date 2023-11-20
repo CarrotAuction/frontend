@@ -16,6 +16,7 @@ import styles from './index.module.scss';
 import UserAuctionData from '../UserAuctionData';
 
 const UserAuction = () => {
+  const queryClient = useQueryClient();
   const [searchData, onchange] = useInput();
   const { page, onChangePage } = usePage();
   const [selectValue, setSelectValue] = useState<SelectValueType>({
@@ -35,30 +36,28 @@ const UserAuction = () => {
       const data = { ...selectValue, searchData, page };
       return GetBoards(data);
     },
-    staleTime: 0,
-    gcTime: 0,
     placeholderData: keepPreviousData,
   });
 
-  // const fetchBoardList = (page: number) => {
-  //   const data = { ...selectValue, searchData, page };
+  const fetchBoardList = (page: number) => {
+    const data = { ...selectValue, searchData, page };
 
-  //   return GetBoards(data);
-  // };
+    return GetBoards(data);
+  };
 
-  // const prefetchNextPosts = async (nextPage: number) => {
-  //   const queryClient = new QueryClient();
-  //   await queryClient.prefetchQuery({
-  //     queryKey: ['Boards', nextPage],
-  //     queryFn: () => fetchBoardList(nextPage + 1),
-  //   });
-  // };
+  const prefetchNextPosts = (page: number) => {
+    queryClient.prefetchQuery({
+      queryKey: ['Boards', page + 1],
+      queryFn: () => fetchBoardList(page + 1),
+    });
+  };
 
-  // useEffect(() => {
-  //   if (page < Boards?.totalPages) {
-  //     prefetchNextPosts(page);
-  //   }
-  // }, [page]);
+  useEffect(() => {
+    if (page < Boards?.totalPages) {
+      console.log('hi');
+      prefetchNextPosts(page);
+    }
+  }, [page, prefetchNextPosts, useQueryClient]);
 
   return (
     <main className={styles.auction}>

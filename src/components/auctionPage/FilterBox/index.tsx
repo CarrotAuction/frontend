@@ -2,7 +2,12 @@
 
 import React, { useState } from 'react';
 import { Area, Category } from '@/src/constants/search';
-import { QueryObserverResult, RefetchOptions } from '@tanstack/react-query';
+import {
+  QueryClient,
+  QueryObserverResult,
+  RefetchOptions,
+  useQueryClient,
+} from '@tanstack/react-query';
 import {
   CustomRefetchOptions,
   PropsBoards,
@@ -34,6 +39,7 @@ const FilterBox = ({
   refetch,
   onChangePage,
 }: Props) => {
+  const queryClient = useQueryClient();
   const [show, setShow] = useState<ShowType>({
     areaShow: false,
     cityShow: false,
@@ -42,6 +48,7 @@ const FilterBox = ({
 
   const handleRefresh = () => {
     onChangePage(1);
+    queryClient.removeQueries({ queryKey: ['Boards'] });
     refetch() as CustomRefetchOptions;
   };
 
