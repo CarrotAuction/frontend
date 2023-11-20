@@ -22,6 +22,14 @@ const NavBar = () => {
     setToggle((pre) => !pre);
   };
 
+  const alertLogin = () => {
+    Swal.fire({
+      icon: 'warning',
+      title: '로그인 후 이용 가능합니다!',
+    });
+    router.refresh();
+  };
+
   const logout = () => {
     deleteCookie('token');
     Swal.fire({
@@ -52,7 +60,18 @@ const NavBar = () => {
               물건 보러가기
             </Link>
           </li>
-          <li>글 쓰기</li>
+          {token ? (
+            <li>
+              <Link
+                href="/post"
+                className={path === '/post' ? styles.point : styles.nonPoint}
+              >
+                글 쓰기
+              </Link>
+            </li>
+          ) : (
+            <li onClick={alertLogin}>글 쓰기</li>
+          )}
           {token ? (
             <li onClick={logout}>로그아웃</li>
           ) : (
