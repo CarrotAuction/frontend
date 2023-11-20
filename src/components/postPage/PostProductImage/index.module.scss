@@ -1,0 +1,60 @@
+@import '@/src/styles/media.scss';
+
+.postProductImage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 25rem;
+
+  & > p {
+    width: 25rem;
+    padding-right: 0.5rem;
+    text-align: right;
+    cursor: pointer;
+    font-size: 12px;
+    & > label {
+      color: var(--main-color);
+      border-bottom: 1px solid var(--main-color);
+    }
+
+    @include desktop {
+      width: 35rem;
+    }
+
+    @include mobile {
+      width: 50rem;
+    }
+  }
+
+  @include desktop {
+    width: 35rem;
+  }
+
+  @include mobile {
+    width: 50rem;
+  }
+}
+
+.uploadProductImage {
+  position: relative;
+  width: 25rem;
+  height: 25rem;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 10px 0;
+
+  & > input {
+    display: none;
+  }
+
+  @include desktop {
+    width: 35rem;
+    height: 35rem;
+  }
+
+  @include mobile {
+    width: 50rem;
+    height: 50rem;
+  }
+}
