@@ -4,7 +4,12 @@ import React, { useEffect, useState } from 'react';
 import useInput from '@/src/hooks/useInput';
 import { SelectValueType } from '@/src/types/search';
 import usePage from '@/src/hooks/usePage';
-import { keepPreviousData, useQuery } from '@tanstack/react-query';
+import {
+  QueryClient,
+  keepPreviousData,
+  useQuery,
+  useQueryClient,
+} from '@tanstack/react-query';
 import { GetBoards } from '@/src/apis/Auction';
 import FilterBox from '../FilterBox';
 import styles from './index.module.scss';
@@ -30,8 +35,30 @@ const UserAuction = () => {
       const data = { ...selectValue, searchData, page };
       return GetBoards(data);
     },
+    staleTime: 0,
+    gcTime: 0,
     placeholderData: keepPreviousData,
   });
+
+  // const fetchBoardList = (page: number) => {
+  //   const data = { ...selectValue, searchData, page };
+
+  //   return GetBoards(data);
+  // };
+
+  // const prefetchNextPosts = async (nextPage: number) => {
+  //   const queryClient = new QueryClient();
+  //   await queryClient.prefetchQuery({
+  //     queryKey: ['Boards', nextPage],
+  //     queryFn: () => fetchBoardList(nextPage + 1),
+  //   });
+  // };
+
+  // useEffect(() => {
+  //   if (page < Boards?.totalPages) {
+  //     prefetchNextPosts(page);
+  //   }
+  // }, [page]);
 
   return (
     <main className={styles.auction}>

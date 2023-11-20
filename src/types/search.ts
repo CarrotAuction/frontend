@@ -3,7 +3,7 @@ import { RefetchOptions } from '@tanstack/react-query';
 // API
 export type AllBoardType = {
   boards: BoardType[];
-  totalBoards: number;
+  totalPages: number;
 };
 
 export type BoardType = {

@@ -44,7 +44,7 @@ const UserAuctionData = ({ Boards, isLoading, onChangePage, page }: Props) => {
 
       <Pagination
         page={page}
-        totalPages={Math.floor(Boards?.totalBoards / 6) + 1}
+        totalPages={Boards?.totalPages}
         onChangePage={onChangePage}
       />
     </main>
