@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import {
   IdValidate,
   NickNameValidate,
@@ -11,14 +11,26 @@ import {
   correctPasswordCheck,
 } from '@/src/constants/signup';
 import { useForm } from 'react-hook-form';
-import { IForm, Location, SignShowTpye } from '@/src/types/signup';
+import {
+  IForm,
+  Location,
+  RequesteUser,
+  SignShowTpye,
+} from '@/src/types/signup';
 import AreaSelectBox from '@/src/components/signUpPage/Select/AreaSelectBox';
 import Input from '@/src/components/signUpPage/Input';
 import { Area } from '@/src/constants/search';
 import CitySelectBox from '@/src/components/signUpPage/Select/CitySelectBox';
+import { PostSignup } from '@/src/apis/Signup';
+import { useRouter } from 'next/navigation';
+import { useMutation } from '@tanstack/react-query';
+import { AxiosError } from 'axios';
+import Swal from 'sweetalert2';
 import styles from './index.module.scss';
 
 const SignUp = () => {
+  const router = useRouter();
+
   const [click, setClick] = useState(false);
   const [location, setLocation] = useState<Location>({
     area: '',
@@ -45,13 +57,40 @@ const SignUp = () => {
     },
   });
 
-  const onSubmit = (data: IForm) => {
+  const { mutate } = useMutation({
+    mutationFn: (data: RequesteUser) => PostSignup(data),
+    onSuccess: (result) => {
+      Swal.fire({
+        icon: 'success',
+        title: '회원가입에 성공하셨습니다 !',
+        text: '로그인페이지로 이동합니다.',
+      });
+      router.push('/login');
+    },
+    onError: (error) => {
+      if (error instanceof AxiosError) {
+        if (error?.response?.data?.message) {
+          Swal.fire({
+            icon: 'error',
+            title: `${error.response.data.message}`,
+          });
+        }
+      }
+    },
+  });
+
+  const onSubmit = async (data: IForm) => {
     if (location.area === '' || location.city === '') {
       alert('거주지를 선택해주세요');
       return;
     }
-
-    console.log({ ...data, area: location.area, city: location.city });
+    mutate({
+      nickname: data.nick_name,
+      password: data.password,
+      accountID: data.id,
+      province: location.area,
+      city: location.city,
+    });
   };
 
   return (

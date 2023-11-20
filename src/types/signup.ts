@@ -1,3 +1,21 @@
+// API
+
+export type ResponseUser = {
+  accountID: string;
+  nickname: string;
+  province: string;
+  city: string;
+};
+
+export type RequesteUser = {
+  nickname: string;
+  password: string;
+  accountID: string;
+  province: string;
+  city: string;
+};
+
+// UI
 export type IForm = {
   id: string;
   nick_name: string;
