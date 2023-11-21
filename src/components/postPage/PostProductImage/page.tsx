@@ -5,7 +5,8 @@ import styles from './index.module.scss';
 
 const PostProductImage = () => {
   const [image, setImage] = useState(blankImage);
-  const fileInput: React.MutableRefObject<null> = useRef(null);
+  const fileInput: React.MutableRefObject<any> = useRef(null);
+
   const handleImage = async (e: any) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -20,10 +21,16 @@ const PostProductImage = () => {
     };
   };
 
+  const openFileInput = () => {
+    if (fileInput.current) {
+      fileInput.current.click();
+    }
+  };
+
   return (
     <div className={styles.postProductImage}>
       <div className={styles.uploadProductImage}>
-        <Image src={image} fill alt="프로필 이미지" />
+        <Image src={image} fill alt="프로필 이미지" onClick={openFileInput} />
         <input
           type="file"
           name="image_URL"
