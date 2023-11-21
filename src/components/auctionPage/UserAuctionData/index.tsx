@@ -11,18 +11,20 @@ import Pagination from '../Pagination';
 
 type Props = {
   Boards: AllBoardType;
-  isLoading: boolean;
+  isPending: boolean;
   onChangePage: (page: number) => void;
   page: number;
 };
 
-const UserAuctionData = ({ Boards, isLoading, onChangePage, page }: Props) => {
-  if (isLoading) {
-    <div className={styles.empty}>
-      <div className={styles.emptyBox}>
-        <Image src={loading} alt="empty" fill />
+const UserAuctionData = ({ Boards, isPending, onChangePage, page }: Props) => {
+  if (isPending) {
+    return (
+      <div className={styles.empty}>
+        <div className={styles.emptyBox}>
+          <Image src={loading} alt="empty" fill />
+        </div>
       </div>
-    </div>;
+    );
   }
 
   return (
@@ -35,18 +37,19 @@ const UserAuctionData = ({ Boards, isLoading, onChangePage, page }: Props) => {
           <span>아직 올라온 매물이 없어요 😞</span>
         </div>
       ) : (
-        <div className={styles.userBoards}>
-          {Boards?.boards?.map((data: BoardType) => {
-            return <Board key={data.id} {...data} />;
-          })}
-        </div>
+        <>
+          <div className={styles.userBoards}>
+            {Boards?.boards?.map((data: BoardType) => {
+              return <Board key={data.id} {...data} />;
+            })}
+          </div>
+          <Pagination
+            page={page}
+            totalPages={Boards?.totalPages}
+            onChangePage={onChangePage}
+          />
+        </>
       )}
-
-      <Pagination
-        page={page}
-        totalPages={Boards?.totalPages}
-        onChangePage={onChangePage}
-      />
     </main>
   );
 };

@@ -26,7 +26,7 @@ const UserAuction = () => {
   });
 
   const {
-    isLoading,
+    isPending,
     data: Boards,
     refetch,
   } = useQuery({
@@ -71,7 +71,7 @@ const UserAuction = () => {
       <UserAuctionData
         page={page}
         Boards={Boards}
-        isLoading={isLoading}
+        isPending={isPending}
         onChangePage={onChangePage}
       />
     </main>
