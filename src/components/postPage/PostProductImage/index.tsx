@@ -21,7 +21,7 @@ const PostProductImage = () => {
     <div className={styles.postProductImage}>
       <div className={styles.uploadProductImage}>
         <Image
-          src={blankImage}
+          src={image || blankImage}
           fill
           alt="프로필 이미지"
           onClick={openFileInput}
