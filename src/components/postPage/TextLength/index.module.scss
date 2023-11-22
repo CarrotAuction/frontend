@@ -1,0 +1,12 @@
+@import '@/src/styles/media.scss';
+
+.text {
+  color: gray;
+  position: absolute;
+  bottom: -1rem;
+  right: 5px;
+
+  @include mobile {
+    bottom: -0.5rem;
+  }
+}

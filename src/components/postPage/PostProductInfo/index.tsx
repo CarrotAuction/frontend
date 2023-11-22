@@ -1,17 +1,18 @@
-import React, { useState, useRef } from 'react';
+'use client';
+
+import React, { useState } from 'react';
 import useInput from '@/src/hooks/useInput';
 import { getCookie } from 'cookies-next';
 import { Category } from '@/src/constants/search';
 import { SelectValueType, ShowType } from '@/src/types/search';
 import CategorySelect from '@/src/components/auctionPage/CategorySelect';
-import InputBox from '@/src/components/postPage/InputBox/page';
-import { useRouter } from 'next/navigation';
 import { Post } from '@/src/types/post';
 import { PostAuction } from '@/src/apis/Post';
 import { useMutation } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import Swal from 'sweetalert2';
 import styles from './index.module.scss';
+import InputBox from '../InputBox';
 
 const PostProductInfo = () => {
   const token = getCookie('token');
@@ -73,7 +74,6 @@ const PostProductInfo = () => {
         icon: 'warning',
         title: '경매 상품 정보를 모두 입력해 주세요.',
       });
-      return;
     }
     mutate({
       creatorId: Number(token),

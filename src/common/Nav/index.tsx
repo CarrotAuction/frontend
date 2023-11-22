@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import NavBarSlide from '@/src/components/NavBarSlide';
 import { useRouter, usePathname } from 'next/navigation';
 import Image from 'next/image';
@@ -15,6 +15,7 @@ const NavBar = () => {
   const router = useRouter();
   const path = usePathname();
   const [toggle, setToggle] = useState(false);
+  const [myToken, setMyToken] = useState('');
 
   const token = getCookie('token');
 
@@ -39,6 +40,10 @@ const NavBar = () => {
     router.refresh();
   };
 
+  useEffect(() => {
+    token && setMyToken(token);
+  }, [token]);
+
   return (
     <nav className={styles.nav}>
       <section className={styles.innerNav}>
@@ -60,7 +65,7 @@ const NavBar = () => {
               물건 보러가기
             </Link>
           </li>
-          {token ? (
+          {myToken ? (
             <li>
               <Link
                 href="/post"
@@ -72,7 +77,7 @@ const NavBar = () => {
           ) : (
             <li onClick={alertLogin}>글 쓰기</li>
           )}
-          {token ? (
+          {myToken ? (
             <li onClick={logout}>로그아웃</li>
           ) : (
             <li>

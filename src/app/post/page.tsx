@@ -1,8 +1,6 @@
-'use client';
-
-import React, { useState, useRef } from 'react';
-import PostProductImage from '@/src/components/postPage/PostProductImage/page';
-import PostProductInfo from '@/src/components/postPage/PostProductInfo/page';
+import React from 'react';
+import PostProductImage from '@/src/components/postPage/PostProductImage';
+import PostProductInfo from '@/src/components/postPage/PostProductInfo';
 import styles from './index.module.scss';
 
 const Post = () => {

@@ -1,6 +1,7 @@
-import React, { useState, useRef } from 'react';
+import React from 'react';
 import { GiCancel } from 'react-icons/gi';
 import styles from './index.module.scss';
+import TextLength from '../TextLength';
 
 type Props = {
   tag: string;
@@ -30,16 +31,19 @@ const InputBox = ({
           placeholder={placeholder}
         />
       ) : (
-        <textarea
-          className={styles.detailTextarea}
-          rows={10}
-          value={value}
-          name={name}
-          onChange={changeFunction}
-          placeholder={placeholder}
-        />
+        <>
+          <textarea
+            className={styles.detailTextarea}
+            rows={10}
+            value={value}
+            name={name}
+            onChange={changeFunction}
+            placeholder={placeholder}
+          />
+          <TextLength value={value} />
+        </>
       )}
-      {value && (
+      {tag === 'input' && value && (
         <GiCancel
           data-testid="id-icon"
           onClick={resetFunction}
