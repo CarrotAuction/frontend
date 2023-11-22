@@ -14,6 +14,7 @@ type InputProps = {
   correct: string;
   click: boolean;
   password?: string;
+  test?: string;
 };
 
 const Input = ({
@@ -26,6 +27,7 @@ const Input = ({
   correct,
   click,
   password,
+  test,
 }: InputProps) => {
   const [isVisible, setIsVisible] = useState(false);
 
@@ -38,6 +40,7 @@ const Input = ({
       <label htmlFor={label}>{title}</label>
       <div>
         <input
+          data-testId={test}
           type={isVisible ? 'text' : password ? 'password' : 'text'}
           id={label}
           {...register(label, validate)}
@@ -58,7 +61,7 @@ const Input = ({
         }
       >
         {errors[label]?.message ? (
-          <p>{errors[label]?.message}</p>
+          <p data-testId="error">{errors[label]?.message}</p>
         ) : (
           <p>{click && correct}</p>
         )}

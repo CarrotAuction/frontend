@@ -1,13 +1,13 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import NavBarSlide from '@/src/components/NavBarSlide';
 import { useRouter, usePathname } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import { deleteCookie, getCookie } from 'cookies-next';
 import Swal from 'sweetalert2';
-import ToggleNavIcon from '../ui/ToggleNavIcon';
+import ToggleNavIcon from '../Ui/ToggleNavIcon';
+import NavBarSlide from './NavBarSlide';
 import styles from './index.module.scss';
 import carrot from '../../assets/main/carrot.png';
 
@@ -15,6 +15,7 @@ const NavBar = () => {
   const router = useRouter();
   const path = usePathname();
   const [toggle, setToggle] = useState(false);
+  const [myToken, setMyToken] = useState('');
 
   const [btnWord, setBtnWord] = useState('');
 
@@ -24,25 +25,26 @@ const NavBar = () => {
     setToggle((pre) => !pre);
   };
 
-  const onClickHandler = () => {
-    if (token) {
-      deleteCookie('token');
-      Swal.fire({
-        icon: 'success',
-        title: '로그아웃 성공',
-      });
-      router.refresh();
-    } else {
-      router.push('/login');
-    }
+  const alertLogin = () => {
+    Swal.fire({
+      icon: 'warning',
+      title: '로그인 후 이용 가능합니다!',
+    });
+    router.push('/login');
+  };
+
+  const logout = () => {
+    deleteCookie('token');
+    Swal.fire({
+      icon: 'success',
+      title: '로그아웃 성공',
+    });
+    setMyToken('');
+    router.push('/');
   };
 
   useEffect(() => {
-    if (token) {
-      setBtnWord('로그아웃');
-    } else {
-      setBtnWord('로그인');
-    }
+    token && setMyToken(token);
   }, [token]);
 
   return (
@@ -66,13 +68,30 @@ const NavBar = () => {
               물건 보러가기
             </Link>
           </li>
-          <li>글 쓰기</li>
-          <li
-            onClick={onClickHandler}
-            className={path === '/login' ? styles.point : styles.nonPoint}
-          >
-            {btnWord}
-          </li>
+          {myToken ? (
+            <li>
+              <Link
+                href="/post"
+                className={path === '/post' ? styles.point : styles.nonPoint}
+              >
+                글 쓰기
+              </Link>
+            </li>
+          ) : (
+            <li onClick={alertLogin}>글 쓰기</li>
+          )}
+          {myToken ? (
+            <li onClick={logout}>로그아웃</li>
+          ) : (
+            <li>
+              <Link
+                href="/login"
+                className={path === '/login' ? styles.point : styles.nonPoint}
+              >
+                로그인
+              </Link>
+            </li>
+          )}
         </ul>
       </section>
       <NavBarSlide toggle={toggle} changeToggle={changeToggle} />
