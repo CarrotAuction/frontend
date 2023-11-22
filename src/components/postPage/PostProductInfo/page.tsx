@@ -1,5 +1,4 @@
 import React, { useState, useRef } from 'react';
-import { GiCancel } from 'react-icons/gi';
 import useInput from '@/src/hooks/useInput';
 import { getCookie } from 'cookies-next';
 import { Category } from '@/src/constants/search';
@@ -15,7 +14,6 @@ import Swal from 'sweetalert2';
 import styles from './index.module.scss';
 
 const PostProductInfo = () => {
-  const router = useRouter();
   const token = getCookie('token');
   const [productName, changeProductName, resetProductName] = useInput();
   const [productPrice, changeProductPrice, resetProductPrice] = useInput();
@@ -24,10 +22,10 @@ const PostProductInfo = () => {
   const handleInputProductDetail = (
     event: React.ChangeEvent<HTMLTextAreaElement>,
   ) => {
-    setProductDetail((pre) => event.target.value);
+    setProductDetail(() => event.target.value);
   };
   const resetProductDetail = () => {
-    setProductDetail((pre) => '');
+    setProductDetail(() => '');
   };
 
   const [selectValue, setSelectValue] = useState<SelectValueType>({

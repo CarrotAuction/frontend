@@ -26,14 +26,6 @@
   display: flex;
   justify-content: center;
 
-  & > span {
-    width: 5rem;
-
-    @include desktop {
-      width: 10rem;
-    }
-  }
-
   @include mobile {
     flex-direction: column;
   }

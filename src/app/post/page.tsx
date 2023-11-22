@@ -11,7 +11,6 @@ const Post = () => {
       <h1 className={styles.title}>글 쓰기</h1>
       <div className={styles.postContent}>
         <PostProductImage />
-        <span />
         <PostProductInfo />
       </div>
     </main>
