@@ -1,13 +1,22 @@
 import React, { useState, useRef } from 'react';
 import { GiCancel } from 'react-icons/gi';
 import useInput from '@/src/hooks/useInput';
+import { getCookie } from 'cookies-next';
 import { Category } from '@/src/constants/search';
 import { SelectValueType, ShowType } from '@/src/types/search';
 import CategorySelect from '@/src/components/auctionPage/CategorySelect';
 import InputBox from '@/src/components/postPage/InputBox/page';
+import { useRouter } from 'next/navigation';
+import { Post } from '@/src/types/post';
+import { PostAuction } from '@/src/apis/Post';
+import { useMutation } from '@tanstack/react-query';
+import { AxiosError } from 'axios';
+import Swal from 'sweetalert2';
 import styles from './index.module.scss';
 
 const PostProductInfo = () => {
+  const router = useRouter();
+  const token = getCookie('token');
   const [productName, changeProductName, resetProductName] = useInput();
   const [productPrice, changeProductPrice, resetProductPrice] = useInput();
   const [productDetail, setProductDetail] = useState('');
@@ -32,6 +41,50 @@ const PostProductInfo = () => {
     cityShow: false,
     categoryShow: false,
   });
+
+  const { mutate } = useMutation({
+    mutationFn: (data: Post) => PostAuction(data),
+    onSuccess: (result) => {
+      Swal.fire({
+        icon: 'success',
+        title: '글 쓰기에 성공하셨습니다 !',
+        text: '경매글 상세페이지로 이동합니다.',
+      });
+      // 경매글 상세페이지 api 연동 후 route 코드 추가 예정
+    },
+    onError: (error) => {
+      if (error instanceof AxiosError) {
+        if (error?.response?.data?.message) {
+          Swal.fire({
+            icon: 'error',
+            title: `${error.response.data.message}`,
+          });
+        }
+      }
+    },
+  });
+
+  const onSubmit = async () => {
+    if (
+      productName === '' ||
+      productDetail === '' ||
+      productPrice === '' ||
+      selectValue.category === ''
+    ) {
+      Swal.fire({
+        icon: 'warning',
+        title: '경매 상품 정보를 모두 입력해 주세요.',
+      });
+      return;
+    }
+    mutate({
+      creatorId: Number(token),
+      stuffName: productName,
+      stuffContent: productDetail,
+      stuffPrice: Number(productPrice),
+      stuffCategory: selectValue.category,
+    });
+  };
 
   return (
     <div className={styles.postProductInfo}>
@@ -66,7 +119,7 @@ const PostProductInfo = () => {
         setShow={setShow}
         show={show}
       />
-      <button type="button" className={styles.submitButton}>
+      <button type="button" onClick={onSubmit} className={styles.submitButton}>
         완료
       </button>
     </div>
