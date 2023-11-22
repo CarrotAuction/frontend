@@ -16,6 +16,7 @@ type Props = {
   stuffCategory: string;
   stuffName: string;
   stuffPrice: number;
+  imageUrl: string;
 };
 
 const Board = ({
@@ -25,6 +26,7 @@ const Board = ({
   stuffCategory,
   stuffName,
   stuffPrice,
+  imageUrl,
 }: Props) => {
   const router = useRouter();
   register('ko', koLocale);
@@ -35,7 +37,7 @@ const Board = ({
   return (
     <div onClick={gotoDetailBoard} className={styles.board}>
       <div className={styles.userImage}>
-        <Image src={profile} alt="picture" fill />
+        <Image src={imageUrl} alt="picture" fill />
       </div>
       <div className={styles.userInfo}>
         <div className={styles.profile}>
