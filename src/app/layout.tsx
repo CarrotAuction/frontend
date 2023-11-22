@@ -3,7 +3,7 @@ import React from 'react';
 import type { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
 import '../styles/globalStyle.scss';
-import ReactQueryProvider from '../ReactQueryProvider';
+import ReactQueryProviders from '../ReactQueryProvider';
 import NavBar from '../common/Nav';
 import Footer from '../common/Footer';
 
@@ -31,7 +31,7 @@ export default function RootLayout({
     <html lang="kr">
       <body className={`${NotoR.className} ${NotoB.variable}`}>
         <NavBar />
-        <ReactQueryProvider>{children}</ReactQueryProvider>
+        <ReactQueryProviders>{children}</ReactQueryProviders>
         <Footer />
       </body>
     </html>
