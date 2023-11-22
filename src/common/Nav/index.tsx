@@ -1,13 +1,13 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import NavBarSlide from '@/src/common/Nav/NavBarSlide';
 import { useRouter, usePathname } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import { deleteCookie, getCookie } from 'cookies-next';
 import Swal from 'sweetalert2';
 import ToggleNavIcon from '../Ui/ToggleNavIcon';
+import NavBarSlide from './NavBarSlide';
 import styles from './index.module.scss';
 import carrot from '../../assets/main/carrot.png';
 
@@ -37,7 +37,8 @@ const NavBar = () => {
       icon: 'success',
       title: '로그아웃 성공',
     });
-    router.refresh();
+    setMyToken('');
+    router.push('/');
   };
 
   useEffect(() => {
