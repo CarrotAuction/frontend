@@ -14,7 +14,6 @@ type Props = {
   creator: CreatorInfo;
   id: number;
   stuffCategory: string;
-  stuffContent: string;
   stuffName: string;
   stuffPrice: number;
 };
@@ -24,7 +23,6 @@ const Board = ({
   creator,
   id,
   stuffCategory,
-  stuffContent,
   stuffName,
   stuffPrice,
 }: Props) => {

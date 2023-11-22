@@ -4,10 +4,10 @@ import React from 'react';
 import { AllBoardType, BoardType } from '@/src/types/search';
 import Image from 'next/image';
 import styles from './index.module.scss';
-import Board from '../Board';
 import emptyBox from '../../../assets/auction/empty.png';
 import loading from '../../../assets/auction/loading.gif';
 import Pagination from '../Pagination';
+import BoardList from '../BoardList';
 
 type Props = {
   Boards: AllBoardType;
@@ -38,10 +38,8 @@ const UserAuctionData = ({ Boards, isPending, onChangePage, page }: Props) => {
         </div>
       ) : (
         <>
-          <div className={styles.userBoards}>
-            {Boards?.boards?.map((data: BoardType) => {
-              return <Board key={data.id} {...data} />;
-            })}
+          <div>
+            <BoardList Boards={Boards} />
           </div>
           <Pagination
             page={page}

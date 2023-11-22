@@ -1,0 +1,23 @@
+.userBoards {
+  margin: 5rem 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+
+  @media (max-width: 1600px) {
+    .userBoards {
+      grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+    }
+  }
+}
+
+.shortUserBoards {
+  margin: 5rem 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 400px));
+  gap: 16px;
+
+  @media (max-width: 650px) {
+    grid-template-columns: repeat(auto-fit, minmax(50%, 2fr));
+  }
+}
