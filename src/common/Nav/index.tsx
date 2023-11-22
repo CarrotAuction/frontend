@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import NavBarSlide from '@/src/components/NavBarSlide';
 import { useRouter, usePathname } from 'next/navigation';
 import Image from 'next/image';
@@ -15,11 +15,20 @@ const NavBar = () => {
   const router = useRouter();
   const path = usePathname();
   const [toggle, setToggle] = useState(false);
+  const [myToken, setMyToken] = useState('');
 
   const token = getCookie('token');
 
   const changeToggle = () => {
     setToggle((pre) => !pre);
+  };
+
+  const alertLogin = () => {
+    Swal.fire({
+      icon: 'warning',
+      title: '로그인 후 이용 가능합니다!',
+    });
+    router.push('/login');
   };
 
   const logout = () => {
@@ -30,6 +39,10 @@ const NavBar = () => {
     });
     router.refresh();
   };
+
+  useEffect(() => {
+    token && setMyToken(token);
+  }, [token]);
 
   return (
     <nav className={styles.nav}>
@@ -52,8 +65,19 @@ const NavBar = () => {
               물건 보러가기
             </Link>
           </li>
-          <li>글 쓰기</li>
-          {token ? (
+          {myToken ? (
+            <li>
+              <Link
+                href="/post"
+                className={path === '/post' ? styles.point : styles.nonPoint}
+              >
+                글 쓰기
+              </Link>
+            </li>
+          ) : (
+            <li onClick={alertLogin}>글 쓰기</li>
+          )}
+          {myToken ? (
             <li onClick={logout}>로그아웃</li>
           ) : (
             <li>

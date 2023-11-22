@@ -1,0 +1,33 @@
+@import '@/src/styles/media.scss';
+
+.postProductInfo {
+  width: 30rem;
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  margin-left: 5rem;
+  @include desktop {
+    width: 35rem;
+    margin-left: 10rem;
+  }
+
+  @include mobile {
+    width: 50rem;
+    margin-top: 5rem;
+    margin-left: 0;
+  }
+}
+
+.submitButton {
+  background-color: var(--main-color);
+  color: #ffffff;
+  height: 35px;
+  width: 100%;
+  margin-top: 3rem;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 0.5rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
