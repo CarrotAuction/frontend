@@ -18,8 +18,6 @@ const CategorySelect = ({
   setShow,
   show,
 }: Props) => {
-  const [option, setOptions] = useState<any>([]);
-
   const clickOption = () => {
     setShow((pre) => {
       return {

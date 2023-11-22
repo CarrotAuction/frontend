@@ -2,11 +2,11 @@
 
 import React, { useRef } from 'react';
 import Image from 'next/image';
-import introduceP1 from '../../assets/main/introduce1.png';
-import introduceP2 from '../../assets/main/introduce2.png';
-import introduceP3 from '../../assets/main/introduce3.png';
-import blueIntroduce2 from '../../assets/main/blurIntroduce2.png';
-import blueIntroduce3 from '../../assets/main/blueIntroduce3.png';
+import introduceP1 from '../../../assets/main/introduce1.png';
+import introduceP2 from '../../../assets/main/introduce2.png';
+import introduceP3 from '../../../assets/main/introduce3.png';
+import blueIntroduce2 from '../../../assets/main/blurIntroduce2.png';
+import blueIntroduce3 from '../../../assets/main/blueIntroduce3.png';
 import styles from './index.module.scss';
 import UseLazyLoading from './useLazyLoading';
 
