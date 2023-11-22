@@ -13,6 +13,7 @@ export type BoardType = {
   stuffCategory: string;
   stuffContent: string;
   stuffName: string;
+  imageUrl: string;
   stuffPrice: number;
 };
 

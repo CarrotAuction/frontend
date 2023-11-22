@@ -18,7 +18,7 @@ const Baneer = () => {
             <br />
             지금 경험해보세요!
           </p>
-          <button type="button" onClick={() => router.push('/auctionPost')}>
+          <button type="button" onClick={() => router.push('/post')}>
             매물 올리기
           </button>
         </article>
