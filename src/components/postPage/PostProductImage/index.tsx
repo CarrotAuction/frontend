@@ -1,21 +1,29 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import Image from 'next/image';
 import blankImage from '@/src/assets/post/blank.png';
 import UsePreview from '@/src/hooks/usePreview';
 import styles from './index.module.scss';
 
-const PostProductImage = () => {
+type PostProductImageProps = {
+  onImageSelect: (imageFile: any) => void;
+};
+
+const PostProductImage = ({ onImageSelect }: PostProductImageProps) => {
   const fileInput = useRef<HTMLInputElement>(null);
 
-  const { image, handleImage } = UsePreview();
+  const { file, image, handleImage } = UsePreview();
 
   const openFileInput = () => {
     if (fileInput.current) {
       fileInput.current.click();
     }
   };
+
+  useEffect(() => {
+    onImageSelect(file);
+  }, [file, onImageSelect]);
 
   return (
     <div className={styles.postProductImage}>

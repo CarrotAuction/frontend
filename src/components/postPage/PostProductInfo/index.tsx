@@ -2,6 +2,9 @@
 
 import React, { useState } from 'react';
 import useInput from '@/src/hooks/useInput';
+import { useRouter } from 'next/navigation';
+import Image from 'next/image';
+import carrotImage from '@/src/assets/post/carrot.png';
 import { getCookie } from 'cookies-next';
 import { Category } from '@/src/constants/search';
 import { SelectValueType, ShowType } from '@/src/types/search';
@@ -14,8 +17,9 @@ import Swal from 'sweetalert2';
 import styles from './index.module.scss';
 import InputBox from '../InputBox';
 
-const PostProductInfo = () => {
+const PostProductInfo = ({ selectedImage }: any) => {
   const token = getCookie('token');
+  const router = useRouter();
   const [productName, changeProductName, resetProductName] = useInput();
   const [productPrice, changeProductPrice, resetProductPrice] = useInput();
   const [productDetail, setProductDetail] = useState('');
@@ -42,14 +46,13 @@ const PostProductInfo = () => {
   });
 
   const { mutate } = useMutation({
-    mutationFn: (data: Post) => PostAuction(data),
+    mutationFn: (data: FormData) => PostAuction(data),
     onSuccess: (result) => {
       Swal.fire({
         icon: 'success',
         title: '글 쓰기에 성공하셨습니다 !',
         text: '경매글 상세페이지로 이동합니다.',
       });
-      // 경매글 상세페이지 api 연동 후 route 코드 추가 예정
     },
     onError: (error) => {
       if (error instanceof AxiosError) {
@@ -64,24 +67,27 @@ const PostProductInfo = () => {
   });
 
   const onSubmit = async () => {
+    const formData = new FormData();
     if (
       productName === '' ||
       productDetail === '' ||
       productPrice === '' ||
-      selectValue.category === ''
+      selectValue.category === '' ||
+      selectedImage === null
     ) {
       Swal.fire({
         icon: 'warning',
         title: '경매 상품 정보를 모두 입력해 주세요.',
       });
+      return;
     }
-    mutate({
-      creatorId: Number(token),
-      stuffName: productName,
-      stuffContent: productDetail,
-      stuffPrice: Number(productPrice),
-      stuffCategory: selectValue.category,
-    });
+    formData.append('image', selectedImage);
+    formData.append('creatorId', String(token));
+    formData.append('stuffName', productName);
+    formData.append('stuffContent', productDetail);
+    formData.append('stuffPrice', String(productPrice));
+    formData.append('stuffCategory', selectValue.category);
+    mutate(formData);
   };
 
   return (

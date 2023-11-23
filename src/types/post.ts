@@ -4,4 +4,5 @@ export type Post = {
   stuffContent: string;
   stuffPrice: number;
   stuffCategory: string;
+  image: any;
 };
