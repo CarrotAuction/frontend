@@ -2,3 +2,86 @@
 
 .productInfo {
 }
+
+.productInfoImageAndName {
+  font-size: 1.6rem;
+  color: var(--basic-text-color);
+  position: relative;
+  width: 100%;
+  height: 50rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  p {
+    font-size: 2rem;
+    margin-top: 1rem;
+  }
+}
+
+.productInfoDetail {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 2rem;
+  color: var(--basic-text-color);
+  padding: 1rem;
+
+  p {
+    margin: 0.5rem 0;
+
+    &:nth-child(2),
+    &:nth-child(3) {
+      font-size: 1.4rem;
+      color: var(--darkgray-color);
+    }
+    &:nth-child(4) {
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+  }
+}
+
+.profileBox {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  & > p > span {
+    color: black;
+    margin-left: 1rem;
+  }
+}
+.profile {
+  position: relative;
+  width: 4rem;
+  height: 4rem;
+  min-width: 20px;
+  min-height: 20px;
+}
+
+.line {
+  height: 1px;
+  background-color: #e9ecef;
+}
+
+.introduce {
+  min-height: 200px;
+  padding: 5rem 0;
+}
+
+.auctionParticipateButton {
+  background-color: var(--main-color);
+  color: white;
+  width: 18rem;
+  height: 5rem;
+  border-radius: 5px;
+  margin: 0 auto;
+  border: none;
+  font-size: 1.6rem;
+  margin-top: 5rem;
+  font-weight: bold;
+
+  &:hover {
+    cursor: pointer;
+  }
+}

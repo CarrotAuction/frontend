@@ -9,7 +9,6 @@ import { getCookie } from 'cookies-next';
 import { Category } from '@/src/constants/search';
 import { SelectValueType, ShowType } from '@/src/types/search';
 import CategorySelect from '@/src/components/auctionPage/CategorySelect';
-import { Post } from '@/src/types/post';
 import { PostAuction } from '@/src/apis/Post';
 import { useMutation } from '@tanstack/react-query';
 import { AxiosError } from 'axios';

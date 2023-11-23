@@ -1,45 +1,82 @@
-import React from 'react';
-import { StaticImageData } from 'next/image';
+import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
+import { ProductInfoType } from '@/src/types/auctionDetail';
+import { GetAuctionDetail } from '@/src/apis/AuctionDetail';
+import { useMutation } from '@tanstack/react-query';
+import { AxiosError } from 'axios';
+import Swal from 'sweetalert2';
+import userProfile from '@/src/assets/AuctionPost/userProfile.png';
+import Modal from '@/src/components/auctionPostPage/Modal';
 import styles from './index.module.scss';
-import ProductInfoImageAndName from '../ProductInfoImageAndName';
-import ProductInfoDetail from '../ProductInfoDetail';
-
-type ProductInfoType = {
-  userImage: StaticImageData;
-  productImage: StaticImageData;
-  productName: string;
-  postOwner: string;
-  postOwnerProvince: string;
-  postOwnerCity: string;
-  productCategory: string;
-  productFeature: string;
-  desiredPrice: number;
-  isAuctionOver: boolean;
-};
 
 type Props = {
-  productInfo: ProductInfoType;
-  loginedNickname: string;
+  auctionId: string;
+  loginedId: string | undefined;
 };
 
-const ProductInfo = ({ productInfo, loginedNickname }: Props) => {
+const ProductInfo = ({ auctionId, loginedId }: Props) => {
+  const [productInfo, setProductInfo] = useState<ProductInfoType>({});
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleModal = () => {
+    setIsOpen((pre) => !pre);
+  };
+  const { mutate } = useMutation({
+    mutationFn: (id: string) => GetAuctionDetail(id),
+    onSuccess: (data) => {
+      setProductInfo({ ...data.board });
+    },
+    onError: (error) => {
+      if (error instanceof AxiosError) {
+        if (error?.response?.data?.message) {
+          Swal.fire({
+            icon: 'error',
+            title: `${error.response.data.message}`,
+          });
+        }
+      }
+    },
+  });
+
+  useEffect(() => {
+    mutate(auctionId);
+  }, []);
   return (
     <section className={styles.productInfo}>
-      <ProductInfoImageAndName
-        productImageSrc={productInfo.productImage}
-        productName={productInfo.productName}
-      />
-      <ProductInfoDetail
-        userImageSrc={productInfo.userImage}
-        postOwner={productInfo.postOwner}
-        postOwnerProvince={productInfo.postOwnerProvince}
-        postOwnerCity={productInfo.postOwnerCity}
-        productCategory={productInfo.productCategory}
-        productFeature={productInfo.productFeature}
-        desiredPrice={productInfo.desiredPrice}
-        isAuctionOver={productInfo.isAuctionOver}
-        loginedNickname={loginedNickname}
-      />
+      <article className={styles.productInfoImageAndName}>
+        <Image src={productInfo.imageUrl} fill alt="product image" />
+      </article>
+      <article className={styles.productInfoDetail}>
+        <div className={styles.profileBox}>
+          <div className={styles.profile}>
+            <Image src={userProfile} fill alt="user image" />
+          </div>
+          <p>
+            <span>{productInfo.creator?.nickname}</span>
+          </p>
+        </div>
+        <p>{`${productInfo.stuffName}`}</p>
+        <p>{`${productInfo.creator?.province.name} ${productInfo.creator?.city.name}`}</p>
+        <p>{productInfo.stuffCategory}</p>
+        <p>{`판매자 희망가격: ${productInfo.stuffPrice?.toLocaleString(
+          'ko-KR',
+        )}원`}
+        </p>
+        <div className={styles.line} />
+        <div className={styles.introduce}>{productInfo.stuffContent}</div>
+        <div className={styles.line} />
+        <button
+          type="button"
+          className={styles.auctionParticipateButton}
+          disabled={false}
+          onClick={handleModal}
+        >
+          {Number(loginedId) === productInfo.creator?.id
+            ? '판매 종료'
+            : '경매 참여하기'}
+        </button>
+        {isOpen && <Modal handleModal={handleModal} />}
+      </article>
     </section>
   );
 };
