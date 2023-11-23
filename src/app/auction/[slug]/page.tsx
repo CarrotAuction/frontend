@@ -9,8 +9,6 @@ import { AxiosError } from 'axios';
 import Swal from 'sweetalert2';
 import ProductInfo from '@/src/components/auctionPostPage/ProductInfo';
 import CommentContainer from '@/src/components/auctionPostPage/CommentContainer';
-import product from '@/src/assets/AuctionPost/profile.jpg';
-import userProfile from '@/src/assets/AuctionPost/userProfile.png';
 import styles from './page.module.scss';
 
 export default function AuctionDetail({
@@ -43,7 +41,7 @@ export default function AuctionDetail({
 
   useEffect(() => {
     mutate(params.slug);
-  }, []);
+  }, [comments]);
   return (
     <main className={styles.auctionPost}>
       <ProductInfo auctionId={params.slug} loginedId={token} />

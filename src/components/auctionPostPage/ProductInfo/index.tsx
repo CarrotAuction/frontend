@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { ProductInfoType } from '@/src/types/auctionDetail';
 import { GetAuctionDetail } from '@/src/apis/AuctionDetail';
 import { useMutation } from '@tanstack/react-query';
@@ -15,10 +16,19 @@ type Props = {
 };
 
 const ProductInfo = ({ auctionId, loginedId }: Props) => {
+  const router = useRouter();
   const [productInfo, setProductInfo] = useState<ProductInfoType>({});
   const [isOpen, setIsOpen] = useState(false);
 
   const handleModal = () => {
+    if (loginedId === undefined) {
+      Swal.fire({
+        icon: 'warning',
+        title: '로그인 후에 경매에 참여할 수 있습니다.',
+      });
+      router.push('/login');
+      return;
+    }
     setIsOpen((pre) => !pre);
   };
   const { mutate } = useMutation({
@@ -58,9 +68,10 @@ const ProductInfo = ({ auctionId, loginedId }: Props) => {
         <p>{`${productInfo.stuffName}`}</p>
         <p>{`${productInfo.creator?.province.name} ${productInfo.creator?.city.name}`}</p>
         <p>{productInfo.stuffCategory}</p>
-        <p>{`판매자 희망가격: ${productInfo.stuffPrice?.toLocaleString(
-          'ko-KR',
-        )}원`}
+        <p>
+          {`판매자 희망가격: ${productInfo.stuffPrice?.toLocaleString(
+            'ko-KR',
+          )}원`}
         </p>
         <div className={styles.line} />
         <div className={styles.introduce}>{productInfo.stuffContent}</div>
@@ -75,7 +86,13 @@ const ProductInfo = ({ auctionId, loginedId }: Props) => {
             ? '판매 종료'
             : '경매 참여하기'}
         </button>
-        {isOpen && <Modal handleModal={handleModal} />}
+        {isOpen && (
+          <Modal
+            handleModal={handleModal}
+            creatorId={loginedId}
+            boardId={productInfo.id}
+          />
+        )}
       </article>
     </section>
   );
