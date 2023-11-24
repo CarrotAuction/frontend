@@ -17,7 +17,11 @@ import Swal from 'sweetalert2';
 import styles from './index.module.scss';
 import InputBox from '../InputBox';
 
-const PostProductInfo = ({ selectedImage }: any) => {
+type Props = {
+  file: File | null;
+};
+
+const PostProductInfo = ({ file }: Props) => {
   const token = getCookie('token');
   const router = useRouter();
   const [productName, changeProductName, resetProductName] = useInput();
@@ -69,11 +73,11 @@ const PostProductInfo = ({ selectedImage }: any) => {
   const onSubmit = async () => {
     const formData = new FormData();
     if (
+      file === null ||
       productName === '' ||
       productDetail === '' ||
       productPrice === '' ||
-      selectValue.category === '' ||
-      selectedImage === null
+      selectValue.category === ''
     ) {
       Swal.fire({
         icon: 'warning',
@@ -81,7 +85,8 @@ const PostProductInfo = ({ selectedImage }: any) => {
       });
       return;
     }
-    formData.append('image', selectedImage);
+
+    formData.append('image', file);
     formData.append('creatorId', String(token));
     formData.append('stuffName', productName);
     formData.append('stuffContent', productDetail);

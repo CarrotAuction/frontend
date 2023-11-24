@@ -3,21 +3,18 @@
 import React, { useState } from 'react';
 import PostProductImage from '@/src/components/postPage/PostProductImage';
 import PostProductInfo from '@/src/components/postPage/PostProductInfo';
+import UsePreview from '@/src/hooks/usePreview';
 import styles from './index.module.scss';
 
 const Post = () => {
-  const [selectedImage, setSelectedImage] = useState(null);
-
-  const handleImageSelect = (imageFile: any) => {
-    setSelectedImage(imageFile);
-  };
+  const { file, image, handleImage } = UsePreview();
 
   return (
     <main className={styles.postPage}>
       <h1 className={styles.title}>글 쓰기</h1>
       <div className={styles.postContent}>
-        <PostProductImage onImageSelect={handleImageSelect} />
-        <PostProductInfo selectedImage={selectedImage} />
+        <PostProductImage image={image} handleImage={handleImage} />
+        <PostProductInfo file={file} />
       </div>
     </main>
   );

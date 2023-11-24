@@ -3,27 +3,21 @@
 import React, { useRef, useEffect } from 'react';
 import Image from 'next/image';
 import blankImage from '@/src/assets/post/blank.png';
-import UsePreview from '@/src/hooks/usePreview';
 import styles from './index.module.scss';
 
 type PostProductImageProps = {
-  onImageSelect: (imageFile: any) => void;
+  image: string | null;
+  handleImage: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-const PostProductImage = ({ onImageSelect }: PostProductImageProps) => {
+const PostProductImage = ({ image, handleImage }: PostProductImageProps) => {
   const fileInput = useRef<HTMLInputElement>(null);
-
-  const { file, image, handleImage } = UsePreview();
 
   const openFileInput = () => {
     if (fileInput.current) {
       fileInput.current.click();
     }
   };
-
-  useEffect(() => {
-    onImageSelect(file);
-  }, [file, onImageSelect]);
 
   return (
     <div className={styles.postProductImage}>
