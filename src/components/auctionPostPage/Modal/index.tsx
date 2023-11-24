@@ -1,22 +1,31 @@
 import React, { useState } from 'react';
 import { GiCancel } from 'react-icons/gi';
+import { useRouter, usePathname } from 'next/navigation';
 import { Comment } from '@/src/types/comment';
 import { PostComment } from '@/src/apis/Comment';
 import { useMutation } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import Swal from 'sweetalert2';
 import useInput from '@/src/hooks/useInput';
-import { format, register } from 'timeago.js';
-import koLocale from 'timeago.js/lib/lang/ko';
 import styles from './index.module.scss';
 
 type Props = {
   handleModal: () => void;
   creatorId: string | undefined;
   boardId: number;
+  commentCount: number;
+  updateCommentCount: (count: number) => void;
 };
 
-const Modal = ({ handleModal, creatorId, boardId }: Props) => {
+const Modal = ({
+  handleModal,
+  creatorId,
+  boardId,
+  commentCount,
+  updateCommentCount,
+}: Props) => {
+  const router = useRouter();
+  const pathname = usePathname();
   const [price, setPrice] = useInput();
   const [openChatUrl, setOpenChatUrl, resetOpenChatUrl] = useInput();
 
@@ -27,6 +36,7 @@ const Modal = ({ handleModal, creatorId, boardId }: Props) => {
         icon: 'success',
         title: '경매 참여 완료!',
       });
+      updateCommentCount(commentCount + 1);
     },
     onError: (error) => {
       if (error instanceof AxiosError) {

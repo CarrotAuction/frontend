@@ -21,12 +21,13 @@ export default function AuctionDetail({
   const [productInfo, setProductInfo] = useState<ProductInfoType>({});
   const [comments, setComments] = useState<CommentType[]>([]);
   const [commentCount, setCommentCount] = useState<number>(0);
+
   const { mutate } = useMutation({
     mutationFn: (id: string) => GetAuctionDetail(id),
     onSuccess: (data) => {
       setProductInfo({ ...data.board });
       setComments(data.comments);
-      setCommentCount(data.totalComments);
+      setCommentCount(Number(data.totalComments));
     },
     onError: (error) => {
       if (error instanceof AxiosError) {
@@ -42,7 +43,7 @@ export default function AuctionDetail({
 
   useEffect(() => {
     mutate(params.slug);
-  }, []);
+  }, [commentCount]);
 
   const handleIntersect = useCallback(
     async ([entry]: IntersectionObserverEntry[]) => {
@@ -56,7 +57,7 @@ export default function AuctionDetail({
         }
       }
     },
-    [commentCount],
+    [],
   );
   useEffect(() => {
     const observer = new IntersectionObserver(handleIntersect, {
@@ -72,7 +73,12 @@ export default function AuctionDetail({
   }, [handleIntersect, bottom.current]);
   return (
     <main className={styles.auctionPost}>
-      <ProductInfo auctionId={params.slug} loginedId={token} />
+      <ProductInfo
+        auctionId={params.slug}
+        loginedId={token}
+        commentCount={commentCount}
+        updateCommentCount={setCommentCount}
+      />
       <CommentContainer comments={comments} totalComment={commentCount} />
       <div ref={bottom} />
     </main>

@@ -13,9 +13,16 @@ import styles from './index.module.scss';
 type Props = {
   auctionId: string;
   loginedId: string | undefined;
+  commentCount: number;
+  updateCommentCount: (count: number) => void;
 };
 
-const ProductInfo = ({ auctionId, loginedId }: Props) => {
+const ProductInfo = ({
+  auctionId,
+  loginedId,
+  commentCount,
+  updateCommentCount,
+}: Props) => {
   const router = useRouter();
   const [productInfo, setProductInfo] = useState<ProductInfoType>({});
   const [isOpen, setIsOpen] = useState(false);
@@ -92,6 +99,8 @@ const ProductInfo = ({ auctionId, loginedId }: Props) => {
             handleModal={handleModal}
             creatorId={loginedId}
             boardId={productInfo.id}
+            commentCount={commentCount}
+            updateCommentCount={updateCommentCount}
           />
         )}
       </article>
