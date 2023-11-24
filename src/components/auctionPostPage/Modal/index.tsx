@@ -12,7 +12,7 @@ import styles from './index.module.scss';
 
 type Props = {
   handleModal: () => void;
-  creatorId: string;
+  creatorId: string | undefined;
   boardId: number;
 };
 

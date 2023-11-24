@@ -29,6 +29,7 @@ const ProductInfo = ({ auctionId, loginedId }: Props) => {
       router.push('/login');
       return;
     }
+    if (Number(loginedId) === productInfo.creator?.id) return;
     setIsOpen((pre) => !pre);
   };
   const { mutate } = useMutation({

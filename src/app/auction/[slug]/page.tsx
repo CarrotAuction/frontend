@@ -1,9 +1,9 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { getCookie } from 'cookies-next';
 import { ProductInfoType, CommentType } from '@/src/types/auctionDetail';
-import { GetAuctionDetail } from '@/src/apis/AuctionDetail';
+import { GetAuctionDetail, GetComments } from '@/src/apis/AuctionDetail';
 import { useMutation } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import Swal from 'sweetalert2';
@@ -16,6 +16,7 @@ export default function AuctionDetail({
 }: {
   params: { slug: string };
 }) {
+  const bottom = useRef<HTMLDivElement>(null);
   const token = getCookie('token');
   const [productInfo, setProductInfo] = useState<ProductInfoType>({});
   const [comments, setComments] = useState<CommentType[]>([]);
@@ -41,11 +42,39 @@ export default function AuctionDetail({
 
   useEffect(() => {
     mutate(params.slug);
-  }, [comments]);
+  }, []);
+
+  const handleIntersect = useCallback(
+    async ([entry]: IntersectionObserverEntry[]) => {
+      if (entry.isIntersecting) {
+        const loadedComments = await GetComments({
+          boardId: Number(params.slug),
+          cursor: comments.length + 1,
+        });
+        if (loadedComments) {
+          setComments([...comments, ...loadedComments]);
+        }
+      }
+    },
+    [commentCount],
+  );
+  useEffect(() => {
+    const observer = new IntersectionObserver(handleIntersect, {
+      threshold: 0.9,
+      root: null,
+    });
+
+    bottom.current && observer.observe(bottom.current);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [handleIntersect, bottom.current]);
   return (
     <main className={styles.auctionPost}>
       <ProductInfo auctionId={params.slug} loginedId={token} />
       <CommentContainer comments={comments} totalComment={commentCount} />
+      <div ref={bottom} />
     </main>
   );
 }
