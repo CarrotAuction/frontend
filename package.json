@@ -11,7 +11,8 @@
     "prepare": "husky install",
     "eslintIgnore": "build/*",
     "test": "jest --watch --coverage",
-    "test:ci": "jest --ci"
+    "test:ci": "jest --ci",
+    "prettier": "prettier --write **/*.{ts,tsx}"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
