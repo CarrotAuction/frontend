@@ -1,10 +1,22 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import SignUp from './page';
 
+jest.mock('next/navigation', () => ({
+  useRouter: () => ({
+    push: jest.fn(),
+  }),
+}));
+
 describe('회원가입 컴포넌트', () => {
+  const queryClient = new QueryClient();
   beforeEach(() => {
-    render(<SignUp />);
+    render(
+      <QueryClientProvider client={queryClient}>
+        <SignUp />
+      </QueryClientProvider>,
+    );
   });
 
   test('[Render] 렌더링 테스트', () => {
