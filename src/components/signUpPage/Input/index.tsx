@@ -47,9 +47,14 @@ const Input = ({
         />
         {password &&
           (isVisible === true ? (
-            <AiFillEye onClick={togglePassword} className={styles.icon} />
+            <AiFillEye
+              data-testid="ps-icon"
+              onClick={togglePassword}
+              className={styles.icon}
+            />
           ) : (
             <AiFillEyeInvisible
+              data-testid="ps-icon"
               onClick={togglePassword}
               className={styles.icon}
             />

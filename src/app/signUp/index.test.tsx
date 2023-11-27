@@ -1,6 +1,17 @@
-import { render, screen } from '@testing-library/react';
+import {
+  act,
+  getByRole,
+  render,
+  renderHook,
+  screen,
+  waitFor,
+} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import nock from 'nock';
+import { useSignup } from '@/src/tests/signup';
+import { WithAllContexts } from '@/src/tests/utils';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactNode } from 'react';
 import SignUp from './page';
 
 jest.mock('next/navigation', () => ({
@@ -10,12 +21,11 @@ jest.mock('next/navigation', () => ({
 }));
 
 describe('회원가입 컴포넌트', () => {
-  const queryClient = new QueryClient();
   beforeEach(() => {
     render(
-      <QueryClientProvider client={queryClient}>
+      <WithAllContexts>
         <SignUp />
-      </QueryClientProvider>,
+      </WithAllContexts>,
     );
   });
 
@@ -88,5 +98,52 @@ describe('회원가입 컴포넌트', () => {
     await userEvent.click(button);
 
     expect(window.alert).toHaveBeenCalledTimes(1);
+  });
+
+  test('[Error] 패스워드가 있다면 아이콘 나오기', async () => {
+    const password = screen.getByTestId('pw-input');
+    const passwordCheck = screen.getByTestId('pw-differ');
+
+    await userEvent.type(password, '123123');
+    await userEvent.type(passwordCheck, '123123');
+
+    const icons = screen.getAllByTestId('ps-icon');
+    expect(icons.length).toBe(2);
+  });
+
+  test('[Success] 회원가입 성공', async () => {
+    const queryClient = new QueryClient();
+    const wrapper = ({ children }: { children: ReactNode }) => (
+      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+    );
+
+    const button = screen.getByRole('button', { name: '회원가입' });
+
+    await userEvent.click(button);
+    nock('http://localhost:8080')
+      .post('/users/register', {
+        nickname: '승환입니다',
+        password: '123123',
+        accountID: 'sun12387',
+        province: '서울특별시',
+        city: '관악구',
+      })
+      .reply(200, { data: '가입 완료' });
+
+    const { result } = renderHook(() => useSignup(), { wrapper });
+
+    await act(() => {
+      result.current.mutate({
+        nickname: '승환입니다',
+        password: '123123',
+        accountID: 'sun12387',
+        province: '서울특별시',
+        city: '관악구',
+      });
+    });
+
+    await waitFor(() => expect(result.current.isSuccess).toBe(true));
+
+    expect(result.current.data).toEqual({ data: '가입 완료' });
   });
 });
