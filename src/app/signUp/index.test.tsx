@@ -12,12 +12,16 @@ import { useSignup } from '@/src/tests/signup';
 import { WithAllContexts } from '@/src/tests/utils';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactNode } from 'react';
+import Swal from 'sweetalert2';
 import SignUp from './page';
 
 jest.mock('next/navigation', () => ({
   useRouter: () => ({
     push: jest.fn(),
   }),
+}));
+jest.mock('sweetAlert2', () => ({
+  fire: jest.fn(),
 }));
 
 describe('회원가입 컴포넌트', () => {
@@ -117,9 +121,6 @@ describe('회원가입 컴포넌트', () => {
       <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
     );
 
-    const button = screen.getByRole('button', { name: '회원가입' });
-
-    await userEvent.click(button);
     nock('http://localhost:8080')
       .post('/users/register', {
         nickname: '승환입니다',
@@ -145,5 +146,38 @@ describe('회원가입 컴포넌트', () => {
     await waitFor(() => expect(result.current.isSuccess).toBe(true));
 
     expect(result.current.data).toEqual({ data: '가입 완료' });
+  });
+
+  test('[Error] 회원가입 실패', async () => {
+    const queryClient = new QueryClient();
+    const wrapper = ({ children }: { children: ReactNode }) => (
+      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+    );
+
+    const button = screen.getByRole('button', { name: '회원가입' });
+    await userEvent.click(button);
+    nock('http://localhost:8080')
+      .post('/users/register', {
+        nickname: '승환입니다',
+        password: '1231232',
+        accountID: 'sun12387',
+        province: '서울특별시',
+        city: '관악구',
+      })
+      .reply(401, {});
+
+    const { result } = renderHook(() => useSignup(), { wrapper });
+
+    await waitFor(() => {
+      result.current.mutate({
+        nickname: '승환입니다',
+        password: '1231232',
+        accountID: 'sun12387',
+        province: '서울특별시',
+        city: '관악구',
+      });
+    });
+
+    await waitFor(() => expect(result.current.isSuccess).toBe(false));
   });
 });
