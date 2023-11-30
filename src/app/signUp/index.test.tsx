@@ -112,7 +112,7 @@ describe('회원가입 컴포넌트', () => {
     expect(window.alert).toHaveBeenCalledTimes(1);
   });
 
-  test('[ERROR] 패스워드가 있다면 아이콘 나오기', async () => {
+  test('[ERROR] 패스워드를 입력했다면 패스워드 표시 아이콘 나오기', async () => {
     const password = screen.getByTestId('pw-input');
     const passwordCheck = screen.getByTestId('pw-differ');
 
