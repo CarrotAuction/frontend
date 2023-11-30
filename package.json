@@ -12,7 +12,7 @@
     "eslintIgnore": "build/*",
     "test": "jest --watch --coverage",
     "test:ci": "jest --ci",
-    "prettier": "prettier --write **/*.{ts,tsx}"
+    "prettier": "prettier --write **/*.{ts,tsx}",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
