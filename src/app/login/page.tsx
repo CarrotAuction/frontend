@@ -98,7 +98,9 @@ const Login = () => {
           </button>
         </form>
         <p className={styles.signUp}>
-          <Link href="/signUp">회원가입하러가기</Link>
+          <Link data-testid="link" href="/signUp">
+            회원가입하러가기
+          </Link>
         </p>
       </div>
     </main>

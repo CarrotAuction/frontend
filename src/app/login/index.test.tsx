@@ -28,6 +28,18 @@ describe('로그인 컴포넌트', () => {
     );
   });
 
+  test('[RENDER] 렌더링 테스트', async () => {
+    const id = screen.getByTestId('id-input');
+    const password = screen.getByTestId('password-input');
+    const button = screen.getByRole('button', { name: '로그인' });
+    const link = screen.getByTestId('link');
+
+    expect(id).toBeInTheDocument();
+    expect(password).toBeInTheDocument();
+    expect(button).toBeInTheDocument();
+    expect(link).toBeInTheDocument();
+  });
+
   test('[ERROR] 아이디 또는 비밀번호를 입력안했을 시 alert창 띄우기', async () => {
     const id = screen.getByTestId('id-input');
     const password = screen.getByTestId('password-input');
