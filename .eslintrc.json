@@ -1,5 +1,10 @@
 {
-  "extends": ["next/core-web-vitals", "airbnb", "airbnb-typescript"],
+  "extends": [
+    "next/core-web-vitals",
+    "airbnb",
+    "airbnb-typescript",
+    "plugin:storybook/recommended"
+  ],
   "parserOptions": {
     "project": "./tsconfig.json"
   },
@@ -18,13 +23,14 @@
     "jsx-a11y/click-events-have-key-events": "off",
     "jsx-a11y/no-static-element-interactions": "off",
     "react/jsx-one-expression-per-line": "off",
+    "react/no-unescaped-entities": 0,
     "object-curly-newline": "off",
     "@typescript-eslint/no-shadow": "off",
     "no-unused-vars": "off",
     "react/no-unused-prop-types": "off",
+    "react/no-unknown-property": ["error", { "ignore": ["jsx"] }],
     "react/require-default-props": "off",
     "@typescript-eslint/no-unused-vars": "off",
-    "@typescript-eslint/no-shadow": "off",
     "jsx-a11y/no-noninteractive-element-interactions": "off",
     "arrow-body-style": "off",
     "no-unsafe-optional-chaining": "off",
@@ -32,14 +38,20 @@
     "react/no-array-index-key": "off",
     "implicit-arrow-linebreak": "off",
     "no-nested-ternary": "off",
-    "@typescript-eslint/no-unused-expressions": "off",
     "consistent-return": "off",
     "no-alert": "off",
     "react/function-component-definition": [
       2,
-      { "namedComponents": ["arrow-function", "function-declaration"] }
+      {
+        "namedComponents": ["arrow-function", "function-declaration"]
+      }
     ],
-    "import/prefer-default-export": ["off", { "target": "single" }],
+    "import/prefer-default-export": [
+      "off",
+      {
+        "target": "single"
+      }
+    ],
     "operator-linebreak": [0],
     "jsx-a11y/label-has-associated-control": [
       2,

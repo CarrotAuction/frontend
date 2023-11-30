@@ -17,8 +17,6 @@ const NavBar = () => {
   const [toggle, setToggle] = useState(false);
   const [myToken, setMyToken] = useState('');
 
-  const [btnWord, setBtnWord] = useState('');
-
   const token = getCookie('token');
 
   const changeToggle = () => {
