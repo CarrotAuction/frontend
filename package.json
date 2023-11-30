@@ -10,7 +10,7 @@
     "lint:fix": "eslint ./**/*.{js,jsx,ts,tsx} --cache --fix",
     "prepare": "husky install",
     "eslintIgnore": "build/*",
-    "test": "jest --watch --coverage",
+    "test": "jest --watchAll --coverage",
     "test:ci": "jest --ci"
   },
   "lint-staged": {

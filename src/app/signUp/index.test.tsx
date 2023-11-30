@@ -1,6 +1,5 @@
 import {
   act,
-  getByRole,
   render,
   renderHook,
   screen,
@@ -8,10 +7,10 @@ import {
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import nock from 'nock';
-import { useSignup } from '@/src/tests/signup';
 import { WithAllContexts } from '@/src/tests/utils';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactNode } from 'react';
+import { usePostSignUp } from '@/src/hooks/query/signup';
 import Swal from 'sweetalert2';
 import SignUp from './page';
 
@@ -20,11 +19,20 @@ jest.mock('next/navigation', () => ({
     push: jest.fn(),
   }),
 }));
+
+jest.mock('sweetalert2', () => ({
+  fire: jest.fn(),
+}));
+
 jest.mock('sweetAlert2', () => ({
   fire: jest.fn(),
 }));
 
 describe('회원가입 컴포넌트', () => {
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   beforeEach(() => {
     render(
       <WithAllContexts>
@@ -45,7 +53,7 @@ describe('회원가입 컴포넌트', () => {
     expect(screen.getByText('시/구/군'));
   });
 
-  test('[Error] 입력없이 회원가입을 눌렀을 시 에러 메세지 띄우기', async () => {
+  test('[ERROR] 입력없이 회원가입을 눌렀을 시 에러 메세지 띄우기', async () => {
     const button = screen.getByRole('button');
     await userEvent.click(button);
 
@@ -53,7 +61,7 @@ describe('회원가입 컴포넌트', () => {
     expect(error.length).toBe(4);
   });
 
-  test('[Error] 비밀번호 일치 확인', async () => {
+  test('[ERROR] 비밀번호 일치 확인', async () => {
     const input: HTMLInputElement = screen.getByTestId('pw-input');
     const secondInput: HTMLInputElement = screen.getByTestId('pw-differ');
 
@@ -68,7 +76,7 @@ describe('회원가입 컴포넌트', () => {
     expect(input.value).toBe(secondInput.value);
   });
 
-  test('[Error] 비밀번호가 일치하지 않습니다', async () => {
+  test('[ERROR] 비밀번호가 일치하지 않습니다', async () => {
     const input: HTMLInputElement = screen.getByTestId('pw-input');
     const secondInput: HTMLInputElement = screen.getByTestId('pw-differ');
 
@@ -83,7 +91,7 @@ describe('회원가입 컴포넌트', () => {
     expect(input.value).not.toBe(secondInput.value);
   });
 
-  test('[Error] 대표지역 또는 시/구/군을 선택안했을 시 경고창 띄우기 ', async () => {
+  test('[ERROR] 대표지역 또는 시/구/군을 선택안했을 시 경고창 띄우기 ', async () => {
     window.alert = jest.fn();
 
     const button = screen.getByRole('button');
@@ -104,7 +112,7 @@ describe('회원가입 컴포넌트', () => {
     expect(window.alert).toHaveBeenCalledTimes(1);
   });
 
-  test('[Error] 패스워드가 있다면 아이콘 나오기', async () => {
+  test('[ERROR] 패스워드가 있다면 아이콘 나오기', async () => {
     const password = screen.getByTestId('pw-input');
     const passwordCheck = screen.getByTestId('pw-differ');
 
@@ -115,13 +123,13 @@ describe('회원가입 컴포넌트', () => {
     expect(icons.length).toBe(2);
   });
 
-  test('[Success] 회원가입 성공', async () => {
+  test('[SUCCESS] 회원가입 성공', async () => {
     const queryClient = new QueryClient();
     const wrapper = ({ children }: { children: ReactNode }) => (
       <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
     );
 
-    nock('http://localhost:8080')
+    const stub = nock('http://localhost:8080')
       .post('/users/register', {
         nickname: '승환입니다',
         password: '123123',
@@ -131,7 +139,9 @@ describe('회원가입 컴포넌트', () => {
       })
       .reply(200, { data: '가입 완료' });
 
-    const { result } = renderHook(() => useSignup(), { wrapper });
+    const { result } = renderHook(() => usePostSignUp(), {
+      wrapper,
+    });
 
     await act(() => {
       result.current.mutate({
@@ -144,11 +154,16 @@ describe('회원가입 컴포넌트', () => {
     });
 
     await waitFor(() => expect(result.current.isSuccess).toBe(true));
-
     expect(result.current.data).toEqual({ data: '가입 완료' });
+
+    expect(Swal.fire).toHaveBeenCalledWith({
+      icon: 'success',
+      title: '회원가입에 성공하셨습니다 !',
+      text: '로그인페이지로 이동합니다.',
+    });
   });
 
-  test('[Error] 회원가입 실패', async () => {
+  test('[ERROR] 회원가입 실패', async () => {
     const queryClient = new QueryClient();
     const wrapper = ({ children }: { children: ReactNode }) => (
       <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
@@ -164,9 +179,9 @@ describe('회원가입 컴포넌트', () => {
         province: '서울특별시',
         city: '관악구',
       })
-      .reply(401, {});
+      .reply(500, {});
 
-    const { result } = renderHook(() => useSignup(), { wrapper });
+    const { result } = renderHook(() => usePostSignUp(), { wrapper });
 
     await waitFor(() => {
       result.current.mutate({
@@ -177,7 +192,6 @@ describe('회원가입 컴포넌트', () => {
         city: '관악구',
       });
     });
-
     await waitFor(() => expect(result.current.isSuccess).toBe(false));
   });
 });
