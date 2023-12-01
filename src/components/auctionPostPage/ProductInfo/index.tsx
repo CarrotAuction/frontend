@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import userProfile from '@/src/assets/AuctionPost/userProfile.png';
 import Modal from '@/src/components/auctionPostPage/Modal';
 import { ProductInfoType } from '@/src/types/auctionDetail';
+import ModalPortal from '@/src/common/Portal';
 import styles from './index.module.scss';
 
 type Props = {
@@ -67,11 +68,13 @@ const ProductInfo = ({ loginedId, productInfo }: Props) => {
             : '경매 참여하기'}
         </button>
         {isOpen && (
-          <Modal
-            handleModal={handleModal}
-            creatorId={loginedId}
-            boardId={productInfo?.id}
-          />
+          <ModalPortal>
+            <Modal
+              handleModal={handleModal}
+              creatorId={loginedId}
+              boardId={productInfo?.id}
+            />
+          </ModalPortal>
         )}
       </article>
     </section>

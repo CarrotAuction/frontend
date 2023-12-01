@@ -33,6 +33,7 @@ export default function RootLayout({
         <NavBar />
         <ReactQueryProviders>{children}</ReactQueryProviders>
         <Footer />
+        <div id="modal" />
       </body>
     </html>
   );
