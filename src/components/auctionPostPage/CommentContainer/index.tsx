@@ -1,6 +1,6 @@
 /* eslint-disable no-unneeded-ternary */
 /* eslint-disable react/no-array-index-key */
-import React from 'react';
+import React, { useEffect } from 'react';
 import { CommentType } from '@/src/types/auctionDetail';
 import styles from './index.module.scss';
 import Comment from '../Comment';

@@ -3,21 +3,26 @@ import { GiCancel } from 'react-icons/gi';
 import Swal from 'sweetalert2';
 import useInput from '@/src/hooks/useInput';
 import { usePostComment } from '@/src/hooks/query/auctionDetail';
+import { QueryObserverResult, RefetchOptions } from '@tanstack/react-query';
+import { ProductInfoType } from '@/src/types/auctionDetail';
 import styles from './index.module.scss';
 
 type Props = {
   handleModal: () => void;
   creatorId: string | undefined;
   boardId: number;
+  refetch: (
+    options?: RefetchOptions,
+  ) => Promise<QueryObserverResult<ProductInfoType>>;
 };
 
-const Modal = ({ handleModal, creatorId, boardId }: Props) => {
-  const [price, setPrice] = useInput();
+const Modal = ({ handleModal, creatorId, boardId, refetch }: Props) => {
+  const [price, setPrice, resetPrice] = useInput();
   const [openChatUrl, setOpenChatUrl, resetOpenChatUrl] = useInput();
 
-  const { mutate } = usePostComment();
+  const { mutate } = usePostComment(refetch);
 
-  const handleBidding = () => {
+  const handleBidding = async () => {
     if (price === '' || openChatUrl === '') {
       Swal.fire({
         icon: 'warning',
@@ -25,6 +30,7 @@ const Modal = ({ handleModal, creatorId, boardId }: Props) => {
       });
       return;
     }
+
     mutate({
       price: Number(price),
       openChatUrl,
@@ -32,6 +38,8 @@ const Modal = ({ handleModal, creatorId, boardId }: Props) => {
       creatorId: Number(creatorId),
     });
 
+    resetPrice();
+    resetOpenChatUrl();
     handleModal();
   };
   return (

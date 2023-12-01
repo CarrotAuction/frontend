@@ -12,7 +12,7 @@ export const useGetDetailInfo = (boardId: string) =>
     enabled: false,
   });
 
-export const usePostComment = () =>
+export const usePostComment = (refetch: any) =>
   useMutation({
     mutationFn: (data: Comment) => PostComment(data),
     onSuccess: () => {
@@ -20,6 +20,7 @@ export const usePostComment = () =>
         icon: 'success',
         title: '경매 참여 완료!',
       });
+      refetch();
     },
     onError: (error) => {
       if (error instanceof AxiosError) {

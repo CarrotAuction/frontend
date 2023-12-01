@@ -1,3 +1,5 @@
+import { RefetchOptions } from '@tanstack/react-query';
+
 export type ProductInfoType = {
   createAt: string;
   id: number;
@@ -26,4 +28,8 @@ export type CommentType = {
   creator: {
     nickname: string;
   };
+};
+
+export type CustomRefetchOptions = RefetchOptions & {
+  boardId?: string;
 };

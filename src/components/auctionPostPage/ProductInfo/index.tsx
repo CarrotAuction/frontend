@@ -6,15 +6,19 @@ import userProfile from '@/src/assets/AuctionPost/userProfile.png';
 import Modal from '@/src/components/auctionPostPage/Modal';
 import { ProductInfoType } from '@/src/types/auctionDetail';
 import ModalPortal from '@/src/common/Portal';
+import { QueryObserverResult, RefetchOptions } from '@tanstack/react-query';
 import styles from './index.module.scss';
 
 type Props = {
   boardId: string;
   loginedId: string | undefined;
   productInfo: ProductInfoType;
+  refetch: (
+    options?: RefetchOptions,
+  ) => Promise<QueryObserverResult<ProductInfoType>>;
 };
 
-const ProductInfo = ({ loginedId, productInfo }: Props) => {
+const ProductInfo = ({ loginedId, productInfo, refetch }: Props) => {
   const router = useRouter();
 
   const [isOpen, setIsOpen] = useState(false);
@@ -70,6 +74,7 @@ const ProductInfo = ({ loginedId, productInfo }: Props) => {
         {isOpen && (
           <ModalPortal>
             <Modal
+              refetch={refetch}
               handleModal={handleModal}
               creatorId={loginedId}
               boardId={productInfo?.id}
