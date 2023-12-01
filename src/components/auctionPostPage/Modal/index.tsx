@@ -1,54 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { GiCancel } from 'react-icons/gi';
-import { useRouter, usePathname } from 'next/navigation';
-import { Comment } from '@/src/types/comment';
-import { PostComment } from '@/src/apis/Comment';
-import { useMutation } from '@tanstack/react-query';
-import { AxiosError } from 'axios';
 import Swal from 'sweetalert2';
 import useInput from '@/src/hooks/useInput';
+import { usePostComment } from '@/src/hooks/query/auctionDetail';
 import styles from './index.module.scss';
 
 type Props = {
   handleModal: () => void;
   creatorId: string | undefined;
   boardId: number;
-  commentCount: number;
-  updateCommentCount: (count: number) => void;
 };
 
-const Modal = ({
-  handleModal,
-  creatorId,
-  boardId,
-  commentCount,
-  updateCommentCount,
-}: Props) => {
-  const router = useRouter();
-  const pathname = usePathname();
+const Modal = ({ handleModal, creatorId, boardId }: Props) => {
   const [price, setPrice] = useInput();
   const [openChatUrl, setOpenChatUrl, resetOpenChatUrl] = useInput();
 
-  const { mutate } = useMutation({
-    mutationFn: (data: Comment) => PostComment(data),
-    onSuccess: (data) => {
-      Swal.fire({
-        icon: 'success',
-        title: '경매 참여 완료!',
-      });
-      updateCommentCount(commentCount + 1);
-    },
-    onError: (error) => {
-      if (error instanceof AxiosError) {
-        if (error?.response?.data?.message) {
-          Swal.fire({
-            icon: 'error',
-            title: `${error.response.data.message}`,
-          });
-        }
-      }
-    },
-  });
+  const { mutate } = usePostComment();
+
   const handleBidding = () => {
     if (price === '' || openChatUrl === '') {
       Swal.fire({
@@ -57,13 +25,13 @@ const Modal = ({
       });
       return;
     }
-    const data = {
+    mutate({
       price: Number(price),
       openChatUrl,
       boardId,
       creatorId: Number(creatorId),
-    };
-    mutate(data);
+    });
+
     handleModal();
   };
   return (
