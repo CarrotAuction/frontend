@@ -1,6 +1,4 @@
-/* eslint-disable no-unneeded-ternary */
-/* eslint-disable react/no-array-index-key */
-import React, { useEffect } from 'react';
+import React from 'react';
 import { CommentType } from '@/src/types/auctionDetail';
 import styles from './index.module.scss';
 import Comment from '../Comment';
@@ -23,11 +21,11 @@ const CommentContainer = ({ comments, totalComment }: Props) => {
             className={`${styles.comment} ${
               index === 0 ? styles.highlight : null
             }`}
-            key={id}
+            key={index}
           >
             <Comment
-              nickname={creator.nickname}
-              flag={index === 0 ? true : false}
+              nickname={creator?.nickname}
+              flag={index === 0}
               price={price}
               openChatUrl={openChatUrl}
               createAt={createAt}

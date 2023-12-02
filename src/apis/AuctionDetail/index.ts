@@ -1,8 +1,8 @@
 import { authInstance } from '../InitAxios';
 
 type Props = {
-  boardId: number;
-  cursor: number;
+  boardId: string;
+  cursor: string;
 };
 
 export const GetAuctionDetail = async (id: string) => {
@@ -11,10 +11,10 @@ export const GetAuctionDetail = async (id: string) => {
 };
 
 export const GetComments = async ({ boardId, cursor }: Props) => {
-  const res = await authInstance.get('comments', {
+  const res = await authInstance.get('/comments', {
     params: {
       boardId,
-      cursor,
+      cursor: String(+cursor + 1),
     },
   });
   return res.data;

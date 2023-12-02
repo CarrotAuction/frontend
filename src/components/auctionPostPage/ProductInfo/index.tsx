@@ -16,9 +16,15 @@ type Props = {
   refetch: (
     options?: RefetchOptions,
   ) => Promise<QueryObserverResult<ProductInfoType>>;
+  setComment: any;
 };
 
-const ProductInfo = ({ loginedId, productInfo, refetch }: Props) => {
+const ProductInfo = ({
+  loginedId,
+  productInfo,
+  refetch,
+  setComment,
+}: Props) => {
   const router = useRouter();
 
   const [isOpen, setIsOpen] = useState(false);
