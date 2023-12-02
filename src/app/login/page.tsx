@@ -6,10 +6,8 @@ import { GiCancel } from 'react-icons/gi';
 import Link from 'next/link';
 import useInput from '@/src/hooks/useInput';
 import Swal from 'sweetalert2';
-import { useMutation } from '@tanstack/react-query';
-import { PostLogin } from '@/src/apis/Login';
-import { UserLogin } from '@/src/types/login';
 import { useRouter } from 'next/navigation';
+import { usePostLogin } from '@/src/hooks/query/login';
 import { setCookie } from 'cookies-next';
 import styles from './index.module.scss';
 
@@ -25,24 +23,7 @@ const Login = () => {
     setIsVisible((pre) => !pre);
   };
 
-  const { mutate } = useMutation({
-    mutationFn: (data: UserLogin) => PostLogin(data),
-    onSuccess: (result) => {
-      Swal.fire({
-        icon: 'success',
-        title: '로그인에 성공하셨습니다 !',
-        text: '메인페이지로 이동합니다.',
-      });
-      setCookie('token', result.userId, { maxAge: 60 * 6 * 24 });
-      router.push('/');
-    },
-    onError: (error) => {
-      Swal.fire({
-        icon: 'error',
-        title: '아이디 또는 비밀번호를 확인해주세요',
-      });
-    },
-  });
+  const { mutate } = usePostLogin();
 
   const sendLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -52,10 +33,18 @@ const Login = () => {
         title: '아이디 또는 비밀번호를 입력해주세요 !',
       });
     }
-    mutate({
-      accountID: id,
-      password,
-    });
+    mutate(
+      {
+        accountID: id,
+        password,
+      },
+      {
+        onSuccess: (result) => {
+          setCookie('token', result.userId, { maxAge: 60 * 6 * 24 });
+          router.push('/');
+        },
+      },
+    );
   };
 
   return (
@@ -109,7 +98,9 @@ const Login = () => {
           </button>
         </form>
         <p className={styles.signUp}>
-          <Link href="/signUp">회원가입하러가기</Link>
+          <Link data-testid="link" href="/signUp">
+            회원가입하러가기
+          </Link>
         </p>
       </div>
     </main>

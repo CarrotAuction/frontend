@@ -38,6 +38,7 @@
     "framer-motion": "^10.16.4",
     "lodash": "^4.17.21",
     "next": "13.4.9",
+    "nock": "^13.3.8",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.48.2",

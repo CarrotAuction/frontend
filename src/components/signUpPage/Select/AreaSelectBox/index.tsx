@@ -32,9 +32,15 @@ const AreaSelectBox = ({
   };
 
   return (
-    <div className={styles.select}>
-      <div className={styles.title}>거주지</div>
-      <div onClick={clickOption} className={styles.selectBox}>
+    <div data-testid="select" className={styles.select}>
+      <div data-testid="live" className={styles.title}>
+        거주지
+      </div>
+      <div
+        data-testid="selectBox"
+        onClick={clickOption}
+        className={styles.selectBox}
+      >
         <div>{selectValue.area || '대표 지역선택'}</div>
         <div className={styles.line} />
         <div className={styles.caret} />

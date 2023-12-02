@@ -40,16 +40,21 @@ const Input = ({
       <label htmlFor={label}>{title}</label>
       <div>
         <input
-          data-testId={test}
+          data-testid={test}
           type={isVisible ? 'text' : password ? 'password' : 'text'}
           id={label}
           {...register(label, validate)}
         />
         {password &&
           (isVisible === true ? (
-            <AiFillEye onClick={togglePassword} className={styles.icon} />
+            <AiFillEye
+              data-testid="ps-icon"
+              onClick={togglePassword}
+              className={styles.icon}
+            />
           ) : (
             <AiFillEyeInvisible
+              data-testid="ps-icon"
               onClick={togglePassword}
               className={styles.icon}
             />
@@ -61,7 +66,7 @@ const Input = ({
         }
       >
         {errors[label]?.message ? (
-          <p data-testId="error">{errors[label]?.message}</p>
+          <p data-testid="error">{errors[label]?.message}</p>
         ) : (
           <p>{click && correct}</p>
         )}

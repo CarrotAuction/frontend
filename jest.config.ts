@@ -8,6 +8,7 @@ const createJestConfig = nextJest({ dir: './' });
 const customJestConfig = {
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   testEnvironment: 'jest-environment-jsdom',
+  testEnvironmentOptions: { url: ' http://localhost:8080' },
 };
 
 module.exports = createJestConfig(customJestConfig);
