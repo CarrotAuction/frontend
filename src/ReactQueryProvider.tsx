@@ -2,7 +2,7 @@
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { PropsWithChildren, useState } from 'react';
+import { PropsWithChildren } from 'react';
 
 export default function ReactQueryProvider({ children }: PropsWithChildren) {
   const queryClient = new QueryClient({
@@ -13,10 +13,12 @@ export default function ReactQueryProvider({ children }: PropsWithChildren) {
       },
     },
   });
+
   return (
     <QueryClientProvider client={queryClient}>
       {children}
-      <ReactQueryDevtools initialIsOpen={false} />
+      {process.env.NODE_ENV === 'development' && <ReactQueryDevtools />}
+      <ReactQueryDevtools />
     </QueryClientProvider>
   );
 }

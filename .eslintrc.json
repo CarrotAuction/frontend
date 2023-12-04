@@ -23,7 +23,7 @@
     "max-len": [
       "error",
       {
-        "code": 60,
+        "code": 200,
         "tabWidth": 2,
         "ignoreComments": true, //"comments": 80
         "ignoreUrls": true,

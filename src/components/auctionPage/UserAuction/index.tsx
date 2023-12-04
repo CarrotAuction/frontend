@@ -58,6 +58,7 @@ const UserAuction = () => {
     }
   }, [page, prefetchNextPosts, useQueryClient]);
 
+  console.log(Boards);
   return (
     <main className={styles.auction}>
       <FilterBox

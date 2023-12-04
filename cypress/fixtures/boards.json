@@ -1,0 +1,80 @@
+{
+  "Boards": [
+    {
+      "page": 1,
+      "totalPages": 3,
+      "boards": [
+        {
+          "createAt": "2023-12-04T06:37:58.236Z",
+          "id": "1",
+          "imageUrl": "https://imguploads3.s3.ap-northeast-2.amazonaws.com/carrot.png",
+          "stuffName": "당근이",
+          "stuffContent": "신선한 당근 급쳐합니다",
+          "stuffPrice": 5000
+        },
+        {
+          "createAt": "2023-12-04T06:37:58.236Z",
+          "id": "1",
+          "imageUrl": "https://imguploads3.s3.ap-northeast-2.amazonaws.com/carrot.png",
+          "stuffName": "당근이",
+          "stuffContent": "신선한 당근 급쳐합니다",
+          "stuffPrice": 5000
+        },
+        {
+          "createAt": "2023-12-04T06:37:58.236Z",
+          "id": "1",
+          "imageUrl": "https://imguploads3.s3.ap-northeast-2.amazonaws.com/carrot.png",
+          "stuffName": "당근이",
+          "stuffContent": "신선한 당근 급쳐합니다",
+          "stuffPrice": 5000
+        },
+        {
+          "createAt": "2023-12-04T06:37:58.236Z",
+          "id": "1",
+          "imageUrl": "https://imguploads3.s3.ap-northeast-2.amazonaws.com/carrot.png",
+          "stuffName": "당근이",
+          "stuffContent": "신선한 당근 급쳐합니다",
+          "stuffPrice": 5000
+        },
+        {
+          "createAt": "2023-12-04T06:37:58.236Z",
+          "id": "1",
+          "imageUrl": "https://imguploads3.s3.ap-northeast-2.amazonaws.com/carrot.png",
+          "stuffName": "당근이",
+          "stuffContent": "신선한 당근 급쳐합니다",
+          "stuffPrice": 5000
+        },
+        {
+          "createAt": "2023-12-04T06:37:58.236Z",
+          "id": "1",
+          "imageUrl": "https://imguploads3.s3.ap-northeast-2.amazonaws.com/carrot.png",
+          "stuffName": "당근이",
+          "stuffContent": "신선한 당근 급쳐합니다",
+          "stuffPrice": 5000
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "totalPages": 3,
+      "boards": [
+        {
+          "createAt": "2023-12-04T06:37:58.236Z",
+          "id": "1",
+          "imageUrl": "https://imguploads3.s3.ap-northeast-2.amazonaws.com/carrot.png",
+          "stuffName": "당근이",
+          "stuffContent": "신선한 당근 급쳐합니다",
+          "stuffPrice": 5000
+        },
+        {
+          "createAt": "2023-12-04T06:37:58.236Z",
+          "id": "1",
+          "imageUrl": "https://imguploads3.s3.ap-northeast-2.amazonaws.com/carrot.png",
+          "stuffName": "당근이",
+          "stuffContent": "신선한 당근 급쳐합니다",
+          "stuffPrice": 5000
+        }
+      ]
+    }
+  ]
+}

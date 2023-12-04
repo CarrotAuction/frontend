@@ -29,7 +29,7 @@ const UserAuctionData = ({ Boards, isPending, onChangePage, page }: Props) => {
 
   return (
     <main>
-      {Boards?.boards.length === 0 ? (
+      {Boards?.boards?.length === 0 ? (
         <div className={styles.empty}>
           <div className={styles.emptyBox}>
             <Image src={emptyBox} alt="empty" fill />
