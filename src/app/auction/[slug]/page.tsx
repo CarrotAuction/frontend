@@ -44,12 +44,10 @@ export default function AuctionDetail({
   }, [data]);
 
   useEffect(() => {
-    if (comment && Array.isArray(comment) && Array.isArray(addCommnet)) {
-      setComment((pre: CommentType[]) => {
-        return [...pre, ...addCommnet];
-      });
+    if (comment && addCommnet) {
+      setComment([...comment, ...addCommnet]);
     }
-  }, [addCommnet]);
+  }, [addCommnet, refetchScroll]);
 
   if (isPending) {
     return <Loading width="350" height="350" />;
