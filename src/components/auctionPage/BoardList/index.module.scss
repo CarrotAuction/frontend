@@ -10,6 +10,12 @@
     }
   }
 }
+.userImage {
+  pointer-events: none;
+}
+.userInfo {
+  pointer-events: none;
+}
 
 .shortUserBoards {
   margin: 5rem 0;

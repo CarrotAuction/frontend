@@ -28,18 +28,15 @@ const Board = ({
   stuffPrice,
   imageUrl,
 }: Props) => {
-  const router = useRouter();
   register('ko', koLocale);
   const { city, province } = creator;
-  const gotoDetailBoard = () => {
-    router.push(`/auction/${id}`);
-  };
+
   return (
-    <div onClick={gotoDetailBoard} className={styles.board}>
+    <div className={styles.board}>
       <div className={styles.userImage}>
-        <Image src={imageUrl} alt="picture" fill />
+        <Image data-id={id} src={imageUrl} alt="picture" fill />
       </div>
-      <div className={styles.userInfo}>
+      <div data-id={id} className={styles.userInfo}>
         <div className={styles.profile}>
           <Image src={profile} alt="profile" fill />
         </div>
