@@ -11,7 +11,7 @@ const BoardList = ({ Boards }: Props) => {
   return (
     <div
       className={
-        Boards?.boards.length > 2 ? styles.userBoards : styles.shortUserBoards
+        Boards?.boards?.length > 2 ? styles.userBoards : styles.shortUserBoards
       }
     >
       {Boards?.boards?.map((data: BoardType) => (

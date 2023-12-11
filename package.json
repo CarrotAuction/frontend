@@ -14,7 +14,8 @@
     "test:ci": "jest --ci",
     "prettier": "prettier --write **/*.{ts,tsx}",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "cypress": "cypress open"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
@@ -61,6 +62,7 @@
     "@storybook/nextjs": "^7.6.0-alpha.7",
     "@storybook/react": "^7.6.0-alpha.7",
     "@storybook/test": "^7.6.0-alpha.4",
+    "@testing-library/cypress": "^10.0.1",
     "@testing-library/jest-dom": "^6.1.4",
     "@testing-library/react": "^14.1.0",
     "@types/jest": "^29.5.8",
@@ -71,6 +73,8 @@
     "@typescript-eslint/eslint-plugin": "^5.61.0",
     "@typescript-eslint/parser": "^5.61.0",
     "autoprefixer": "^10.4.14",
+    "cypress": "^13.6.0",
+    "cypress-file-upload": "^5.0.8",
     "eslint": "^8.44.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^17.0.0",
