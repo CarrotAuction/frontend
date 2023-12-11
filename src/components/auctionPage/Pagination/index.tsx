@@ -1,5 +1,4 @@
-import React from 'react';
-import ReactPaginate from 'react-paginate';
+import React, { useCallback, useEffect, useState } from 'react';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import styles from './index.module.scss';
 
@@ -8,22 +7,57 @@ type PaginationProps = {
   totalPages: number;
   page: number;
 };
-
+const LIMIT = 5;
 function Pagination({ onChangePage, totalPages, page }: PaginationProps) {
+  const [currentPage, setCurrentPage] = useState<number[]>([]);
+
+  const initPageNumber = useCallback((totalPages: number, page: number) => {
+    const viewPages = [];
+    for (let i = page; i <= Math.min(page - 1 + LIMIT, totalPages); i += 1) {
+      viewPages.push(i);
+    }
+    setCurrentPage(viewPages);
+  }, []);
+
+  const prePages = () => {
+    onChangePage(currentPage[0] - 5);
+    initPageNumber(totalPages, currentPage[0] - 5);
+  };
+
+  const nextPages = () => {
+    onChangePage(currentPage[0] + 5);
+    initPageNumber(totalPages, currentPage[0] + 5);
+  };
+
+  useEffect(() => {
+    initPageNumber(totalPages, page);
+  }, []);
+
   return (
-    <div>
-      <ReactPaginate
-        className={`${styles.pagination} ${
-          page === 1 ? styles.Pagination_pagination__cjT7I : undefined
-        } `}
-        pageCount={totalPages}
-        pageRangeDisplayed={5}
-        marginPagesDisplayed={5}
-        onPageChange={({ selected }) => onChangePage(selected + 1)}
-        previousLabel={<FaArrowLeft />}
-        nextLabel={<FaArrowRight />}
-        activeClassName={page === 1 ? undefined : styles.activePage}
-      />
+    <div className={styles.pagination}>
+      <button disabled={currentPage[0] === 1} onClick={prePages} type="button">
+        <FaArrowLeft color="#f57a00" />
+      </button>
+      <ul>
+        {currentPage?.map((v) => {
+          return (
+            <li
+              className={v === page ? styles.activePage : undefined}
+              onClick={() => onChangePage(v)}
+              key={v}
+            >
+              {v}
+            </li>
+          );
+        })}
+      </ul>
+      <button
+        disabled={currentPage[currentPage.length - 1] === totalPages}
+        onClick={nextPages}
+        type="button"
+      >
+        <FaArrowRight color="#f57a00" />
+      </button>
     </div>
   );
 }

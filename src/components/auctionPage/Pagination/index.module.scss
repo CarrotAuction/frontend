@@ -3,33 +3,44 @@
 .pagination {
   display: flex;
   justify-content: center;
+  align-items: center;
   margin-bottom: 10rem;
   font-size: 1.5rem;
 
-  & > li {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 3rem;
-    height: 3rem;
-    font-weight: 700;
-    margin: 0.5rem;
+  & > button {
+    font-size: 2rem;
+    background-color: transparent;
+    border: none;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s ease;
 
-    &:hover > a {
-      background-color: #3d4a5c;
-      border-radius: 100%;
-      color: white;
-      width: 3rem;
-      height: 3rem;
+    &:hover {
+      background-color: #f0f0f0;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+  }
+  & > ul {
+    display: flex;
+    align-items: center;
+
+    & > li {
       display: flex;
       justify-content: center;
       align-items: center;
-    }
+      width: 3rem;
+      height: 3rem;
+      font-weight: 700;
+      margin: 0.5rem;
+      cursor: pointer;
 
-    & > li:nth-child(1) {
-      & > a {
-        background-color: #3d4a5c;
+      &:hover {
+        background-color: var(--main-color);
         border-radius: 100%;
         color: white;
         width: 3rem;
@@ -39,28 +50,14 @@
         align-items: center;
       }
     }
-  }
-  .selected {
-  }
-  @include mobile {
-    zoom: 1.5;
+    @include mobile {
+      zoom: 1.5;
+    }
   }
 }
 
 .activePage {
   border-radius: 100%;
-  background-color: #3d4a5c;
-  & > a {
-    color: white;
-  }
-}
-
-.Pagination_pagination__cjT7I {
-  & > li:nth-child(2) {
-    border-radius: 100%;
-    background-color: #3d4a5c;
-    & > a {
-      color: white;
-    }
-  }
+  background-color: var(--main-color);
+  color: white;
 }
