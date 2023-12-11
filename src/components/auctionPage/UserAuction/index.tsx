@@ -5,7 +5,6 @@ import useInput from '@/src/hooks/useInput';
 import { SelectValueType } from '@/src/types/search';
 import usePage from '@/src/hooks/usePage';
 import {
-  QueryClient,
   keepPreviousData,
   useQuery,
   useQueryClient,

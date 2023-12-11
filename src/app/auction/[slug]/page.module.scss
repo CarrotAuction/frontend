@@ -1,4 +1,4 @@
-@import '../../styles/media.scss';
+@import '@/src/styles/media.scss';
 
 .auctionPost {
   display: flex;
@@ -7,4 +7,8 @@
   width: 100%;
   margin: 4rem auto;
   padding: 0 5rem;
+}
+
+.hidden {
+  height: 50px;
 }

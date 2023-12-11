@@ -1,33 +1,34 @@
-/* eslint-disable no-unneeded-ternary */
-/* eslint-disable react/no-array-index-key */
 import React from 'react';
+import { CommentType } from '@/src/types/auctionDetail';
 import styles from './index.module.scss';
 import Comment from '../Comment';
 
 type Props = {
-  comments: any[];
+  comments: CommentType[];
+  totalComment: number;
 };
 
-const CommentContainer = ({ comments }: Props) => {
+const CommentContainer = ({ comments, totalComment }: Props) => {
   return (
     <section className={styles.postComments}>
-      <p>{`경매 참여 현황: ${comments.length}`}</p>
+      <p>{`경매 참여 현황: ${totalComment}`}</p>
       <hr />
-      {comments.map((comment, index) => {
+      {comments?.map((comment, index) => {
+        const { createAt, id, price, openChatUrl, creator } = comment;
+
         return (
           <div
             className={`${styles.comment} ${
               index === 0 ? styles.highlight : null
             }`}
+            key={index}
           >
             <Comment
-              // 백엔드에서 key 값 주면 key 추가하기. 현재 렌더링은 문제 없지만 key 값 넣으라고 오류 발생.
-              key={index}
-              nickname={comment.nickname}
-              auctionPrice={comment.auctionPrice}
-              openChattingLink={comment.openChattingLink}
-              date={comment.date}
-              flag={index === 0 ? true : false}
+              nickname={creator?.nickname}
+              flag={index === 0}
+              price={price}
+              openChatUrl={openChatUrl}
+              createAt={createAt}
             />
           </div>
         );

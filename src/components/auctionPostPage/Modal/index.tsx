@@ -1,20 +1,47 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { GiCancel } from 'react-icons/gi';
+import Swal from 'sweetalert2';
 import useInput from '@/src/hooks/useInput';
+import { usePostComment } from '@/src/hooks/query/auctionDetail';
+import { QueryObserverResult, RefetchOptions } from '@tanstack/react-query';
+import { ProductInfoType } from '@/src/types/auctionDetail';
 import styles from './index.module.scss';
 
 type Props = {
   handleModal: () => void;
+  creatorId: string | undefined;
+  boardId: number;
+  refetch: (
+    options?: RefetchOptions,
+  ) => Promise<QueryObserverResult<ProductInfoType>>;
 };
 
-const Modal = ({ handleModal }: Props) => {
-  const [price, setPrice] = useInput();
-  const [link, setLink, resetLink] = useInput();
+const Modal = ({ handleModal, creatorId, boardId, refetch }: Props) => {
+  const [price, setPrice, resetPrice] = useInput();
+  const [openChatUrl, setOpenChatUrl, resetOpenChatUrl] = useInput();
 
-  const handleBidding = () => {
+  const { mutate } = usePostComment(refetch);
+
+  const handleBidding = async () => {
+    if (price === '' || openChatUrl === '') {
+      Swal.fire({
+        icon: 'warning',
+        title: '경매 참여 정보를 모두 입력해 주세요.',
+      });
+      return;
+    }
+
+    mutate({
+      price: Number(price),
+      openChatUrl,
+      boardId,
+      creatorId: Number(creatorId),
+    });
+
+    resetPrice();
+    resetOpenChatUrl();
     handleModal();
   };
-
   return (
     <div>
       <div className={styles.modalBackground} onClick={handleModal} />
@@ -26,12 +53,14 @@ const Modal = ({ handleModal }: Props) => {
         <label htmlFor="openChattingLink">오픈 채팅방 링크을 올려주세요.</label>
         <div className={styles.linkInputContainer}>
           <input
-            onChange={setLink}
-            value={link}
+            onChange={setOpenChatUrl}
+            value={openChatUrl}
             type="text"
             id="openChattingLink"
           />
-          {link && <GiCancel onClick={resetLink} className={styles.icon} />}
+          {openChatUrl && (
+            <GiCancel onClick={resetOpenChatUrl} className={styles.icon} />
+          )}
         </div>
         <button type="button" onClick={handleBidding}>
           확인

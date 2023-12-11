@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 const UsePreview = () => {
   const [image, setImage] = useState<string | null>(null);
   const [file, setFile] = useState<File | null>(null);
-
   const handleImage = (e: React.ChangeEvent<HTMLInputElement>) => {
     const target = e.target as HTMLInputElement;
     if (!target.files) return;
@@ -17,8 +16,6 @@ const UsePreview = () => {
       };
     }
   };
-
   return { file, image, handleImage };
 };
-
 export default UsePreview;
