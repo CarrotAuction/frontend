@@ -32,11 +32,11 @@ const Board = ({
   const { city, province } = creator;
 
   return (
-    <div className={styles.board}>
+    <div id="board" data-id={id} className={styles.board}>
       <div className={styles.userImage}>
-        <Image data-id={id} src={imageUrl} alt="picture" fill />
+        <Image src={imageUrl} alt="picture" fill />
       </div>
-      <div data-id={id} className={styles.userInfo}>
+      <div className={styles.userInfo}>
         <div className={styles.profile}>
           <Image src={profile} alt="profile" fill />
         </div>

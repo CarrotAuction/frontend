@@ -13,9 +13,13 @@ const BoardList = ({ Boards }: Props) => {
 
   const gotoDetailBoard = (e: React.MouseEvent<HTMLDivElement>) => {
     const target = e.target as HTMLDivElement;
-    const boardId = target.dataset.id;
-    router.push(`/auction/${boardId}`);
+    if (target.closest('#board')) {
+      const parentChild = target.closest('#board');
+      const id = parentChild?.getAttribute('data-id');
+      router.push(`/auction/${id}`);
+    }
   };
+
   return (
     <div
       onClick={gotoDetailBoard}
