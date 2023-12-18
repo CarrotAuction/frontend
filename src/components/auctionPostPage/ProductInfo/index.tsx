@@ -6,6 +6,7 @@ import userProfile from '@/src/assets/AuctionPost/userProfile.png';
 import Modal from '@/src/components/auctionPostPage/Modal';
 import { ProductInfoType } from '@/src/types/auctionDetail';
 import ModalPortal from '@/src/common/Portal';
+import { AiOutlineLike, AiFillLike } from 'react-icons/ai';
 import { QueryObserverResult, RefetchOptions } from '@tanstack/react-query';
 import styles from './index.module.scss';
 
@@ -28,7 +29,7 @@ const ProductInfo = ({
   const router = useRouter();
 
   const [isOpen, setIsOpen] = useState(false);
-
+  const [like, setLike] = useState(false);
   const handleModal = () => {
     if (loginedId === undefined) {
       Swal.fire({
@@ -42,31 +43,47 @@ const ProductInfo = ({
     setIsOpen((pre) => !pre);
   };
 
+  const clickLike = () => {
+    setLike((pre) => !pre);
+  };
+
   return (
     <section className={styles.productInfo}>
       <article className={styles.productInfoImageAndName}>
         <Image src={productInfo?.imageUrl} fill alt="product image" />
       </article>
       <article className={styles.productInfoDetail}>
+        <span className={styles.writeInform}>사용자 정보</span>
         <div className={styles.profileBox}>
-          <div className={styles.profile}>
-            <Image src={userProfile} fill alt="user image" />
+          <div>
+            <div className={styles.profile}>
+              <Image src={userProfile} fill alt="user image" />
+            </div>
+            <p>
+              <span>{productInfo?.creator?.nickname}</span>
+            </p>
           </div>
-          <p>
-            <span>{productInfo?.creator?.nickname}</span>
-          </p>
+
+          <p>{`${productInfo?.creator?.province.name} ${productInfo?.creator?.city.name}`}</p>
         </div>
-        <p>{`${productInfo?.stuffName}`}</p>
-        <p>{`${productInfo?.creator?.province.name} ${productInfo?.creator?.city.name}`}</p>
-        <p>{productInfo?.stuffCategory}</p>
+
+        <span className={styles.writeInform}>상품 정보</span>
+        <span className={styles.dataName}>{`${productInfo?.stuffName}`}</span>
+
+        <p className={styles.catagory}>{productInfo?.stuffCategory}</p>
         <p>
           {`판매자 희망가격: ${productInfo?.stuffPrice?.toLocaleString(
             'ko-KR',
           )}원`}
         </p>
-        <div className={styles.line} />
+        <span className={styles.writeInform}>상세 내용</span>
         <div className={styles.introduce}>{productInfo?.stuffContent}</div>
-        <div className={styles.line} />
+        <div className={styles.like}>
+          <div onClick={clickLike}>
+            {like ? <AiFillLike size={64} /> : <AiOutlineLike size={64} />}
+          </div>
+          <p className={styles.likeNum}>355</p>
+        </div>
         <button
           type="button"
           className={styles.auctionParticipateButton}
