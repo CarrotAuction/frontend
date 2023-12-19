@@ -11,13 +11,13 @@ const LIMIT = 5;
 function Pagination({ onChangePage, totalPages, page }: PaginationProps) {
   const [currentPage, setCurrentPage] = useState<number[]>([]);
 
-  const initPageNumber = useCallback((totalPages: number, page: number) => {
+  const initPageNumber = (totalPages: number, page: number) => {
     const viewPages = [];
     for (let i = page; i <= Math.min(page - 1 + LIMIT, totalPages); i += 1) {
       viewPages.push(i);
     }
     setCurrentPage(viewPages);
-  }, []);
+  };
 
   const prePages = () => {
     onChangePage(currentPage[0] - 5);
@@ -31,7 +31,7 @@ function Pagination({ onChangePage, totalPages, page }: PaginationProps) {
 
   useEffect(() => {
     initPageNumber(totalPages, page);
-  }, []);
+  }, [totalPages]);
 
   return (
     <div className={styles.pagination}>
