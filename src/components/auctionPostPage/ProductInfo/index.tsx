@@ -8,6 +8,7 @@ import { ProductInfoType } from '@/src/types/auctionDetail';
 import ModalPortal from '@/src/common/Portal';
 import { AiOutlineLike, AiFillLike } from 'react-icons/ai';
 import { QueryObserverResult, RefetchOptions } from '@tanstack/react-query';
+import { usePostLike } from '@/src/hooks/query/auctionDetail';
 import styles from './index.module.scss';
 
 type Props = {
@@ -17,19 +18,13 @@ type Props = {
   refetch: (
     options?: RefetchOptions,
   ) => Promise<QueryObserverResult<ProductInfoType>>;
-  setComment: any;
 };
 
-const ProductInfo = ({
-  loginedId,
-  productInfo,
-  refetch,
-  setComment,
-}: Props) => {
+const ProductInfo = ({ loginedId, boardId, productInfo, refetch }: Props) => {
   const router = useRouter();
-
-  const [isOpen, setIsOpen] = useState(false);
   const [like, setLike] = useState(false);
+  const [count, setCount] = useState(productInfo?.likesCount);
+  const [isOpen, setIsOpen] = useState(false);
   const handleModal = () => {
     if (loginedId === undefined) {
       Swal.fire({
@@ -43,8 +38,19 @@ const ProductInfo = ({
     setIsOpen((pre) => !pre);
   };
 
+  const { mutate } = usePostLike({ like, setLike, setCount, boardId });
+
   const clickLike = () => {
-    setLike((pre) => !pre);
+    if (like) {
+      setLike(false);
+      setCount((pre) => pre - 1);
+    } else {
+      setLike(true);
+      setCount((pre) => pre + 1);
+    }
+
+    mutate({ boardId, userId: loginedId });
+    refetch();
   };
 
   return (
@@ -82,7 +88,7 @@ const ProductInfo = ({
           <div onClick={clickLike}>
             {like ? <AiFillLike size={64} /> : <AiOutlineLike size={64} />}
           </div>
-          <p className={styles.likeNum}>355</p>
+          <p className={styles.likeNum}>{productInfo.likesCount}</p>
         </div>
         <button
           type="button"

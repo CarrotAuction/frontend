@@ -60,7 +60,6 @@ export default function AuctionDetail({
         loginedId={token}
         productInfo={data?.board}
         refetch={refetch}
-        setComment={setComment}
       />
       {comment && (
         <CommentContainer

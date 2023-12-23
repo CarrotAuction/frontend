@@ -1,12 +1,23 @@
-import { GetAuctionDetail, GetComments } from '@/src/apis/AuctionDetail';
+import {
+  GetAuctionDetail,
+  GetComments,
+  PostBoardLike,
+} from '@/src/apis/AuctionDetail';
 import { PostComment } from '@/src/apis/Comment';
-import { CommentType, ProductInfoType } from '@/src/types/auctionDetail';
+import {
+  AuctionDetail,
+  BoardLike,
+  CommentType,
+  ProductInfoType,
+} from '@/src/types/auctionDetail';
 import { Comment } from '@/src/types/comment';
 import {
+  QueryFilters,
   QueryObserverResult,
   RefetchOptions,
   useMutation,
   useQuery,
+  useQueryClient,
 } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import Swal from 'sweetalert2';
@@ -63,3 +74,35 @@ export const usePostComment = (
       }
     },
   });
+
+export const usePostLike = ({ boardId }: any) => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (data: BoardLike) => PostBoardLike(data),
+    onMutate: async () => {
+      await queryClient.cancelQueries({ queryKey: ['BoardDetail'] });
+      const previousBoard = queryClient.getQueryData<AuctionDetail>([
+        'BoardDetail',
+        boardId,
+      ]);
+
+      queryClient.setQueryData(['BoardDetail', boardId], {
+        ...previousBoard,
+        board: {
+          ...previousBoard?.board,
+          likesCount: previousBoard!.board.likesCount + 1,
+        },
+      });
+      return { previousBoard };
+    },
+    onError: (err, newTodo, context) => {
+      queryClient.setQueryData(
+        ['BoardDetail', boardId],
+        context?.previousBoard,
+      );
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: ['BoardDetail', boardId] });
+    },
+  });
+};

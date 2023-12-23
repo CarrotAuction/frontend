@@ -1,3 +1,4 @@
+import { BoardLike } from '@/src/types/auctionDetail';
 import { authInstance } from '../InitAxios';
 
 type Props = {
@@ -16,6 +17,14 @@ export const GetComments = async ({ boardId, cursor }: Props) => {
       boardId,
       cursor: String(+cursor + 1),
     },
+  });
+  return res.data;
+};
+
+export const PostBoardLike = async ({ boardId, userId }: BoardLike) => {
+  const res = await authInstance.post(`/boards/${boardId}/likes`, {
+    boardId,
+    userId,
   });
   return res.data;
 };

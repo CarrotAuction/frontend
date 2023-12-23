@@ -1,4 +1,6 @@
+import { GetAuctionDetail } from '@/src/apis/AuctionDetail';
 import { RefetchOptions } from '@tanstack/react-query';
+import { StringNullableChain } from 'lodash';
 
 export type ProductInfoType = {
   createAt: string;
@@ -8,6 +10,7 @@ export type ProductInfoType = {
   stuffPrice: number;
   stuffCategory: string;
   imageUrl: string;
+  likesCount: number;
   creator: {
     id: number;
     nickname: string;
@@ -18,6 +21,12 @@ export type ProductInfoType = {
       name: string;
     };
   };
+};
+
+export type AuctionDetail = {
+  board: ProductInfoType;
+  comment: string[];
+  totalComments: number;
 };
 
 export type CommentType = {
@@ -32,4 +41,9 @@ export type CommentType = {
 
 export type CustomRefetchOptions = RefetchOptions & {
   boardId?: string;
+};
+
+export type BoardLike = {
+  boardId: string;
+  userId?: string;
 };
