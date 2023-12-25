@@ -36,7 +36,7 @@ const MainIntroduce = () => {
         </article>
         <article className={styles.introImg}>
           <div className={styles.picture}>
-            <Image src={introduceP1} fill alt="introduce" />
+            <Image priority src={introduceP1} fill alt="introduce" />
           </div>
         </article>
       </section>
@@ -44,6 +44,7 @@ const MainIntroduce = () => {
         <article className={styles.introImg}>
           <div className={styles.picture}>
             <Image
+              priority
               ref={imageRef}
               src={view ? introduceP2 : blueIntroduce2}
               fill

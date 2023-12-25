@@ -50,7 +50,7 @@ const NavBar = () => {
       <section className={styles.innerNav}>
         <div onClick={() => router.push('/')} className={styles.logo}>
           <div>
-            <Image src={carrot} fill alt="logo" />
+            <Image priority src={carrot} fill alt="logo" />
           </div>
           Carrot Auction
         </div>

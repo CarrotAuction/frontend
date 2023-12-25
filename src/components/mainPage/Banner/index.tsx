@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+/* eslint-disable jsx-a11y/media-has-caption */
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import wallet from '../../../assets/main/wallet.gif';
@@ -24,7 +25,7 @@ const Banner = () => {
           </button>
         </article>
         <article className={styles.bannerImg}>
-          <Image src={wallet} alt="wallet" fill />
+          <Image priority src={wallet} alt="wallet" fill />
         </article>
       </section>
     </main>
