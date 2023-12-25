@@ -22,6 +22,9 @@ const MainIntroduce = () => {
   const [show2] = UseLazyLoading(textRef2);
   const [show3] = UseLazyLoading(textRef3);
 
+  console.log(view);
+  console.log(view2);
+  console.log(show2);
   return (
     <main className={styles.introduce}>
       <section className={styles.introBox}>
@@ -42,16 +45,19 @@ const MainIntroduce = () => {
       </section>
       <section className={`${styles.introBox} ${styles.mobileFlexReverse}`}>
         <article className={styles.introImg}>
-          <div className={styles.picture}>
-            <Image
-              priority
-              ref={imageRef}
-              src={view ? introduceP2 : blueIntroduce2}
-              fill
-              alt="introduce"
-            />
+          <div ref={imageRef} className={styles.picture}>
+            {view && (
+              <Image
+                className={styles.view}
+                priority
+                src={introduceP2}
+                fill
+                alt="introduce"
+              />
+            )}
           </div>
         </article>
+
         <article
           ref={textRef2}
           className={`${styles.introText} ${show2 && styles.show}`}
@@ -80,13 +86,15 @@ const MainIntroduce = () => {
           </span>
         </article>
         <article className={styles.introImg}>
-          <div className={styles.picture}>
-            <Image
-              ref={imageRef2}
-              src={view2 ? introduceP3 : blueIntroduce3}
-              fill
-              alt="introduce"
-            />
+          <div ref={imageRef2} className={styles.picture}>
+            {view2 && (
+              <Image
+                className={styles.view}
+                src={introduceP3}
+                fill
+                alt="introduce"
+              />
+            )}
           </div>
         </article>
       </section>

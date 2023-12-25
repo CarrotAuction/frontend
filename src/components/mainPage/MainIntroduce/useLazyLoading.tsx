@@ -12,18 +12,16 @@ const UseLazyLoading = (
           entries.forEach((entry: IntersectionObserverEntry) => {
             if (entry.isIntersecting) {
               setIsView(true);
-            } else if (ref.current?.tagName === 'ARTICLE') {
-              setIsView(false);
             }
           });
         },
-        { threshold: 0.5 },
+        { threshold: 1 },
       );
       observer.observe(ref.current);
       return () => observer.disconnect();
     }
     return () => undefined;
-  }, [isView, ref]);
+  }, [isView]);
   return [isView];
 };
 
