@@ -5,6 +5,7 @@ import {
   SelectOption,
   SelectValueType,
 } from '@/src/types/search';
+import { selectOption } from '@/src/utils/Option';
 import styles from './index.module.scss';
 
 type Props = {
@@ -15,29 +16,14 @@ type Props = {
 
 const Options = ({ option, setSelectValue, title }: Props) => {
   const clickChangeData = (e: React.MouseEvent<HTMLDivElement>) => {
+    // 데이터
     const target = e.target as HTMLInputElement;
-    if (title === '대표 지역선택') {
-      if (target.innerText === '대표 지역선택') {
-        target.innerText = '';
-      }
-      setSelectValue((pre) => {
-        return { ...pre, area: target.innerText };
-      });
-    } else if (title === '시/구/군') {
-      if (target.innerText === '시/구/군') {
-        target.innerText = '';
-      }
-      setSelectValue((pre) => {
-        return { ...pre, city: target.innerText };
-      });
-    } else {
-      if (target.innerText === '카테고리') {
-        target.innerText = '';
-      }
-      setSelectValue((pre) => {
-        return { ...pre, category: target.innerText };
-      });
-    }
+    const option = selectOption(target.innerText, title);
+
+    // 액션
+    setSelectValue((pre) => {
+      return { ...pre, [option.location]: option.text };
+    });
   };
   return (
     <div className={styles.options}>

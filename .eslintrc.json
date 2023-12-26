@@ -13,6 +13,7 @@
     "linebreak-style": 0,
     "react/react-in-jsx-scope": "off",
     "import/no-cycle": "off",
+    "no-param-reassign": "off",
     "import/no-extraneous-dependencies": [
       "off",
       {

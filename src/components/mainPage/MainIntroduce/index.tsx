@@ -22,9 +22,6 @@ const MainIntroduce = () => {
   const [show2] = UseLazyLoading(textRef2);
   const [show3] = UseLazyLoading(textRef3);
 
-  console.log(view);
-  console.log(view2);
-  console.log(show2);
   return (
     <main className={styles.introduce}>
       <section className={styles.introBox}>
