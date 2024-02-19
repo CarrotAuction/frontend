@@ -18,8 +18,6 @@ import { Area } from '@/src/constants/search';
 import CitySelectBox from '@/src/components/signUpPage/Select/CitySelectBox';
 import { useRouter } from 'next/navigation';
 import { usePostSignUp } from '@/src/remote/query/signup';
-import Swal from 'sweetalert2';
-import { AxiosError } from 'axios';
 import styles from './index.module.scss';
 
 const SignUp = () => {
