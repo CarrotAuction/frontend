@@ -1,18 +1,15 @@
 import {
   GetAuctionDetail,
-  GetComments,
   PostBoardLike,
-} from '@/src/apis/AuctionDetail';
-import { PostComment } from '@/src/apis/Comment';
+} from '@/src/remote/apis/AuctionDetail';
+import { PostComment } from '@/src/remote/apis/Comment';
 import {
   AuctionDetail,
   BoardLike,
-  CommentType,
   ProductInfoType,
 } from '@/src/types/auctionDetail';
 import { Comment } from '@/src/types/comment';
 import {
-  QueryFilters,
   QueryObserverResult,
   RefetchOptions,
   useMutation,
@@ -22,32 +19,15 @@ import {
 import { AxiosError } from 'axios';
 import Swal from 'sweetalert2';
 
-export const useGetDetailInfo = (boardId: string) =>
-  useQuery({
+export const useGetDetailInfo = (boardId: string) => {
+  console.log('hi');
+  return useQuery({
     queryKey: ['BoardDetail', boardId],
     queryFn: () => GetAuctionDetail(boardId),
     enabled: false,
     refetchOnMount: true,
   });
-
-export const useGetDetailScroll = ({
-  boardId,
-  comment,
-  totalComments,
-}: {
-  boardId: string;
-  comment: CommentType[];
-  totalComments: number;
-}) =>
-  useQuery({
-    queryKey: ['BoardScroll', boardId],
-    queryFn: () => {
-      const cursor = String(comment?.length);
-      if (+cursor > totalComments) return;
-      return GetComments({ boardId, cursor });
-    },
-    enabled: false,
-  });
+};
 
 export const usePostComment = (
   refetch: (

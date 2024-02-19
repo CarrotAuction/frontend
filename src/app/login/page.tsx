@@ -7,7 +7,7 @@ import Link from 'next/link';
 import useInput from '@/src/hooks/useInput';
 import Swal from 'sweetalert2';
 import { useRouter } from 'next/navigation';
-import { usePostLogin } from '@/src/hooks/query/login';
+import { usePostLogin } from '@/src/remote/query/login';
 import { setCookie } from 'cookies-next';
 import styles from './index.module.scss';
 

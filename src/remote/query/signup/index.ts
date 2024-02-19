@@ -1,4 +1,4 @@
-import { PostSignup } from '@/src/apis/Signup';
+import { PostSignup } from '@/src/remote/apis/Signup';
 import { RequesteUser } from '@/src/types/signup';
 import { useMutation } from '@tanstack/react-query';
 import { AxiosError } from 'axios';

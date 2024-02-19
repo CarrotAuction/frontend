@@ -3,7 +3,7 @@ import React from 'react';
 import type { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
 import '../styles/globalStyle.scss';
-import ReactQueryProviders from '../ReactQueryProvider';
+import ReactQueryProviders from '../providers/ReactQueryProvider';
 import NavBar from '../common/Nav';
 import Footer from '../common/Footer';
 

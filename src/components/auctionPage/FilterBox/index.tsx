@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import { Area, Category } from '@/src/constants/search';
 import {
-  QueryClient,
   QueryObserverResult,
   RefetchOptions,
   useQueryClient,
@@ -25,7 +24,7 @@ type Props = {
   onchange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   selectValue: SelectValueType;
   setSelectValue: React.Dispatch<React.SetStateAction<SelectValueType>>;
-  refetch: (
+  refetch?: (
     options?: RefetchOptions,
   ) => Promise<QueryObserverResult<PropsBoards>>;
   onChangePage: (page: number) => void;
@@ -49,7 +48,9 @@ const FilterBox = ({
   const handleRefresh = () => {
     onChangePage(1);
     queryClient.removeQueries({ queryKey: ['Boards'] });
-    refetch() as CustomRefetchOptions;
+    if (refetch) {
+      refetch() as CustomRefetchOptions;
+    }
   };
 
   return (

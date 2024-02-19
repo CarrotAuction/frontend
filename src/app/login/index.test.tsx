@@ -9,7 +9,7 @@ import userEvent from '@testing-library/user-event';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactNode } from 'react';
 import nock from 'nock';
-import { usePostLogin } from '@/src/hooks/query/login';
+import { usePostLogin } from '@/src/remote/query/login';
 import { WithAllContexts } from '../../tests/utils';
 import Login from './page';
 

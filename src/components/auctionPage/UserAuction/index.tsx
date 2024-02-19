@@ -9,7 +9,7 @@ import {
   useQuery,
   useQueryClient,
 } from '@tanstack/react-query';
-import { GetBoards } from '@/src/apis/Auction';
+import { GetBoards } from '@/src/remote/apis/Auction/Auction.get.api';
 import FilterBox from '../FilterBox';
 import styles from './index.module.scss';
 import UserAuctionData from '../UserAuctionData';
@@ -52,7 +52,7 @@ const UserAuction = () => {
   };
 
   useEffect(() => {
-    if (page < Boards?.totalPages) {
+    if (Boards && page < Boards?.totalPages) {
       prefetchNextPosts(page);
     }
   }, [page, prefetchNextPosts, useQueryClient]);

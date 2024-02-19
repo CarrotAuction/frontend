@@ -2,7 +2,7 @@ import React from 'react';
 import { GiCancel } from 'react-icons/gi';
 import Swal from 'sweetalert2';
 import useInput from '@/src/hooks/useInput';
-import { usePostComment } from '@/src/hooks/query/auctionDetail';
+import { usePostComment } from '@/src/remote/query/auctionDetail';
 import { QueryObserverResult, RefetchOptions } from '@tanstack/react-query';
 import { ProductInfoType } from '@/src/types/auctionDetail';
 import styles from './index.module.scss';
