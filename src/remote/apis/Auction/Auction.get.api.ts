@@ -5,10 +5,10 @@ import { getRequest } from '../requests.api';
 export const GetBoards = async (data: RequestBoard) => {
   const { searchData, area, city, category, page } = data;
 
-  const isTitleSearch = searchData ? `titleSearch=${searchData}$` : '';
-  const isProvinceName = area ? `provinceName=${area}$` : '';
+  const isTitleSearch = searchData ? `titleSearch=${searchData}&` : '';
+  const isProvinceName = area ? `provinceName=${area}&` : '';
   const isCity = city ? `city =${city}$` : '';
-  const isStuffCategory = category ? `stuffCategory=${category}$` : '';
+  const isStuffCategory = category ? `stuffCategory=${category}&` : '';
   const isPage = page ? `page=${page}` : '';
 
   const response = await getRequest<any>(
