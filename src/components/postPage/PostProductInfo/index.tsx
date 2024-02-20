@@ -9,7 +9,7 @@ import { getCookie } from 'cookies-next';
 import { Category } from '@/src/constants/search';
 import { SelectValueType, ShowType } from '@/src/types/search';
 import CategorySelect from '@/src/components/auctionPage/CategorySelect';
-import { PostAuction } from '@/src/apis/Post';
+import { PostAuction } from '@/src/remote/apis/Post';
 import { useMutation } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import Swal from 'sweetalert2';

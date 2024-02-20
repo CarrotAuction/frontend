@@ -10,7 +10,7 @@ import nock from 'nock';
 import { WithAllContexts } from '@/src/tests/utils';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactNode } from 'react';
-import { usePostSignUp } from '@/src/hooks/query/signup';
+import { usePostSignUp } from '@/src/remote/query/signup';
 import Swal from 'sweetalert2';
 import SignUp from './page';
 

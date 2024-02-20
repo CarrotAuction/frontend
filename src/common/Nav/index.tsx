@@ -2,14 +2,12 @@
 
 import React, { useEffect, useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
-import Image from 'next/image';
 import Link from 'next/link';
 import { deleteCookie, getCookie } from 'cookies-next';
 import Swal from 'sweetalert2';
-import ToggleNavIcon from '../Ui/ToggleNavIcon';
+import ToggleNavIcon from '../UI/ToggleNavIcon';
 import NavBarSlide from './NavBarSlide';
 import styles from './index.module.scss';
-import carrot from '../../assets/main/carrot.png';
 
 const NavBar = () => {
   const router = useRouter();
@@ -49,10 +47,7 @@ const NavBar = () => {
     <nav className={styles.nav}>
       <section className={styles.innerNav}>
         <div onClick={() => router.push('/')} className={styles.logo}>
-          <div>
-            <Image priority src={carrot} fill alt="logo" />
-          </div>
-          Carrot Auction
+          Auction
         </div>
         <div onClick={changeToggle} className={styles.toggleIcon}>
           {!toggle && <ToggleNavIcon />}

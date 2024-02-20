@@ -35,6 +35,8 @@
   font-family: var(--Noto-B);
   padding-left: 5rem;
   cursor: pointer;
+  font-weight: bold;
+  font-size: 4rem;
 
   & > div {
     width: 4rem;
@@ -55,7 +57,16 @@
     &:hover {
       color: var(--main-color);
     }
+
+    & > a:hover {
+      color: var(--main-color);
+    }
   }
+
+  & > a:hover {
+    color: var(--main-color);
+  }
+
   @include mobile {
     display: none;
   }

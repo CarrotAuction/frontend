@@ -1,6 +1,11 @@
-import { GetAuctionDetail } from '@/src/apis/AuctionDetail';
+import { GetAuctionDetail } from '@/src/remote/apis/AuctionDetail';
 import { RefetchOptions } from '@tanstack/react-query';
 import { StringNullableChain } from 'lodash';
+
+export type AuctionBoard = {
+  boards: ProductInfoType[];
+  totalPages: number;
+};
 
 export type ProductInfoType = {
   createAt: string;

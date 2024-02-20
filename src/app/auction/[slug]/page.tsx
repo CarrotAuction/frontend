@@ -1,73 +1,29 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
-import { getCookie } from 'cookies-next';
-import ProductInfo from '@/src/components/auctionPostPage/ProductInfo';
-import CommentContainer from '@/src/components/auctionPostPage/CommentContainer';
-import { CommentType } from '@/src/types/auctionDetail';
-import {
-  useGetDetailInfo,
-  useGetDetailScroll,
-} from '@/src/hooks/query/auctionDetail';
-import { useObserver } from '@/src/hooks/useObserver';
-import Loading from '@/src/common/Ui/Loading';
-import styles from './page.module.scss';
+import router from 'next/router';
+import React, { useEffect } from 'react';
+import classNamees from 'classnames/bind';
+import { GetAuctionDetail } from '@/src/remote/apis/AuctionDetail';
+import styles from './index.module.scss';
 
-export default function AuctionDetail({
-  params,
-}: {
+type AuctionDetailProps = {
   params: { slug: string };
-}) {
+};
+
+const cx = classNamees.bind(styles);
+
+const AuctionDetail = ({ params }: AuctionDetailProps) => {
   const boardId = params.slug;
 
-  const bottomRef = useRef<HTMLDivElement | null>(null);
-  const token = getCookie('token');
-  const [comment, setComment] = useState<CommentType[]>([]);
-
-  const { isPending, data, refetch } = useGetDetailInfo(boardId);
-  const { data: addCommnet, refetch: refetchScroll } = useGetDetailScroll({
-    boardId,
-    comment,
-    totalComments: data?.totalComments,
-  });
-
-  useObserver({
-    ref: bottomRef,
-    refetchScroll,
-    refetch,
-    comment,
-    totalComments: data?.totalComments,
-  });
-
   useEffect(() => {
-    setComment(data?.comments);
-  }, [data]);
+    (async () => {
+      const res = await GetAuctionDetail(boardId);
+      console.log(res);
+      return res;
+    })();
+  }, []);
 
-  useEffect(() => {
-    if (comment && addCommnet) {
-      setComment([...comment, ...addCommnet]);
-    }
-  }, [addCommnet, refetchScroll]);
+  return <div className={cx('page')}>안녕하세요 {boardId}</div>;
+};
 
-  if (isPending) {
-    return <Loading width="350" height="350" />;
-  }
-
-  return (
-    <main className={styles.auctionPost}>
-      <ProductInfo
-        boardId={boardId}
-        loginedId={token}
-        productInfo={data?.board}
-        refetch={refetch}
-      />
-      {comment && (
-        <CommentContainer
-          comments={comment}
-          totalComment={data?.totalComments}
-        />
-      )}
-      <div className={styles.hidden} ref={bottomRef} />
-    </main>
-  );
-}
+export default AuctionDetail;

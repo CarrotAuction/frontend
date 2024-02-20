@@ -8,7 +8,7 @@ import { ProductInfoType } from '@/src/types/auctionDetail';
 import ModalPortal from '@/src/common/Portal';
 import { AiOutlineLike, AiFillLike } from 'react-icons/ai';
 import { QueryObserverResult, RefetchOptions } from '@tanstack/react-query';
-import { usePostLike } from '@/src/hooks/query/auctionDetail';
+import { usePostLike } from '@/src/remote/query/auctionDetail';
 import styles from './index.module.scss';
 
 type Props = {
@@ -88,7 +88,7 @@ const ProductInfo = ({ loginedId, boardId, productInfo, refetch }: Props) => {
           <div onClick={clickLike}>
             {like ? <AiFillLike size={64} /> : <AiOutlineLike size={64} />}
           </div>
-          <p className={styles.likeNum}>{productInfo.likesCount}</p>
+          <p className={styles.likeNum}>{productInfo?.likesCount}</p>
         </div>
         <button
           type="button"
