@@ -41,15 +41,9 @@ const ProductInfo = ({ loginedId, boardId, productInfo, refetch }: Props) => {
   const { mutate } = usePostLike({ like, setLike, setCount, boardId });
 
   const clickLike = () => {
-    if (like) {
-      setLike(false);
-      setCount((pre) => pre - 1);
-    } else {
-      setLike(true);
-      setCount((pre) => pre + 1);
+    if (loginedId) {
+      mutate({ boardId, userId: loginedId });
     }
-
-    mutate({ boardId, userId: loginedId });
     refetch();
   };
 

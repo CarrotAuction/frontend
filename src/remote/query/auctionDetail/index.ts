@@ -1,7 +1,3 @@
-import {
-  GetAuctionDetail,
-  PostBoardLike,
-} from '@/src/remote/apis/AuctionDetail';
 import { PostComment } from '@/src/remote/apis/Comment';
 import {
   AuctionDetail,
@@ -18,9 +14,10 @@ import {
 } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import Swal from 'sweetalert2';
+import { GetAuctionDetail } from '../../apis/AuctionDetail/AuctionDetail.get.api';
+import { PostBoardLike } from '../../apis/AuctionDetail/AuctionDetail.post.api';
 
 export const useGetDetailInfo = (boardId: string) => {
-  console.log('hi');
   return useQuery({
     queryKey: ['BoardDetail', boardId],
     queryFn: () => GetAuctionDetail(boardId),

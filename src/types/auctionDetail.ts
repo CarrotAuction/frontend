@@ -1,4 +1,3 @@
-import { GetAuctionDetail } from '@/src/remote/apis/AuctionDetail';
 import { RefetchOptions } from '@tanstack/react-query';
 import { StringNullableChain } from 'lodash';
 
@@ -50,5 +49,5 @@ export type CustomRefetchOptions = RefetchOptions & {
 
 export type BoardLike = {
   boardId: string;
-  userId?: string;
+  userId: string;
 };
