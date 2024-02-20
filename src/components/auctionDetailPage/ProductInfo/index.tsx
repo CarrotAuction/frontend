@@ -92,7 +92,7 @@ const ProductInfo = ({ productInfo }: Props) => {
             ? '판매 종료'
             : '경매 참여하기'}
         </button>
-        {/* {isOpen && (
+        {isOpen && (
           <ModalPortal>
             <Modal
               handleModal={handleModal}
@@ -100,7 +100,7 @@ const ProductInfo = ({ productInfo }: Props) => {
               boardId={board.id}
             />
           </ModalPortal>
-        )} */}
+        )}
       </article>
     </section>
   );

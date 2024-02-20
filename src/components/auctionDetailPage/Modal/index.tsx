@@ -18,7 +18,7 @@ const Modal = ({ handleModal, creatorId, boardId }: Props) => {
   const [price, setPrice, resetPrice] = useInput();
   const [openChatUrl, setOpenChatUrl, resetOpenChatUrl] = useInput();
 
-  const { mutate } = usePostComment(refetch);
+  const { mutate } = usePostComment();
 
   const handleBidding = async () => {
     if (price === '' || openChatUrl === '') {

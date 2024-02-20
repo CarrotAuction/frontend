@@ -25,19 +25,16 @@ export const useGetDetailInfo = (boardId: string) => {
   });
 };
 
-export const usePostComment = (
-  refetch: (
-    options?: RefetchOptions,
-  ) => Promise<QueryObserverResult<ProductInfoType>>,
-) =>
-  useMutation({
+export const usePostComment = (boardId: number) => {
+  const queryClient = useQueryClient();
+  return useMutation({
     mutationFn: (data: Comment) => PostComment(data),
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['BoardDetail'] });
       Swal.fire({
         icon: 'success',
         title: '경매 참여 완료!',
       });
-      refetch();
     },
     onError: (error) => {
       if (error instanceof AxiosError) {
@@ -50,6 +47,7 @@ export const usePostComment = (
       }
     },
   });
+};
 
 export const usePostLike = ({ boardId }: any) => {
   const queryClient = useQueryClient();
