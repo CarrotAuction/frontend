@@ -21,7 +21,6 @@ export const useGetDetailInfo = (boardId: string) => {
   return useQuery({
     queryKey: ['BoardDetail', boardId],
     queryFn: () => GetAuctionDetail(boardId),
-    enabled: false,
     refetchOnMount: true,
   });
 };

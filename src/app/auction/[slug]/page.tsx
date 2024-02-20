@@ -1,9 +1,10 @@
 'use client';
 
-import router from 'next/router';
-import React, { useEffect } from 'react';
+import React from 'react';
 import classNamees from 'classnames/bind';
 import { useGetDetailInfo } from '@/src/remote/query/auctionDetail';
+import ProductInfo from '@/src/components/auctionDetailPage/ProductInfo';
+import CommentContainer from '@/src/components/auctionDetailPage/CommentContainer';
 import styles from './index.module.scss';
 
 type AuctionDetailProps = {
@@ -15,10 +16,16 @@ const cx = classNamees.bind(styles);
 const AuctionDetail = ({ params }: AuctionDetailProps) => {
   const boardId = params.slug;
 
-  const { data } = useGetDetailInfo(boardId);
+  const { data, isPending } = useGetDetailInfo(boardId);
 
-  console.log(data);
-  return <div className={cx('page')}>d</div>;
+  if (!data) return;
+
+  return (
+    <div className={cx('page')}>
+      <ProductInfo productInfo={data} />
+      <CommentContainer productInfo={data} />
+    </div>
+  );
 };
 
 export default AuctionDetail;

@@ -1,5 +1,4 @@
 import { RefetchOptions } from '@tanstack/react-query';
-import { StringNullableChain } from 'lodash';
 
 export type AuctionBoard = {
   boards: ProductInfoType[];
@@ -29,11 +28,11 @@ export type ProductInfoType = {
 
 export type AuctionDetail = {
   board: ProductInfoType;
-  comment: string[];
+  comments: CreatorCommentType[];
   totalComments: number;
 };
 
-export type CommentType = {
+export type CreatorCommentType = {
   createAt: string;
   id: number;
   price: number;
