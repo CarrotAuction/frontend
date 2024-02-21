@@ -1,6 +1,7 @@
 import React from 'react';
 import { format, register } from 'timeago.js';
 import koLocale from 'timeago.js/lib/lang/ko';
+import classNamees from 'classnames/bind';
 import styles from './index.module.scss';
 
 type Props = {
@@ -13,12 +14,14 @@ type Props = {
 
 const Comment = ({ nickname, price, openChatUrl, createAt, flag }: Props) => {
   register('ko', koLocale);
+
+  const cx = classNamees.bind(styles);
   return (
     <>
-      <div className={styles.commentDetail}>
+      <div className={cx('commentDetail')}>
         <div>
           <span>{nickname}</span>
-          <span className={flag ? styles.highlight : undefined}>
+          <span className={cx({ highlight: flag })}>
             {format(createAt, 'ko')}
           </span>
         </div>

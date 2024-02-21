@@ -1,47 +1,49 @@
-import {
-  GetAuctionDetail,
-  PostBoardLike,
-} from '@/src/remote/apis/AuctionDetail';
 import { PostComment } from '@/src/remote/apis/Comment';
-import {
-  AuctionDetail,
-  BoardLike,
-  ProductInfoType,
-} from '@/src/types/auctionDetail';
+import { AuctionDetail, BoardLike } from '@/src/types/auctionDetail';
 import { Comment } from '@/src/types/comment';
-import {
-  QueryObserverResult,
-  RefetchOptions,
-  useMutation,
-  useQuery,
-  useQueryClient,
-} from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import Swal from 'sweetalert2';
+import {
+  GetAuctionDetail,
+  GetComments,
+} from '../../apis/AuctionDetail/AuctionDetail.get.api';
+import { PostBoardLike } from '../../apis/AuctionDetail/AuctionDetail.post.api';
 
 export const useGetDetailInfo = (boardId: string) => {
-  console.log('hi');
   return useQuery({
     queryKey: ['BoardDetail', boardId],
     queryFn: () => GetAuctionDetail(boardId),
-    enabled: false,
     refetchOnMount: true,
   });
 };
 
-export const usePostComment = (
-  refetch: (
-    options?: RefetchOptions,
-  ) => Promise<QueryObserverResult<ProductInfoType>>,
-) =>
-  useMutation({
+export const useGetComments = ({
+  boardId,
+  cursor,
+  inView,
+}: {
+  boardId: string;
+  cursor: number;
+  inView: boolean;
+}) => {
+  return useQuery({
+    queryKey: ['comments', boardId, cursor],
+    queryFn: () => GetComments({ boardId, cursor }),
+    enabled: !!inView,
+  });
+};
+
+export const usePostComment = (boardId: number) => {
+  const queryClient = useQueryClient();
+  return useMutation({
     mutationFn: (data: Comment) => PostComment(data),
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['BoardDetail'] });
       Swal.fire({
         icon: 'success',
         title: '경매 참여 완료!',
       });
-      refetch();
     },
     onError: (error) => {
       if (error instanceof AxiosError) {
@@ -54,6 +56,7 @@ export const usePostComment = (
       }
     },
   });
+};
 
 export const usePostLike = ({ boardId }: any) => {
   const queryClient = useQueryClient();
