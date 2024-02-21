@@ -49,6 +49,7 @@
 .list {
   display: flex;
   font-size: 1.8rem;
+  align-items: center;
 
   & > li {
     padding: 0 2.5rem;
@@ -96,5 +97,26 @@
   font-weight: 700;
 }
 
-.nonPoint {
+.login,
+.logout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--main-color);
+  border-radius: 5px;
+  min-width: 10rem;
+  height: 5rem;
+  transition: 0.2s all;
+  margin-left: 3rem;
+  &:hover {
+    opacity: 0.8;
+  }
+  color: white;
+  & > a {
+    color: white;
+
+    &:hover {
+      color: white !important;
+    }
+  }
 }

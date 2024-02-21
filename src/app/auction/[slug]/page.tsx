@@ -9,6 +9,7 @@ import {
 import { useInView } from 'react-intersection-observer';
 import ProductInfo from '@/src/components/auctionDetailPage/ProductInfo';
 import { CreatorCommentType } from '@/src/types/auctionDetail';
+import Loading from '@/src/common/UI/Loading';
 import CommentContainer from '@/src/components/auctionDetailPage/CommentContainer';
 import styles from './index.module.scss';
 
@@ -40,7 +41,7 @@ const AuctionDetail = ({ params }: AuctionDetailProps) => {
     }
   }, [data]);
 
-  if (!data) return;
+  if (!data) return <Loading width="300" height="300" />;
   return (
     <div className={cx('page')}>
       <ProductInfo productInfo={data} />

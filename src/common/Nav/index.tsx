@@ -74,9 +74,11 @@ const NavBar = () => {
             <li onClick={alertLogin}>글 쓰기</li>
           )}
           {myToken ? (
-            <li onClick={logout}>로그아웃</li>
+            <li className={styles.logout} onClick={logout}>
+              로그아웃
+            </li>
           ) : (
-            <li>
+            <li className={styles.login}>
               <Link
                 href="/login"
                 className={path === '/login' ? styles.point : styles.nonPoint}
