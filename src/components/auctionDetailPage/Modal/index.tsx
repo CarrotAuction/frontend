@@ -9,16 +9,13 @@ type Props = {
   handleModal: () => void;
   creatorId: string | undefined;
   boardId: number;
-  // refetch: (
-  //   options?: RefetchOptions,
-  // ) => Promise<QueryObserverResult<ProductInfoType>>;
 };
 
 const Modal = ({ handleModal, creatorId, boardId }: Props) => {
   const [price, setPrice, resetPrice] = useInput();
   const [openChatUrl, setOpenChatUrl, resetOpenChatUrl] = useInput();
 
-  const { mutate } = usePostComment();
+  const { mutate } = usePostComment(boardId);
 
   const handleBidding = async () => {
     if (price === '' || openChatUrl === '') {

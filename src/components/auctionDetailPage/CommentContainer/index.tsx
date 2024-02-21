@@ -1,16 +1,15 @@
 import React from 'react';
-import { AuctionDetail } from '@/src/types/auctionDetail';
+import { AuctionDetail, CreatorCommentType } from '@/src/types/auctionDetail';
 import classNamees from 'classnames/bind';
 import styles from './index.module.scss';
 import Comment from '../Comment';
 
 type Props = {
-  productInfo: AuctionDetail;
+  comments: CreatorCommentType[];
+  totalComments: number;
 };
 
-const CommentContainer = ({ productInfo }: Props) => {
-  const { board, comments, totalComments } = productInfo;
-
+const CommentContainer = ({ comments, totalComments }: Props) => {
   const cx = classNamees.bind(styles);
 
   return (

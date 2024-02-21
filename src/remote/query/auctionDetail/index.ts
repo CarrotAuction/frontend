@@ -1,20 +1,13 @@
 import { PostComment } from '@/src/remote/apis/Comment';
-import {
-  AuctionDetail,
-  BoardLike,
-  ProductInfoType,
-} from '@/src/types/auctionDetail';
+import { AuctionDetail, BoardLike } from '@/src/types/auctionDetail';
 import { Comment } from '@/src/types/comment';
-import {
-  QueryObserverResult,
-  RefetchOptions,
-  useMutation,
-  useQuery,
-  useQueryClient,
-} from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import Swal from 'sweetalert2';
-import { GetAuctionDetail } from '../../apis/AuctionDetail/AuctionDetail.get.api';
+import {
+  GetAuctionDetail,
+  GetComments,
+} from '../../apis/AuctionDetail/AuctionDetail.get.api';
 import { PostBoardLike } from '../../apis/AuctionDetail/AuctionDetail.post.api';
 
 export const useGetDetailInfo = (boardId: string) => {
@@ -22,6 +15,22 @@ export const useGetDetailInfo = (boardId: string) => {
     queryKey: ['BoardDetail', boardId],
     queryFn: () => GetAuctionDetail(boardId),
     refetchOnMount: true,
+  });
+};
+
+export const useGetComments = ({
+  boardId,
+  cursor,
+  inView,
+}: {
+  boardId: string;
+  cursor: number;
+  inView: boolean;
+}) => {
+  return useQuery({
+    queryKey: ['comments', boardId, cursor],
+    queryFn: () => GetComments({ boardId, cursor }),
+    enabled: !!inView,
   });
 };
 

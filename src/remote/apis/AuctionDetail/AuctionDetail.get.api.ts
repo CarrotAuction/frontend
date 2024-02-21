@@ -13,8 +13,9 @@ export const GetComments = async ({
   cursor,
 }: {
   boardId: string;
-  cursor: string;
+  cursor: number;
 }) => {
+  if (!cursor) return;
   const response = await getRequest<any>(
     `/comments?boardId=${boardId}&cursor=${cursor}`,
   );
