@@ -1,12 +1,29 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import classNamees from 'classnames/bind';
 import Image from 'next/image';
+import { setCookie } from 'cookies-next';
 import styles from './index.module.scss';
 
-const AdvertisementModal = () => {
+type Props = {
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const AdvertisementModal = ({ setOpen }: Props) => {
   const cx = classNamees.bind(styles);
+
+  const oneDayInMillis = 24 * 60 * 60 * 1000;
+  const handleGetModalCookie = () => {
+    setOpen(false);
+    setCookie('ad-modal', true, {
+      expires: new Date(Date.now() + oneDayInMillis),
+    });
+  };
+
+  const handleModalClose = () => {
+    setOpen(false);
+  };
   return (
     <div className={cx('wrapper')}>
       <div className={cx('image')}>
@@ -17,10 +34,18 @@ const AdvertisementModal = () => {
         />
       </div>
       <div className={cx('buttons')}>
-        <button className={cx('button-oneDay')} type="button">
+        <button
+          onClick={handleGetModalCookie}
+          className={cx('button-oneDay')}
+          type="button"
+        >
           1일간 다시 보지 않기
         </button>
-        <button className={cx('button-close')} type="button">
+        <button
+          onClick={handleModalClose}
+          className={cx('button-close')}
+          type="button"
+        >
           닫기
         </button>
       </div>
