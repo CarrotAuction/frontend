@@ -1,11 +1,11 @@
 import React from 'react';
-
 import type { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
 import '../styles/globalStyle.scss';
 import ReactQueryProviders from '../providers/ReactQueryProvider';
 import NavBar from '../common/Nav';
 import Footer from '../common/Footer';
+import RecoilProviders from '../providers/RecoilProviders';
 
 const NotoR = Roboto({
   weight: '400',
@@ -28,13 +28,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="kr">
-      <body className={`${NotoR.className} ${NotoB.variable}`}>
-        <NavBar />
-        <ReactQueryProviders>{children}</ReactQueryProviders>
-        <Footer />
-        <div id="modal" />
-      </body>
-    </html>
+    <RecoilProviders>
+      <html lang="kr">
+        <body className={`${NotoR.className} ${NotoB.variable}`}>
+          <NavBar />
+          <ReactQueryProviders>{children}</ReactQueryProviders>
+          <Footer />
+          <div id="modal" />
+        </body>
+      </html>
+    </RecoilProviders>
   );
 }
