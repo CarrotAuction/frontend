@@ -6,17 +6,20 @@ import userProfile from '@/src/assets/AuctionPost/userProfile.png';
 import Modal from '@/src/components/auctionDetailPage/Modal';
 import { AuctionDetail } from '@/src/types/auctionDetail';
 import ModalPortal from '@/src/common/Portal';
-import { AiOutlineLike, AiFillLike } from 'react-icons/ai';
-import { usePostLike } from '@/src/remote/query/auctionDetail';
 import { getCookie } from 'cookies-next';
 import classNamees from 'classnames/bind';
+import Navigator from '@/src/common/Navigator';
+import { useRecoilValue } from 'recoil';
+import { arriveLocationState } from '@/src/atom';
+import Map from '../../../common/Map';
 import styles from './index.module.scss';
 
 type Props = {
   productInfo: AuctionDetail;
+  arriveLocation: any;
 };
 
-const ProductInfo = ({ productInfo }: Props) => {
+const ProductInfo = ({ productInfo, arriveLocation }: Props) => {
   const router = useRouter();
   const boardId = useParams().slug;
   const loginedId = getCookie('token');
@@ -76,6 +79,14 @@ const ProductInfo = ({ productInfo }: Props) => {
         </span>
         <span className={cx('writeInform')}>상세 내용</span>
         <div className={cx('introduce')}>{board.stuffContent}</div>
+        <span className={cx('writeInform')}>판매자와의 거리</span>
+        {arriveLocation.lat && (
+          <>
+            <Map lat={arriveLocation.lat} lng={arriveLocation.lng} />
+            <Navigator />
+          </>
+        )}
+
         <div className={cx('like')}>
           {/* <div onClick={clickLike}>
             {like ? <AiFillLike size={64} /> : <AiOutlineLike size={64} />}

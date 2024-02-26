@@ -14,7 +14,6 @@ export const useGetDetailInfo = (boardId: string) => {
   return useQuery({
     queryKey: ['BoardDetail', boardId],
     queryFn: () => GetAuctionDetail(boardId),
-    refetchOnMount: true,
   });
 };
 
@@ -30,7 +29,7 @@ export const useGetComments = ({
   return useQuery({
     queryKey: ['comments', boardId, cursor],
     queryFn: () => GetComments({ boardId, cursor }),
-    enabled: !!inView,
+    enabled: !!inView && !!cursor,
   });
 };
 
