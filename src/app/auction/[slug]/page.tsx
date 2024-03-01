@@ -77,8 +77,6 @@ const AuctionDetail = ({ params }: AuctionDetailProps) => {
   useEffect(() => {
     if (currentLocation && arriveLocation) {
       (async () => {
-        const url = 'https://apis-navi.kakaomobility.com/v1/directions';
-
         const origin = `${currentLocation.lng},${currentLocation.lat}`;
         const destination = `${arriveLocation.lng},${arriveLocation.lat}`;
 

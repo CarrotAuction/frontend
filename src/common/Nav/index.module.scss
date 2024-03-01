@@ -55,17 +55,6 @@
     padding: 0 2.5rem;
     cursor: pointer;
     transition: 0.25s all;
-    &:hover {
-      color: var(--main-color);
-    }
-
-    & > a:hover {
-      color: var(--main-color);
-    }
-  }
-
-  & > a:hover {
-    color: var(--main-color);
   }
 
   @include mobile {
