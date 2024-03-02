@@ -6,6 +6,7 @@ import ReactQueryProviders from '../providers/ReactQueryProvider';
 import NavBar from '../common/Nav';
 import Footer from '../common/Footer';
 import RecoilProviders from '../providers/RecoilProviders';
+import { MSWProvider } from '../providers/MSWProvider';
 
 const NotoR = Roboto({
   weight: '400',
@@ -31,10 +32,12 @@ export default function RootLayout({
     <RecoilProviders>
       <html lang="kr">
         <body className={`${NotoR.className} ${NotoB.variable}`}>
-          <NavBar />
-          <ReactQueryProviders>{children}</ReactQueryProviders>
-          <Footer />
-          <div id="modal" />
+          <MSWProvider>
+            <NavBar />
+            <ReactQueryProviders>{children}</ReactQueryProviders>
+            <Footer />
+            <div id="modal" />
+          </MSWProvider>
         </body>
       </html>
     </RecoilProviders>

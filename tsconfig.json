@@ -29,7 +29,8 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "cypress/app.cy.js"
+    "cypress/app.cy.js",
+    "public/mockServiceWorker.js"
   ],
   "exclude": ["node_modules"]
 }
