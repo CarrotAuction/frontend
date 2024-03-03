@@ -1,0 +1,19 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  min-height: calc(100vh - 80px - 15rem);
+  font-size: 5rem;
+  font-weight: bold;
+
+  & > a {
+    font-size: 3rem;
+    background-color: var(--main-color);
+    padding: 3rem;
+    border-radius: 1rem;
+    color: white;
+    margin-top: 3rem;
+  }
+}
