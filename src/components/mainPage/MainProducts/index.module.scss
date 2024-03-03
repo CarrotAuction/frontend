@@ -1,0 +1,61 @@
+@import '@/src/styles/media.scss';
+
+.wrapper {
+  width: 80%;
+  margin: 0 auto;
+  & > h4 {
+    font-size: 5rem;
+    font-weight: 600;
+    margin-top: 5rem;
+  }
+}
+
+.products {
+  display: flex;
+  overflow-x: scroll;
+  padding-bottom: 3rem;
+  & > div {
+    display: flex;
+    flex-direction: column;
+
+    min-width: 250px;
+    flex-grow: 1;
+
+    & > p {
+      font-size: 2.5rem;
+
+      & > strong {
+        font-size: 2.8rem;
+        font-weight: bold;
+      }
+    }
+  }
+  & > div > div {
+    position: relative;
+    flex-grow: 1;
+    margin: 1rem;
+    height: 25rem;
+    cursor: pointer;
+
+    @include mobile {
+      min-width: 50%;
+    }
+  }
+}
+
+.salesMark {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  font-size: 5rem;
+
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+  background-color: gray;
+
+  & > span {
+    transform: rotate(-5deg);
+  }
+}
