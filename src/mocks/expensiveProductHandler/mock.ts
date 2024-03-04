@@ -1,35 +1,15 @@
 export const MOCK_EXPENSIVE_DATA = {
   data: [
     {
-      createAt: '2024-02-08T22:44:58.349Z',
-      id: 37,
-      stuffName: '1233',
-      stuffContent: '12',
-      stuffPrice: 12,
-      stuffCategory: '패션의류/잡화',
+      createAt: '2024-03-04T01:19:14.394Z',
+      id: 49,
+      stuffName: '무인도',
+      stuffContent: '섬 팔아요',
+      stuffPrice: 900000000,
       salesStatus: false,
+      stuffCategory: '생활용품',
       imageUrl:
-        'https://imguploads3.s3.ap-northeast-2.amazonaws.com/01-removebg-preview%201.png',
-      creator: {
-        id: 8,
-        province: {
-          name: '서울특별시',
-        },
-        city: {
-          name: '서초구',
-        },
-      },
-    },
-    {
-      createAt: '2023-12-19T14:49:05.088Z',
-      id: 36,
-      stuffName: '당근이',
-      stuffContent: '신선한 당근 급쳐합니다',
-      stuffPrice: 5000,
-      salesStatus: true,
-      stuffCategory: '식품',
-      imageUrl:
-        'https://imguploads3.s3.ap-northeast-2.amazonaws.com/carrot.png',
+        'https://imguploads3.s3.ap-northeast-2.amazonaws.com/52eccd8e3bbd4c164b09e5aead79ae59.jpg',
       creator: {
         id: 1,
         province: {
@@ -41,15 +21,15 @@ export const MOCK_EXPENSIVE_DATA = {
       },
     },
     {
-      createAt: '2023-12-19T14:44:02.203Z',
-      id: 35,
-      stuffName: '당근이',
-      stuffContent: '신선한 당근 급쳐합니다',
-      stuffPrice: 5000,
+      createAt: '2024-03-04T01:17:53.320Z',
+      id: 48,
+      stuffName: '속초 집',
+      stuffContent: '\b집 팔아요',
+      stuffPrice: 2000000000,
       salesStatus: false,
-      stuffCategory: '식품',
+      stuffCategory: '홈인테리어',
       imageUrl:
-        'https://imguploads3.s3.ap-northeast-2.amazonaws.com/carrot.png',
+        'https://imguploads3.s3.ap-northeast-2.amazonaws.com/fe562d435d2e9064f08d7d71f79eb345.jpg',
       creator: {
         id: 1,
         province: {
@@ -61,15 +41,35 @@ export const MOCK_EXPENSIVE_DATA = {
       },
     },
     {
-      createAt: '2023-12-19T14:43:11.492Z',
-      id: 34,
-      stuffName: '당근이',
-      stuffContent: '신선한 당근 급쳐합니다',
-      stuffPrice: 5000,
-      salesStatus: true,
-      stuffCategory: '식품',
+      createAt: '2024-03-04T01:17:12.770Z',
+      id: 47,
+      stuffName: '외제차',
+      stuffContent: '\b외제차입니다.',
+      salesStatus: false,
+      stuffPrice: 500000000,
+      stuffCategory: '스포츠/레저',
       imageUrl:
-        'https://imguploads3.s3.ap-northeast-2.amazonaws.com/carrot.png',
+        'https://imguploads3.s3.ap-northeast-2.amazonaws.com/dc5bc4aae486f577f19f632bb8432a55.jpg',
+      creator: {
+        id: 1,
+        province: {
+          name: '경기도',
+        },
+        city: {
+          name: '성남시',
+        },
+      },
+    },
+    {
+      createAt: '2024-03-04T01:16:31.861Z',
+      id: 46,
+      stuffName: '프라다 가방',
+      stuffContent: '프라다 가방입니다.\r\n명품입니다.',
+      salesStatus: false,
+      stuffPrice: 3000000,
+      stuffCategory: '뷰티',
+      imageUrl:
+        'https://imguploads3.s3.ap-northeast-2.amazonaws.com/edc2a570e4008d290476186f1d7bffeb.jpg',
       creator: {
         id: 1,
         province: {
