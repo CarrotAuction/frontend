@@ -44,6 +44,70 @@
 ---
 ### ✈️ 데모
 
+<!-- 데스크탑 -->
+<div>
+  <h3>메인 페이지</h3>
+  <img src="https://github.com/CarrotAuction/frontend/assets/78102507/42941800-a2e2-4a2e-82ff-4c95b481e7cd" alt="메인페이지" style="max-width: 100%; height: auto;">
+</div>
+
+<div>
+  <h3>게시물 페이지</h3>
+  <img src="https://github.com/CarrotAuction/frontend/assets/78102507/ac6c5be0-6d3e-490a-9f45-4ca17a215a36" alt="게시물페이지" style="max-width: 100%; height: auto;">
+</div>
+
+<div>
+  <h3>회원가입 페이지</h3>
+  <img src="https://github.com/CarrotAuction/frontend/assets/78102507/f360782e-fc83-45f2-8bfa-f040d9e3c748" alt="회원가입 페이지" style="max-width: 100%; height: auto;">
+</div>
+
+<div>
+  <h3>로그인 페이지</h3>
+  <img src="https://github.com/CarrotAuction/frontend/assets/78102507/5de9f08e-4902-4f5d-8afd-5c2b0e8ebe4a" alt="로그인 페이지" style="max-width: 100%; height: auto;">
+</div>
+
+<div>
+  <h3>글쓰기 페이지</h3>
+  <img src="https://github.com/CarrotAuction/frontend/assets/78102507/f5b30aee-0b90-4ee5-a898-15af46c5a514" alt="글쓰기 페이지" style="max-width: 100%; height: auto;">
+</div>
+
+<div>
+  <h3>상세 페이지</h3>
+  <img src="https://github.com/CarrotAuction/frontend/assets/78102507/4c110085-a4f0-4b45-ad7e-8cfb7f8c4388" alt="상세 페이지" style="max-width: 100%; height: auto;">
+</div>
+
+<!-- 모바일 -->
+<div>
+  <h3>메인 페이지 (모바일)</h3>
+  <img src="https://github.com/CarrotAuction/frontend/assets/78102507/3847470c-75cf-492d-90af-7162f00bcd26" alt="메인페이지 (모바일)" style="max-width: 100%; height: auto;">
+</div>
+
+<div>
+  <h3>게시물 페이지 (모바일)</h3>
+  <img src="https://github.com/CarrotAuction/frontend/assets/78102507/e5ac4924-2391-4d65-b037-a6351e57fe1c" alt="게시물페이지 (모바일)" style="max-width: 100%; height: auto;">
+</div>
+
+<div>
+  <h3>회원가입 페이지 (모바일)</h3>
+  <img src="https://github.com/CarrotAuction/frontend/assets/78102507/e51a86ed-8659-4491-9dd8-e89b5038a6b3" alt="회원가입 페이지 (모바일)" style="max-width: 100%; height: auto;">
+</div>
+
+<div>
+  <h3>로그인 페이지 (모바일)</h3>
+  <img src="https://github.com/CarrotAuction/frontend/assets/78102507/fa5d0859-a64a-4bf1-bf0b-5ea9521d6476" alt="로그인 페이지 (모바일)" style="max-width: 100%; height: auto;">
+</div>
+
+<div>
+  <h3>글쓰기 페이지 (모바일)</h3>
+  <img src="https://github.com/CarrotAuction/frontend/assets/78102507/a7b04d76-e33b-403a-ae94-718f5dccb9f1" alt="글쓰기 페이지 (모바일)" style="max-width: 100%; height: auto;">
+</div>
+
+<div>
+  <h3>상세 페이지 (모바일)</h3>
+  <img src="https://github.com/CarrotAuction/frontend/assets/78102507/adc0b748-f933-4177-976a-079cffad77c9" alt="상세 페이지 (모바일)" style="max-width: 100%; height: auto;">
+</div>
+
+
+
 ---
 ### 👍 성능 최적화
 - 필요한 시점에 이미지를 불러오도록 lazy loading을 적용 및 layout shift를 방지하기 위한 Next.js image 태그 적용
