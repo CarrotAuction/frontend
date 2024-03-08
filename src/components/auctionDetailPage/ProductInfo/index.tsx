@@ -11,6 +11,7 @@ import classNamees from 'classnames/bind';
 import Navigator from '@/src/common/Navigator';
 import { useRecoilValue } from 'recoil';
 import { arriveLocationState } from '@/src/atom';
+import { AiFillLike, AiOutlineLike } from 'react-icons/ai';
 import Map from '../../../common/Map';
 import styles from './index.module.scss';
 
@@ -88,9 +89,9 @@ const ProductInfo = ({ productInfo, arriveLocation }: Props) => {
         )}
 
         <div className={cx('like')}>
-          {/* <div onClick={clickLike}>
-            {like ? <AiFillLike size={64} /> : <AiOutlineLike size={64} />}
-          </div> */}
+          <div onClick={clickLike}>
+            <AiFillLike size={64} />
+          </div>
           <p className={cx('likeNum')}>{board.likesCount}</p>
         </div>
         <button
