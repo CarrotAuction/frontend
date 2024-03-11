@@ -8,6 +8,8 @@
 - 구매자와 판매자의 위치를 시각화해서 보여줌으로써 일정 조율이 편리해집니다.
 - 물건의 시세를 알 수있게 다른 쇼핑몰의 데이터와 가격을 비교할 수 있는 기능을 제공합니다. 
 - 실시간 채팅서비스로 보다 빠른 거래가 이루어집니다. (예정)
+- 관리자 페이지를 만들어 회원관리를 합니다. (예정)
+
 ---
 ### 🕹️ 기술적 성취
 
@@ -76,6 +78,11 @@
   <img src="https://github.com/CarrotAuction/frontend/assets/78102507/4c110085-a4f0-4b45-ad7e-8cfb7f8c4388" alt="상세 페이지" style="max-width: 100%; height: auto;">
 </div>
 
+<div>
+  <h3>원가 비교 페이지</h3>
+  <img src="https://github.com/CarrotAuction/frontend/assets/78102507/23b8df4c-826c-493d-8fbf-5e0076df9a23" alt="원가 비교 페이지" style="max-width: 100%; height: auto;">
+</div>
+
 <!-- 모바일 -->
 
 ### 모바일
@@ -92,6 +99,9 @@
 | ----------------------------------- | ----------------------------------- |
 | ![Write Page (Mobile)](https://github.com/CarrotAuction/frontend/assets/78102507/a7b04d76-e33b-403a-ae94-718f5dccb9f1) | ![Detail Page (Mobile)](https://github.com/CarrotAuction/frontend/assets/78102507/adc0b748-f933-4177-976a-079cffad77c9) |
 
+| 원가 비교 페이지 (Mobile)               |
+| ----------------------------------- |
+<img src="https://github.com/CarrotAuction/frontend/assets/78102507/d776e273-3d0a-44d7-8b84-6af7842251c6" alt="원가 비교 페이지" style="width: 100%; height: auto;">
 
 ---
 ### 👍 성능 최적화
@@ -99,6 +109,7 @@
 - react-hook-form을 사용하여 불필요한 리랜더링 방지 및 마운팅 속도 증가
 - 불필요한 api 요청을 방지하기 위해 tanstack-query를 활용한 데이터 캐싱
 - 브라우저 메모리를 최소화하기위해 이벤트 버블링 적용
+- Debounce를 이용해 사용자 입력 처리 최적화
 
 ---
 ### ⚒️ 기술스택
